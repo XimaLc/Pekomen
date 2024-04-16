@@ -13,5 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\managers">
+      <UniqueIdentifier>{e64ed747-a91a-4b40-858b-123380c2f2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\states">
+      <UniqueIdentifier>{cb1dd84a-e628-485d-a5b1-14a0e8cc9899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\managers">
+      <UniqueIdentifier>{6add2238-dcf7-46f3-bbe3-5f47cd4d13a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\states">
+      <UniqueIdentifier>{7c833e95-eb20-486c-bb81-3200675644ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\states\enfant">
+      <UniqueIdentifier>{2e2d809c-a666-407f-8b12-51547df97e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\states\enfant">
+      <UniqueIdentifier>{86a73b5c-b19d-482b-93c3-d4067166dcce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Fichiers sources\states\enfant</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Fichiers sources\states</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Fichiers sources\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Fichiers sources\states\enfant</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MenuState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\states</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Fichiers d%27en-tête\managers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
