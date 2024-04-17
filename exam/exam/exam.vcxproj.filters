@@ -31,6 +31,12 @@
     <Filter Include="Fichiers sources\states\enfant">
       <UniqueIdentifier>{86a73b5c-b19d-482b-93c3-d4067166dcce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Components">
+      <UniqueIdentifier>{9957b775-f57d-43db-a053-4ad4d9b31a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components">
+      <UniqueIdentifier>{35546901-f2c8-4ba3-8672-012248383ef8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -48,6 +54,15 @@
     <ClCompile Include="MenuState.cpp">
       <Filter>Fichiers sources\states\enfant</Filter>
     </ClCompile>
+    <ClCompile Include="Bouton.cpp">
+      <Filter>Fichiers sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameMenu.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -61,6 +76,15 @@
     </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Fichiers d%27en-tête\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bouton.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="tools.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameMenu.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

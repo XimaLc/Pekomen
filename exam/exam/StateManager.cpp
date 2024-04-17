@@ -1,15 +1,18 @@
 #include "StateManager.h"
 
+State* StateManager::m_currentState;
+
 StateManager::StateManager()
 {
 	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
-	ChangeState(GAME);
+	ChangeState(MENU);
 	isRunning = true;
-	Update();
+	Loop();
 }
 
 void StateManager::ChangeState(int _id)
 {
+	delete m_currentState;
 	switch (_id)
 	{
 	case MENU:
@@ -22,22 +25,30 @@ void StateManager::ChangeState(int _id)
 	}
 }
 
-void StateManager::HandleEvent()
-{
 
-}
-
-void StateManager::Update()
+void StateManager::Loop()
 {
 	while (isRunning)
 	{
-		HandleEvent();
-		m_currentState->Update(*m_window);
-		Draw();
-	}
-}
+		restartClock();
+		while (m_window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				m_window->close();
+			else
+				m_currentState->HandleEvent(event, *m_window);
+		}
 
-void StateManager::Draw()
+		mousePos = { static_cast<float>(sf::Mouse::getPosition(*m_window).x), static_cast<float>(sf::Mouse::getPosition(*m_window).y) };
+
+		m_currentState->Update(sf::Vector2f{ mousePos });
+		m_window->clear();
+		m_currentState->Draw(*m_window);
+		m_window->display();	
+	}
+} 
+
+StateManager::~StateManager()
 {
-	m_currentState->Draw(*m_window);
+	delete m_currentState;
 }
