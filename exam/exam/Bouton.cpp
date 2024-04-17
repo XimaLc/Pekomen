@@ -1,5 +1,6 @@
 #include "Bouton.h"
 #include "tools.h"
+#include "StateManager.h"
 
 sf::Font Bouton::m_font;
 

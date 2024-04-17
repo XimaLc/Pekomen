@@ -34,6 +34,8 @@ void StateManager::Loop()
 		{
 			if (event.type == sf::Event::Closed)
 				m_window->close();
+			else if (event.type == sf::Event::KeyPressed)
+				m_currentState->HandleKeyboard(event);
 			else
 				m_currentState->HandleEvent(event, *m_window);
 		}

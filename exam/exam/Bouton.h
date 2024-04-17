@@ -16,8 +16,8 @@ class Bouton
 
 	static sf::Font m_font;
 public:
-
 	float timer;
+
 	Bouton();
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string);
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, sf::Color _color);

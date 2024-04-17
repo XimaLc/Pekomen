@@ -14,6 +14,7 @@ public:
 
 	virtual void Update(sf::Vector2f _mousePos) override;
 	virtual void Draw(sf::RenderWindow& _window) override; 
+	virtual void HandleKeyboard(sf::Event _event);
 	virtual void HandleEvent(sf::Event _event, sf::RenderWindow& _window) override;
 };
 

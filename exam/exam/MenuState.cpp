@@ -43,6 +43,10 @@ void MenuState::Draw(sf::RenderWindow& _window)
 	m_leaveBouton.Draw(_window);
 }
 
+void MenuState::HandleKeyboard(sf::Event _event)
+{
+}
+
 void MenuState::HandleEvent(sf::Event _event, sf::RenderWindow& _window)
 {
 }
