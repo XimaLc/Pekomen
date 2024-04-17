@@ -25,7 +25,6 @@ void StateManager::ChangeState(int _id)
 	}
 }
 
-
 void StateManager::Loop()
 {
 	while (isRunning)
