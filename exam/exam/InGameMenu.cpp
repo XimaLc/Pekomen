@@ -3,7 +3,7 @@
 
 InGameMenu::InGameMenu()
 {
-	isMenuOpen = false;
+	isMenuOpen = true;
 
 	m_inGameProfilBouton = Bouton({ 1620, 190 }, { 300, 100 }, "Dresseur");
 	m_inGamePokemonBouton = Bouton({ 1620, 290 }, { 300, 100 }, "Pekomon");
@@ -25,17 +25,30 @@ InGameMenu::InGameMenu()
 	auto inGamePokedexBoutonAction = [this]() { if (m_inGamePokedexBouton.timer > 0.5f) { /*ouvrir le pokedex*/  }};
 	m_inGamePokedexBouton.setOnClick(inGamePokedexBoutonAction);
 
-	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { OpenClose(isSaveMenuOpen); }};
+	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { m_saveMenu.OpenClose(); m_inGameSaveBouton.timer = 0; }};
 	m_inGameSaveBouton.setOnClick(inGameSaveBoutonAction);
 
 	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/  }};
 	m_inGameOptionsBouton.setOnClick(inGameOptionsBoutonAction);
 
-	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) { StateManager::ChangeState(MENU); }};
+	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) { m_inGameSaveBouton.timer = 0; StateManager::ChangeState(MENU);
+	}};
 	m_inGameLeaveBouton.setOnClick(inGameLeaveBoutonAction);
 }
 
-void InGameMenu::OpenClose(bool& _toSwitch)
+void InGameMenu::OpenCloseMenu(bool& _toSwitch)
+{
+	if (_toSwitch)
+	{
+		_toSwitch = false;
+		if(m_saveMenu.isSaveMenuOpen)
+			m_saveMenu.OpenClose();
+	}
+	else
+		_toSwitch = true;
+}
+
+void InGameMenu::OpenCloseOtherMenu(bool& _toSwitch)
 {
 	if (_toSwitch)
 		_toSwitch = false;
@@ -56,7 +69,11 @@ void InGameMenu::Update(const sf::Vector2f _mousePos)
 		m_inGamePokedexBouton.Update(_mousePos);
 		m_inGameLeaveBouton.Update(_mousePos);
 	}
-	
+	if (m_saveMenu.isSaveMenuOpen)
+	{
+		m_saveMenu.Update(_mousePos);
+	}
+
 	if (m_inGameSaveBouton.isClicked())
 	{
 		m_inGameSaveBouton.useClickAction();
@@ -79,7 +96,7 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 		m_inGameSaveBouton.Draw(_window);
 		m_inGamePokedexBouton.Draw(_window);
 		m_inGameLeaveBouton.Draw(_window);
-		if (isSaveMenuOpen)
+		if (m_saveMenu.isSaveMenuOpen)
 		{
 			m_saveMenu.Draw(_window);
 		}

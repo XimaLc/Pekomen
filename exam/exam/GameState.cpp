@@ -21,7 +21,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 	if (_event.key.code == sf::Keyboard::E && timer > 0.5f)
 	{
 		gameAsFocus = false;
-		m_inGameMenu.OpenClose(m_inGameMenu.isMenuOpen);
+		m_inGameMenu.OpenCloseMenu(m_inGameMenu.isMenuOpen);
 		timer = 0;
 	}
 }

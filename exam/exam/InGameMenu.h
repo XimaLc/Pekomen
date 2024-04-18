@@ -6,7 +6,6 @@
 
 class InGameMenu
 {
-	bool isSaveMenuOpen;
 
 	Bouton m_inGameOptionsBouton;
 	Bouton m_inGameBagBouton;
@@ -22,7 +21,8 @@ public:
 
 	InGameMenu();
 
-	void OpenClose(bool& _toSwitch);
+	void OpenCloseMenu(bool& _toSwitch);
+	void OpenCloseOtherMenu(bool& _toSwitch);
 
 	void Update(const sf::Vector2f _mousePos);
 	void Draw(sf::RenderWindow& _window);
