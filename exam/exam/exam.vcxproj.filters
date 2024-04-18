@@ -37,6 +37,18 @@
     <Filter Include="Fichiers d%27en-tête\Components">
       <UniqueIdentifier>{35546901-f2c8-4ba3-8672-012248383ef8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\inGameMenu">
+      <UniqueIdentifier>{d5b1cffa-8812-4313-a8d3-b35646095cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\inGameMenu\Map">
+      <UniqueIdentifier>{65dd9ec4-4d06-41f4-88ae-34756e881c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\inGameMenu">
+      <UniqueIdentifier>{94afda1d-8a06-480c-adbe-3ea278db14b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\inGameMenu\Map">
+      <UniqueIdentifier>{2fda0ed6-1ab9-447c-8353-0069c6df8915}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -60,11 +72,17 @@
     <ClCompile Include="tools.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources\Components</Filter>
-    </ClCompile>
     <ClCompile Include="InGameMenu.cpp">
-      <Filter>Fichiers sources\Components</Filter>
+      <Filter>Fichiers sources\Components\inGameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\Components\inGameMenu\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveMenu.cpp">
+      <Filter>Fichiers sources\Components\inGameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Fichiers sources\Components\inGameMenu\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,10 +105,16 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête\Components</Filter>
+      <Filter>Fichiers d%27en-tête\Components\inGameMenu\Map</Filter>
     </ClInclude>
     <ClInclude Include="InGameMenu.h">
-      <Filter>Fichiers d%27en-tête\Components</Filter>
+      <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMenu.h">
+      <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Fichiers d%27en-tête\Components\inGameMenu\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

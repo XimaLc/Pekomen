@@ -25,7 +25,7 @@ InGameMenu::InGameMenu()
 	auto inGamePokedexBoutonAction = [this]() { if (m_inGamePokedexBouton.timer > 0.5f) { /*ouvrir le pokedex*/  }};
 	m_inGamePokedexBouton.setOnClick(inGamePokedexBoutonAction);
 
-	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { /*ouvrir la sauvegarde*/  }};
+	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { OpenClose(isSaveMenuOpen); }};
 	m_inGameSaveBouton.setOnClick(inGameSaveBoutonAction);
 
 	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/  }};
@@ -35,12 +35,12 @@ InGameMenu::InGameMenu()
 	m_inGameLeaveBouton.setOnClick(inGameLeaveBoutonAction);
 }
 
-void InGameMenu::OpenClose()
+void InGameMenu::OpenClose(bool& _toSwitch)
 {
-	if (isMenuOpen)
-		isMenuOpen = false;
+	if (_toSwitch)
+		_toSwitch = false;
 	else
-		isMenuOpen = true;
+		_toSwitch = true;
 }
 
 
@@ -57,6 +57,11 @@ void InGameMenu::Update(const sf::Vector2f _mousePos)
 		m_inGameLeaveBouton.Update(_mousePos);
 	}
 	
+	if (m_inGameSaveBouton.isClicked())
+	{
+		m_inGameSaveBouton.useClickAction();
+	}
+
 	if (m_inGameLeaveBouton.isClicked())
 	{
 		m_inGameLeaveBouton.useClickAction();
@@ -74,5 +79,9 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 		m_inGameSaveBouton.Draw(_window);
 		m_inGamePokedexBouton.Draw(_window);
 		m_inGameLeaveBouton.Draw(_window);
+		if (isSaveMenuOpen)
+		{
+			m_saveMenu.Draw(_window);
+		}
 	}
 }

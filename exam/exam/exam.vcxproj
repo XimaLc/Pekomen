@@ -138,8 +138,10 @@
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InGameMenu.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="SaveMenu.cpp" />
     <ClCompile Include="source.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -149,8 +151,10 @@
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InGameMenu.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="SaveMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="tools.h" />
