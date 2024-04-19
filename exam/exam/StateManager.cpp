@@ -1,12 +1,12 @@
 #include "StateManager.h"
 
 State* StateManager::m_currentState;
-//GameState* StateManager::GameState;
+GameState* StateManager::gameState;
 
 StateManager::StateManager()
 {
 	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
-	GameState = new GameState();
+	gameState = new GameState();
 
 	ChangeState(GAME);
 	isRunning = true;
@@ -15,15 +15,15 @@ StateManager::StateManager()
 
 void StateManager::ChangeState(int _id)
 {
-	delete m_currentState;
+	if (_id == GAME)
+		delete m_currentState;
 	switch (_id)
 	{
 	case MENU:
 		m_currentState = new MenuState();
 		break;
-
 	case GAME:
-		m_currentState = GameState;
+		m_currentState = gameState;
 		break;
 	case WILD_POKEMON:
 		m_currentState = new WildPokemonState();

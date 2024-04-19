@@ -12,14 +12,13 @@ enum STATE { MENU, GAME, WILD_POKEMON };
 class StateManager
 {
 	static State* m_currentState;
+	static GameState* gameState;
 
 	sf::RenderWindow* m_window;
 	sf::Event event;
 	sf::Vector2f mousePos;
 
 	bool isRunning;
-
-	static GameState* GameState;
 public:
 	StateManager();
 	~StateManager();

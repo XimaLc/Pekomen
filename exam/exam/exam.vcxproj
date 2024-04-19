@@ -136,32 +136,42 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="DB.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InGameMenu.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="SaveMenu.cpp" />
     <ClCompile Include="source.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Team.cpp" />
     <ClCompile Include="tools.cpp" />
+    <ClCompile Include="WildPokemonState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bouton.h" />
+    <ClInclude Include="DB.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InGameMenu.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Pokemon.h" />
     <ClInclude Include="SaveMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Team.h" />
     <ClInclude Include="tools.h" />
+    <ClInclude Include="WildPokemonState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

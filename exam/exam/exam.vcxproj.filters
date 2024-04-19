@@ -61,6 +61,18 @@
     <Filter Include="Fichiers sources\Components\Entity\Player">
       <UniqueIdentifier>{b128401f-456d-42bc-8f39-0b674dba40de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\tools">
+      <UniqueIdentifier>{16284725-259b-4b39-bf4e-7ae124f1040f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\tools">
+      <UniqueIdentifier>{aa821408-96c3-4590-b51f-c4b216871fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\Pokemons">
+      <UniqueIdentifier>{de56e086-f85b-4c78-8de4-edf1bbe03012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\Pokemons">
+      <UniqueIdentifier>{5ebf5fec-5e78-448f-9a67-89e083f15a3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -81,9 +93,6 @@
     <ClCompile Include="Bouton.cpp">
       <Filter>Fichiers sources\Components</Filter>
     </ClCompile>
-    <ClCompile Include="tools.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="InGameMenu.cpp">
       <Filter>Fichiers sources\Components\inGameMenu</Filter>
     </ClCompile>
@@ -102,6 +111,24 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Fichiers sources\Components\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="WildPokemonState.cpp">
+      <Filter>Fichiers sources\states\enfant</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="DB.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Fichiers sources\Components\Pokemons</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>Fichiers sources\Components\Pokemons</Filter>
+    </ClCompile>
+    <ClCompile Include="Team.cpp">
+      <Filter>Fichiers sources\Components\Pokemons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -118,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="Bouton.h">
       <Filter>Fichiers d%27en-tête\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="tools.h">
-      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
@@ -139,6 +163,24 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Fichiers d%27en-tête\Components\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="WildPokemonState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="tools.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="DB.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
