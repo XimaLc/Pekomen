@@ -121,6 +121,14 @@ void Map::setSpritePosition(int _layerId, int _x, int _y)
 {
 }
 
+bool Map::isInGrass(sf::Vector2i _pos)
+{
+    if (layer5.getTile(_pos, width) == 7)
+        return true;
+
+    return false;
+}
+
 Map::Map()
 {
     height = 100;

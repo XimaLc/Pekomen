@@ -3,7 +3,7 @@
 
 InGameMenu::InGameMenu()
 {
-	isMenuOpen = true;
+	isMenuOpen = false;
 
 	m_background.setFillColor(sf::Color::White);
 	m_background.setSize({ 300, 700 });

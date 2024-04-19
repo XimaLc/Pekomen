@@ -34,5 +34,7 @@ public:
 
 	void setSpriteTextureRect(int _layerId, sf::IntRect _rect);
 	void setSpritePosition(int _layerId, int _x, int _y);
+
+	bool isInGrass(sf::Vector2i _pos);
 };
 

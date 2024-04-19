@@ -9,7 +9,8 @@
 class GameState : public State
 {
 	bool gameAsFocus;
-	
+	bool hasMove;
+
 	InGameMenu m_inGameMenu;
 	Map map;
 
@@ -19,7 +20,7 @@ class GameState : public State
 	float timer;
 public:
 	GameState();
-	
+
 	virtual void Update(sf::Vector2f _mousePos);
 	virtual void Draw(sf::RenderWindow& _window);
 	virtual void HandleKeyboard(sf::Event _event);

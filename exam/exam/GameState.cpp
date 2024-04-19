@@ -1,10 +1,11 @@
 #include "GameState.h"
+#include "StateManager.h"
 
 GameState::GameState()
 {
 	timer = 0.f;
 	map.setLayersTexture();
-	map.load("map1");
+	map.load("map");
 
 	playerTexture.loadFromFile("../Files/Textures/player.png");
 	player = Player("player", playerTexture);
@@ -12,6 +13,13 @@ GameState::GameState()
 
 void GameState::Update(sf::Vector2f _mousePos)
 {
+	if(hasMove)
+		if (map.isInGrass(player.getPosition()))
+		{
+			int x = iRand(0, 10);
+			if (x < 3)
+				StateManager::ChangeState(WILD_POKEMON);
+		}
 	timer += GetDeltaTime();
 	m_inGameMenu.Update(_mousePos);
 }
@@ -38,6 +46,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 			{
 				player.move(1, 0);
 				player.anim(1, 0);
+				hasMove = true;
 			}
 		timer = 0.f;
 	}
@@ -48,6 +57,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 			{
 				player.move(-1, 0);
 				player.anim(-1, 0);
+				hasMove = true;
 			}
 		timer = 0.f;
 	}
@@ -58,6 +68,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 			{
 				player.move(0, 1);
 				player.anim(0, 1);
+				hasMove = true;
 			}
 		timer = 0.f;
 	}
@@ -68,6 +79,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 			{
 				player.move(0, -1);
 				player.anim(0, -1);
+				hasMove = true;
 			}
 		timer = 0.f;
 	}

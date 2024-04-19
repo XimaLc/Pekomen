@@ -2,9 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "MenuState.h"
 #include "GameState.h"
+#include "WildPokemonState.h"
+
 #include "tools.h"
 
-enum STATE { MENU, GAME };
+
+enum STATE { MENU, GAME, WILD_POKEMON };
 
 class StateManager
 {
@@ -15,6 +18,8 @@ class StateManager
 	sf::Vector2f mousePos;
 
 	bool isRunning;
+
+	static GameState* GameState;
 public:
 	StateManager();
 	~StateManager();
