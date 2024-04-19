@@ -2,13 +2,20 @@
 #include "InGameMenu.h"
 #include "State.h"
 #include "Bouton.h"
+#include "Map.h"
+#include "Player.h"
+
 #include <SFML/Graphics.hpp>
 class GameState : public State
 {
 	bool gameAsFocus;
 	
 	InGameMenu m_inGameMenu;
+	Map map;
 
+	Player player;
+	sf::Texture playerTexture;
+	
 	float timer;
 public:
 	GameState();

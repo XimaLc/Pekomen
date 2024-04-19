@@ -5,6 +5,10 @@ InGameMenu::InGameMenu()
 {
 	isMenuOpen = true;
 
+	m_background.setFillColor(sf::Color::White);
+	m_background.setSize({ 300, 700 });
+	m_background.setPosition({ 1620, 190 });
+
 	m_inGameProfilBouton = Bouton({ 1620, 190 }, { 300, 100 }, "Dresseur");
 	m_inGamePokemonBouton = Bouton({ 1620, 290 }, { 300, 100 }, "Pekomon");
 	m_inGameBagBouton = Bouton({ 1620, 390 }, { 300, 100 }, "Sac");
@@ -89,6 +93,7 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 {
 	if (isMenuOpen)
 	{
+		//_window.draw(m_background);
 		m_inGameOptionsBouton.Draw(_window);
 		m_inGameBagBouton.Draw(_window);
 		m_inGamePokemonBouton.Draw(_window);

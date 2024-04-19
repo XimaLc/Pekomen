@@ -18,6 +18,8 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string)
 
 	m_shape.setPosition(_pos);
 	m_shape.setSize(_size);
+	m_shape.setOutlineColor(sf::Color::Black);
+	m_shape.setOutlineThickness(-1.f);
 
 	m_text.setPosition(_pos.x + 20, _pos.y + 20);
 	m_text.setString(_string);

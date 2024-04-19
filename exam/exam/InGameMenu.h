@@ -6,6 +6,7 @@
 
 class InGameMenu
 {
+	sf::RectangleShape m_background;
 
 	Bouton m_inGameOptionsBouton;
 	Bouton m_inGameBagBouton;
@@ -20,6 +21,8 @@ public:
 	bool isMenuOpen;
 
 	InGameMenu();
+
+
 
 	void OpenCloseMenu(bool& _toSwitch);
 	void OpenCloseOtherMenu(bool& _toSwitch);

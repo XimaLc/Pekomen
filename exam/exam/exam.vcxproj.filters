@@ -40,14 +40,26 @@
     <Filter Include="Fichiers d%27en-tête\Components\inGameMenu">
       <UniqueIdentifier>{d5b1cffa-8812-4313-a8d3-b35646095cfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Components\inGameMenu\Map">
-      <UniqueIdentifier>{65dd9ec4-4d06-41f4-88ae-34756e881c16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers sources\Components\inGameMenu">
       <UniqueIdentifier>{94afda1d-8a06-480c-adbe-3ea278db14b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\Components\inGameMenu\Map">
+    <Filter Include="Fichiers d%27en-tête\Map">
+      <UniqueIdentifier>{65dd9ec4-4d06-41f4-88ae-34756e881c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\Entity">
+      <UniqueIdentifier>{967c3d62-c80e-429d-bf10-f090c6eef393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\Map">
       <UniqueIdentifier>{2fda0ed6-1ab9-447c-8353-0069c6df8915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\Entity">
+      <UniqueIdentifier>{2b110c2c-b6dd-4b43-9543-6d45a1206bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\Entity\Player">
+      <UniqueIdentifier>{13e3db69-515a-4b5a-a6ae-ad00e749b349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\Entity\Player">
+      <UniqueIdentifier>{b128401f-456d-42bc-8f39-0b674dba40de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,13 +88,19 @@
       <Filter>Fichiers sources\Components\inGameMenu</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources\Components\inGameMenu\Map</Filter>
+      <Filter>Fichiers sources\Components\Map</Filter>
     </ClCompile>
     <ClCompile Include="SaveMenu.cpp">
       <Filter>Fichiers sources\Components\inGameMenu</Filter>
     </ClCompile>
     <ClCompile Include="Layer.cpp">
-      <Filter>Fichiers sources\Components\inGameMenu\Map</Filter>
+      <Filter>Fichiers sources\Components\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\Components\Entity\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Fichiers sources\Components\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +123,7 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête\Components\inGameMenu\Map</Filter>
+      <Filter>Fichiers d%27en-tête\Map</Filter>
     </ClInclude>
     <ClInclude Include="InGameMenu.h">
       <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
@@ -114,7 +132,13 @@
       <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
     </ClInclude>
     <ClInclude Include="Layer.h">
-      <Filter>Fichiers d%27en-tête\Components\inGameMenu\Map</Filter>
+      <Filter>Fichiers d%27en-tête\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\Components\Entity\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Fichiers d%27en-tête\Components\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
