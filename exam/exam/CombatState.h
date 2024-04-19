@@ -1,5 +1,34 @@
 #pragma once
-class CombatState
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
+#include "Team.h"
+#include "State.h"
+#include "Bouton.h"
+class CombatState : public State
 {
+protected:
+	sf::Sprite m_backgroundSprite;
+	sf::Texture m_backgroundTexture;
+
+	Bouton m_attaqueBouton;
+	Bouton m_pokemonBouton;
+	Bouton m_sacBouton;
+	Bouton m_fuiteBouton;
+	
+	Pokemon actualOpponent;
+	Pokemon actualPokemon;
+
+	sf::Texture pokemonTexture;
+	sf::Texture pokemonTexture2;
+
+	float timer;
+public:
+	CombatState();
+
+	virtual void CommonUpdate(sf::Vector2f _mousePos);
+	virtual void CommonDraw(sf::RenderWindow& _window);
+	virtual void HandleKeyboard(sf::Event _event);
+	virtual void HandleEvent(sf::Event _event, sf::RenderWindow& _window);
 };
 

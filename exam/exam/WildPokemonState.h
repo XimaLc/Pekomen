@@ -1,15 +1,14 @@
 #pragma once
 #include "Pokemon.h"
-#include "State.h"
-class WildPokemonState : public State
+#include "CombatState.h"
+class WildPokemonState : public CombatState
 {
 	Pokemon opponent;
 public:
 	WildPokemonState();
 
-	virtual void Update(sf::Vector2f _mousePos);
-	virtual void Draw(sf::RenderWindow& _window);
-	virtual void HandleKeyboard(sf::Event _event);
+	void Update(sf::Vector2f _mousePos);
+	void Draw(sf::RenderWindow& _window);
 	virtual void HandleEvent(sf::Event _event, sf::RenderWindow& _window);
 };
 

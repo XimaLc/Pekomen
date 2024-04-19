@@ -8,7 +8,7 @@ StateManager::StateManager()
 	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
 	gameState = new GameState();
 
-	ChangeState(GAME);
+	ChangeState(MENU);
 	isRunning = true;
 	Loop();
 }

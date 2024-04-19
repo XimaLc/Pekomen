@@ -73,6 +73,12 @@
     <Filter Include="Fichiers sources\Components\Pokemons">
       <UniqueIdentifier>{5ebf5fec-5e78-448f-9a67-89e083f15a3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\states\enfant\combat">
+      <UniqueIdentifier>{1d096997-275d-48f1-a46e-ac4ce3135edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\states\enfant\combat">
+      <UniqueIdentifier>{5c903300-7186-4cc9-b486-b1d61607f942}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -111,9 +117,6 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Fichiers sources\Components\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="WildPokemonState.cpp">
-      <Filter>Fichiers sources\states\enfant</Filter>
-    </ClCompile>
     <ClCompile Include="tools.cpp">
       <Filter>Fichiers sources\tools</Filter>
     </ClCompile>
@@ -128,6 +131,15 @@
     </ClCompile>
     <ClCompile Include="Team.cpp">
       <Filter>Fichiers sources\Components\Pokemons</Filter>
+    </ClCompile>
+    <ClCompile Include="WildPokemonState.cpp">
+      <Filter>Fichiers sources\states\enfant\combat</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatState.cpp">
+      <Filter>Fichiers sources\states\enfant</Filter>
+    </ClCompile>
+    <ClCompile Include="DresseurCombatState.cpp">
+      <Filter>Fichiers sources\states\enfant\combat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +173,6 @@
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête\Components\Entity\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Fichiers d%27en-tête\Components\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="WildPokemonState.h">
-      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
-    </ClInclude>
     <ClInclude Include="tools.h">
       <Filter>Fichiers d%27en-tête\tools</Filter>
     </ClInclude>
@@ -181,6 +187,18 @@
     </ClInclude>
     <ClInclude Include="Team.h">
       <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="WildPokemonState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant\combat</Filter>
+    </ClInclude>
+    <ClInclude Include="DresseurCombatState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant\combat</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Fichiers d%27en-tête\Components\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

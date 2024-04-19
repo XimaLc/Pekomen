@@ -136,7 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="CombatState.cpp" />
     <ClCompile Include="DB.cpp" />
+    <ClCompile Include="DresseurCombatState.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InGameMenu.cpp" />
@@ -156,7 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bouton.h" />
+    <ClInclude Include="CombatState.h" />
     <ClInclude Include="DB.h" />
+    <ClInclude Include="DresseurCombatState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InGameMenu.h" />

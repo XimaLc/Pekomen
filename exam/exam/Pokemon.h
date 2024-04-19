@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Move.h"
+#include "DB.h"
 
 #include <map>
 class Pokemon : public Entity
@@ -24,6 +25,7 @@ public:
 	inline void setStats(std::map<std::string, int> _stats) { stats = _stats; }
 	inline void setMovePool(std::vector<int> _movePool) { movePool = _movePool; }
 	inline void setMove(Move move, int i) { moves[i] = move; }
+	inline void getTexture() { return; }
 	void setTypes(int _type1, int _type2);
 
 	void setMoveId(int index, int id);

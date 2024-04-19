@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 class GameState : public State
 {
-	bool gameAsFocus;
+	bool gameHasFocus;
 	bool hasMove;
 
 	InGameMenu m_inGameMenu;
