@@ -16,6 +16,9 @@ CombatState::CombatState()
 	m_sacBouton = Bouton({ 1700, 830 }, { 200, 100 }, "Sac");
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
 
+	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0; m_pokemonMenu.OpenClose(); }};
+	m_pokemonBouton.setOnClick(pokemonBoutonAction);
+
 	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME); }};
 	m_fuiteBouton.setOnClick(fuiteBoutonAction);
 }
@@ -29,10 +32,15 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	m_sacBouton.Update(_mousePos);
 	m_fuiteBouton.Update(_mousePos);
 
+	if (m_pokemonMenu.m_isPokemonMenuOpen)
+		m_pokemonMenu.Update(_mousePos);
+
 	if (m_fuiteBouton.isClicked())
-	{
 		m_fuiteBouton.useClickAction();
-	}
+
+	if (m_pokemonBouton.isClicked())
+		m_pokemonBouton.useClickAction();
+
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
@@ -43,6 +51,9 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 	m_pokemonBouton.Draw(_window);
 	m_sacBouton.Draw(_window);
 	m_fuiteBouton.Draw(_window);
+
+	if (m_pokemonMenu.m_isPokemonMenuOpen)
+		m_pokemonMenu.Draw(_window);
 }
 
 void CombatState::HandleKeyboard(sf::Event _event)

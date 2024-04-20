@@ -5,8 +5,8 @@
 
 class WildPokemonState : public CombatState
 {
-	//Pokemon opponent;
 	Player m_player;
+
 public:
 	WildPokemonState();
 

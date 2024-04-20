@@ -70,25 +70,20 @@ void InGameMenu::Update(const sf::Vector2f _mousePos)
 		m_inGameLeaveBouton.Update(_mousePos);
 	}
 	if (m_saveMenu.isSaveMenuOpen)
-	{
 		m_saveMenu.Update(_mousePos);
-	}
+
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
-	{
 		m_pokemonMenu.Update(_mousePos);
-	}
+
 	if (m_inGameSaveBouton.isClicked())
-	{
 		m_inGameSaveBouton.useClickAction();
-	}
+	
 	if (m_inGamePokemonBouton.isClicked())
-	{
 		m_inGamePokemonBouton.useClickAction();
-	}
+	
 	if (m_inGameLeaveBouton.isClicked())
-	{
 		m_inGameLeaveBouton.useClickAction();
-	}
+	
 }
 
 void InGameMenu::Draw(sf::RenderWindow& _window)
@@ -103,12 +98,10 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 		m_inGamePokedexBouton.Draw(_window);
 		m_inGameLeaveBouton.Draw(_window);
 		if (m_saveMenu.isSaveMenuOpen)
-		{
 			m_saveMenu.Draw(_window);
-		}
+
 		if (m_pokemonMenu.m_isPokemonMenuOpen)
-		{
 			m_pokemonMenu.Draw(_window);
-		}
+
 	}
 }

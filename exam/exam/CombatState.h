@@ -5,11 +5,15 @@
 #include "Team.h"
 #include "State.h"
 #include "Bouton.h"
+#include "PokemonMenu.h"
+
 class CombatState : public State
 {
 protected:
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
+
+	PokemonMenu m_pokemonMenu;
 
 	Bouton m_attaqueBouton;
 	Bouton m_pokemonBouton;
