@@ -1,10 +1,8 @@
 #pragma once
-#include "Entity.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "Move.h"
-#include "DB.h"
-
 #include <map>
-class Pokemon : public Entity
+class Pokemon
 {
 	int id;
 	std::string path;
@@ -48,4 +46,3 @@ public:
 	virtual void Update();
 	virtual void Draw(sf::RenderWindow& _window);
 };
-

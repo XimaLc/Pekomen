@@ -35,6 +35,8 @@ void Player::anim(int x, int y)
 
 Player::Player(std::string _name, sf::Texture& _texture)
 {
+    m_playerTeam = new Team();
+
     name = _name;
     sprite.setTexture(_texture);
     sprite.setTextureRect({ 0, 0, 32, 32 });

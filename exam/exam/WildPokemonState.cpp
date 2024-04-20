@@ -1,9 +1,11 @@
 #include "WildPokemonState.h"
 #include "DB.h"
+#include "GameState.h"
 
 WildPokemonState::WildPokemonState()
 {
-	actualOpponent = DB::getPokemonById(iRand(0, 163));
+	m_player = GameState::getPlayer();
+	//actualOpponent = DB::getPokemonById(iRand(0, 163));
 }
 
 void WildPokemonState::Update(sf::Vector2f _mousePos)
@@ -14,9 +16,5 @@ void WildPokemonState::Update(sf::Vector2f _mousePos)
 void WildPokemonState::Draw(sf::RenderWindow& _window)
 {
 	CommonDraw(_window);
-	actualOpponent.Draw(_window);
-}
-
-void WildPokemonState::HandleEvent(sf::Event _event, sf::RenderWindow& _window)
-{
+	//actualOpponent.Draw(_window);
 }

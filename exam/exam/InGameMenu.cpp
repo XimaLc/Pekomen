@@ -5,10 +5,6 @@ InGameMenu::InGameMenu()
 {
 	isMenuOpen = false;
 
-	m_background.setFillColor(sf::Color::White);
-	m_background.setSize({ 300, 700 });
-	m_background.setPosition({ 1620, 190 });
-
 	m_inGameProfilBouton = Bouton({ 1620, 190 }, { 300, 100 }, "Dresseur");
 	m_inGamePokemonBouton = Bouton({ 1620, 290 }, { 300, 100 }, "Pekomon");
 	m_inGameBagBouton = Bouton({ 1620, 390 }, { 300, 100 }, "Sac");
@@ -20,7 +16,7 @@ InGameMenu::InGameMenu()
 	auto inGameProfilBoutonAction = [this]() { if (m_inGameProfilBouton.timer > 0.5f) { /*ouvrir le profil*/ }};
 	m_inGameProfilBouton.setOnClick(inGameProfilBoutonAction);
 
-	auto inGamePokemonBoutonAction = [this]() { if (m_inGamePokemonBouton.timer > 0.5f) { /*ouvrir les pokemons*/  }};
+	auto inGamePokemonBoutonAction = [this]() { if (m_inGamePokemonBouton.timer > 0.5f) { if (!m_pokemonMenu.m_isPokemonMenuOpen) closeAllMenu();  m_pokemonMenu.OpenClose(); m_inGamePokemonBouton.timer = 0; }};
 	m_inGamePokemonBouton.setOnClick(inGamePokemonBoutonAction);
 
 	auto inGameBagBoutonAction = [this]() { if (m_inGameBagBouton.timer > 0.5f) { /*ouvrir le sac*/  }};
@@ -29,35 +25,35 @@ InGameMenu::InGameMenu()
 	auto inGamePokedexBoutonAction = [this]() { if (m_inGamePokedexBouton.timer > 0.5f) { /*ouvrir le pokedex*/  }};
 	m_inGamePokedexBouton.setOnClick(inGamePokedexBoutonAction);
 
-	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { m_saveMenu.OpenClose(); m_inGameSaveBouton.timer = 0; }};
+	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { if (!m_saveMenu.isSaveMenuOpen) closeAllMenu();m_saveMenu.OpenClose();m_inGameSaveBouton.timer = 0;}};
 	m_inGameSaveBouton.setOnClick(inGameSaveBoutonAction);
 
 	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/  }};
 	m_inGameOptionsBouton.setOnClick(inGameOptionsBoutonAction);
 
-	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) { m_inGameSaveBouton.timer = 0; StateManager::ChangeState(MENU);
-	}};
+	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) {closeAllMenu();m_inGameSaveBouton.timer = 0;StateManager::ChangeState(MENU);}};
 	m_inGameLeaveBouton.setOnClick(inGameLeaveBoutonAction);
+}
+
+void InGameMenu::closeAllMenu()
+{
+	if(m_saveMenu.isSaveMenuOpen)
+		m_saveMenu.OpenClose();
+	if(m_pokemonMenu.m_isPokemonMenuOpen)
+		m_pokemonMenu.OpenClose();
 }
 
 void InGameMenu::OpenCloseMenu(bool& _toSwitch)
 {
 	if (_toSwitch)
-	{
-		_toSwitch = false;
-		if(m_saveMenu.isSaveMenuOpen)
-			m_saveMenu.OpenClose();
-	}
-	else
-		_toSwitch = true;
+		closeAllMenu();
+
+	_toSwitch = !_toSwitch;
 }
 
 void InGameMenu::OpenCloseOtherMenu(bool& _toSwitch)
 {
-	if (_toSwitch)
-		_toSwitch = false;
-	else
-		_toSwitch = true;
+	_toSwitch = !_toSwitch;
 }
 
 
@@ -77,12 +73,18 @@ void InGameMenu::Update(const sf::Vector2f _mousePos)
 	{
 		m_saveMenu.Update(_mousePos);
 	}
-
+	if (m_pokemonMenu.m_isPokemonMenuOpen)
+	{
+		m_pokemonMenu.Update(_mousePos);
+	}
 	if (m_inGameSaveBouton.isClicked())
 	{
 		m_inGameSaveBouton.useClickAction();
 	}
-
+	if (m_inGamePokemonBouton.isClicked())
+	{
+		m_inGamePokemonBouton.useClickAction();
+	}
 	if (m_inGameLeaveBouton.isClicked())
 	{
 		m_inGameLeaveBouton.useClickAction();
@@ -93,7 +95,6 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 {
 	if (isMenuOpen)
 	{
-		//_window.draw(m_background);
 		m_inGameOptionsBouton.Draw(_window);
 		m_inGameBagBouton.Draw(_window);
 		m_inGamePokemonBouton.Draw(_window);
@@ -104,6 +105,10 @@ void InGameMenu::Draw(sf::RenderWindow& _window)
 		if (m_saveMenu.isSaveMenuOpen)
 		{
 			m_saveMenu.Draw(_window);
+		}
+		if (m_pokemonMenu.m_isPokemonMenuOpen)
+		{
+			m_pokemonMenu.Draw(_window);
 		}
 	}
 }

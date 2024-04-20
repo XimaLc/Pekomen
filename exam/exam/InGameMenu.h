@@ -1,13 +1,11 @@
 #pragma once
 #include "tools.h"
 #include <SFML/Graphics.hpp>
-#include "Bouton.h"
 #include "SaveMenu.h"
+#include "PokemonMenu.h"
 
 class InGameMenu
 {
-	sf::RectangleShape m_background;
-
 	Bouton m_inGameOptionsBouton;
 	Bouton m_inGameBagBouton;
 	Bouton m_inGamePokemonBouton;
@@ -17,12 +15,13 @@ class InGameMenu
 	Bouton m_inGameLeaveBouton;
 
 	SaveMenu m_saveMenu;
+	PokemonMenu m_pokemonMenu;
 public:
 	bool isMenuOpen;
 
 	InGameMenu();
 
-
+	void closeAllMenu();
 
 	void OpenCloseMenu(bool& _toSwitch);
 	void OpenCloseOtherMenu(bool& _toSwitch);

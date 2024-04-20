@@ -135,11 +135,14 @@
     <ClCompile Include="WildPokemonState.cpp">
       <Filter>Fichiers sources\states\enfant\combat</Filter>
     </ClCompile>
-    <ClCompile Include="CombatState.cpp">
-      <Filter>Fichiers sources\states\enfant</Filter>
-    </ClCompile>
     <ClCompile Include="DresseurCombatState.cpp">
       <Filter>Fichiers sources\states\enfant\combat</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatState.cpp">
+      <Filter>Fichiers sources\states\enfant\combat</Filter>
+    </ClCompile>
+    <ClCompile Include="PokemonMenu.cpp">
+      <Filter>Fichiers sources\Components\inGameMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +191,6 @@
     <ClInclude Include="Team.h">
       <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
     </ClInclude>
-    <ClInclude Include="CombatState.h">
-      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
-    </ClInclude>
     <ClInclude Include="WildPokemonState.h">
       <Filter>Fichiers d%27en-tête\states\enfant\combat</Filter>
     </ClInclude>
@@ -199,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Fichiers d%27en-tête\Components\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant\combat</Filter>
+    </ClInclude>
+    <ClInclude Include="PokemonMenu.h">
+      <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

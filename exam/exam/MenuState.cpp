@@ -17,8 +17,12 @@ MenuState::MenuState()
 void MenuState::Update(const sf::Vector2f _mousePos)
 {
 	m_playBouton.Update(_mousePos);
-	m_optBouton.Update(_mousePos);
-	m_leaveBouton.Update(_mousePos);
+	if (!m_playBouton.isClicked())
+	{
+		m_optBouton.Update(_mousePos);
+		m_leaveBouton.Update(_mousePos);
+	}
+
 
 	if (m_playBouton.isClicked())
 	{
@@ -44,9 +48,5 @@ void MenuState::Draw(sf::RenderWindow& _window)
 }
 
 void MenuState::HandleKeyboard(sf::Event _event)
-{
-}
-
-void MenuState::HandleEvent(sf::Event _event, sf::RenderWindow& _window)
 {
 }

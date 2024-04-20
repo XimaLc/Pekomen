@@ -53,7 +53,3 @@ void CombatState::HandleKeyboard(sf::Event _event)
 		StateManager::ChangeState(MENU);
 	}
 }
-
-void CombatState::HandleEvent(sf::Event _event, sf::RenderWindow& _window)
-{
-}

@@ -1,6 +1,7 @@
 #include "Bouton.h"
 #include "tools.h"
 #include "StateManager.h"
+#include "DB.h"
 
 sf::Font Bouton::m_font;
 
@@ -13,6 +14,7 @@ Bouton::Bouton()
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string)
 {
 	m_currentState = BOUTON_BASE;
+	m_boutonType = STRING;
 
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
@@ -27,6 +29,49 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string)
 
 	timer = 0.f;
 }
+
+Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int string_type)
+{
+	m_currentState = BOUTON_BASE;
+	m_boutonType = POKEMON_PATH;
+
+	m_sprite.setScale(0.35, 0.35);
+	m_sprite.setPosition(_pos.x + 15, _pos.y + 15);
+
+	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
+
+	m_shape.setPosition(_pos);
+	m_shape.setSize(_size);
+	m_shape.setOutlineColor(sf::Color::Black);
+	m_shape.setOutlineThickness(-1.f);
+
+	if (string_type == POKEMON_PATH)
+	{
+		m_texture = DB::getTexture(_string);
+	}
+	else
+	{
+		m_text.setPosition(_pos.x + 20, _pos.y + 20);
+		m_text.setString(_string);
+		m_text.setFillColor(sf::Color::Black);
+	}
+
+	timer = 0.f;
+}
+
+//Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::Sprite _sprite, sf::Vector2f _spriteSize)
+//{
+//	m_currentState = BOUTON_BASE;
+//
+//	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
+//
+//	m_shape.setPosition(_pos);
+//	m_shape.setSize(_size);
+//	m_shape.setOutlineColor(sf::Color::Black);
+//	m_shape.setOutlineThickness(-1.f);
+//
+//	timer = 0.f;
+//}
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, sf::Color _color)
 {
@@ -64,19 +109,44 @@ void Bouton::Update(const sf::Vector2f mousePos)
 	if (m_shape.getGlobalBounds().contains(mousePos) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		m_shape.setFillColor(sf::Color::Black);
-		m_text.setFillColor(sf::Color::White);
+		if (m_boutonType == STRING)
+		{
+			m_text.setFillColor(sf::Color::White);
+
+		}
+		else if (m_boutonType == POKEMON_PATH)
+		{
+			//		
+		}
 		m_currentState = BOUTON_CLICKED;
+		//useClickAction();
 	}
 	else if (m_shape.getGlobalBounds().contains(mousePos))
 	{
-		m_text.setFillColor(sf::Color(0, 0, 0, 200));
+		m_shape.setFillColor(sf::Color::Black);
+		if (m_boutonType == STRING)
+		{
+			m_text.setFillColor(sf::Color(0, 0, 0, 200));
+
+		}
+		else if (m_boutonType == POKEMON_PATH)
+		{
+			//		
+		}
 		m_shape.setFillColor(sf::Color(211, 211, 211, 150));
 		m_currentState = BOUTON_HOVER;
 	}
 	else
 	{
-		m_text.setFillColor(sf::Color::Black);
 		m_shape.setFillColor(sf::Color(211, 211, 211, 255));
+		if (m_boutonType == STRING)
+		{
+			m_text.setFillColor(sf::Color::Black);
+		}
+		else if (m_boutonType == POKEMON_PATH)
+		{
+			//		
+		}
 		m_currentState = BOUTON_BASE;
 	}
 }
@@ -84,9 +154,16 @@ void Bouton::Update(const sf::Vector2f mousePos)
 void Bouton::Draw(sf::RenderWindow& _window)
 {
 	_window.draw(m_shape);
-	
-	m_text.setFont(m_font);
-	_window.draw(m_text);
+	if (m_boutonType == STRING)
+	{
+		m_text.setFont(m_font);
+		_window.draw(m_text);
+	}
+	else if (m_boutonType == POKEMON_PATH)
+	{
+		m_sprite.setTexture(*m_texture);
+		_window.draw(m_sprite);
+	}
 }
 
 void Bouton::setOnClick(std::function<void()> _function)

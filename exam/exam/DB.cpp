@@ -1,5 +1,4 @@
 #include "DB.h"
-#include <iostream>
 
 std::map<std::string, sf::Texture> DB::pokemonTextures;
 
@@ -491,7 +490,6 @@ void DB::loadTeam(int playerId)
 {
 	int pId1, pId2, pId3, pId4, pId5, pId6, mId1, mId2, mId3, mId4, mId5, mId6, mId7, mId8, mId9, mId10, mId11, mId12, mId13, mId14, mId15, mId16, mId17, mId18, mId19, mId20, mId21, mId22, mId23, mId24;
 
-	Team tmp;
 	std::ifstream file("team.json");
 	if (file.is_open())
 	{
@@ -528,4 +526,12 @@ void DB::loadTextures()
 		}
 		file.close();
 	}
+}
+
+sf::Texture* DB::getTexture(std::string path)
+{
+	if (pokemonTextures.size() <= 0)
+		loadTextures();
+
+	return &pokemonTextures[path];
 }

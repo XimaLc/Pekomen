@@ -16,11 +16,11 @@ protected:
 	Bouton m_sacBouton;
 	Bouton m_fuiteBouton;
 	
-	Pokemon actualOpponent;
-	Pokemon actualPokemon;
+	//Pokemon actualOpponent;
+	//Pokemon actualPokemon;
 
-	sf::Texture pokemonTexture;
-	sf::Texture pokemonTexture2;
+	//sf::Texture pokemonTexture;
+	//sf::Texture pokemonTexture2;
 
 	float timer;
 public:
@@ -29,6 +29,5 @@ public:
 	virtual void CommonUpdate(sf::Vector2f _mousePos);
 	virtual void CommonDraw(sf::RenderWindow& _window);
 	virtual void HandleKeyboard(sf::Event _event);
-	virtual void HandleEvent(sf::Event _event, sf::RenderWindow& _window);
 };
 

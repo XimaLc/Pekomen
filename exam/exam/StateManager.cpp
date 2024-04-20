@@ -2,11 +2,13 @@
 
 State* StateManager::m_currentState;
 GameState* StateManager::gameState;
+MenuState* StateManager::menuState;
 
 StateManager::StateManager()
 {
 	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
 	gameState = new GameState();
+	menuState = new MenuState();
 
 	ChangeState(MENU);
 	isRunning = true;
@@ -20,9 +22,13 @@ void StateManager::ChangeState(int _id)
 	switch (_id)
 	{
 	case MENU:
-		m_currentState = new MenuState();
+		if (menuState == nullptr)
+			menuState = new MenuState();
+		m_currentState = menuState;
 		break;
 	case GAME:
+		if(gameState == nullptr)
+			gameState = new GameState();
 		m_currentState = gameState;
 		break;
 	case WILD_POKEMON:
@@ -42,8 +48,6 @@ void StateManager::Loop()
 				m_window->close();
 			else if (event.type == sf::Event::KeyPressed)
 				m_currentState->HandleKeyboard(event);
-			else
-				m_currentState->HandleEvent(event, *m_window);
 		}
 
 		mousePos = { static_cast<float>(sf::Mouse::getPosition(*m_window).x), static_cast<float>(sf::Mouse::getPosition(*m_window).y) };

@@ -16,10 +16,7 @@ SaveMenu::SaveMenu()
 
 void SaveMenu::OpenClose()
 {
-	if (isSaveMenuOpen)
-		isSaveMenuOpen = false;
-	else
-		isSaveMenuOpen = true;
+	isSaveMenuOpen = !isSaveMenuOpen;
 }
 
 void SaveMenu::Update(sf::Vector2f _mousePos)

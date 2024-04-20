@@ -13,6 +13,7 @@ class StateManager
 {
 	static State* m_currentState;
 	static GameState* gameState;
+	static MenuState* menuState;
 
 	sf::RenderWindow* m_window;
 	sf::Event event;

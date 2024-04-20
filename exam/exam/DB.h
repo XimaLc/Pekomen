@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <SFML/graphics.hpp>
@@ -15,11 +17,12 @@ public:
 	static std::string removeUnderscore(std::string _str);
 	static std::vector<int> stringToVectorInt(std::string str);
 
-
 	static Pokemon getPokemonById(int _id);
-	static std::vector<Pokemon> getPokemons(int _startId, int _amount);
-	static std::vector<Pokemon> getSelectablePokemons(int _startId, int _amount);
 
+	static std::vector<Pokemon> getPokemons(int _startId, int _amount);
+
+	static std::vector<Pokemon> getSelectablePokemons(int _startId, int _amount);
+	
 	static Move getMoveById(int _id);
 	static std::vector<Move> getMoves(std::vector<int> _movePool, int _startId, int _amount);
 	static void saveTeam(Team team);
@@ -28,5 +31,5 @@ public:
 
 	static void loadTextures();
 
-	static sf::Texture* getTexture(std::string path) { return &pokemonTextures[path]; }
+	static sf::Texture* getTexture(std::string path);
 };
