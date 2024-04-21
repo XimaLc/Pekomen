@@ -15,9 +15,14 @@ class pokemonInGameInfoBar
 
 	Pokemon* m_pokemon;
 
-	std::string m_pokemonNameS;
 	sf::Text m_pokemonNameText;
 
+	static sf::Font m_font;
+
+	int m_pokemonHp;
+	int m_pokemonMaxHp;
+
+	sf::Text m_pokemonHpText;
 public:
 	pokemonInGameInfoBar();
 	pokemonInGameInfoBar(int side);

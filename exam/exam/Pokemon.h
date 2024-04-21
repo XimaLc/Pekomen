@@ -5,6 +5,10 @@
 
 #include "Move.h"
 #include <map>
+
+#include <iostream>
+enum STAT {HP, CURRENTHP, ATK, DEF, SPEA, SPED, SPD, BST, XP};
+
 class Pokemon
 {
 	int id;
@@ -13,7 +17,7 @@ class Pokemon
 	int type1;
 	int type2;
 	int evolution_state;
-	std::map<std::string, int> stats;
+	std::map<STAT, int> stats;
 	std::vector<int> movePool;
 	bool shiny;
 	std::vector<Move> moves;
@@ -27,7 +31,7 @@ public:
 	inline void setPath(std::string _path) { path = _path; }
 	inline void setName(std::string _name) { name = _name; }
 	inline void setEvolutionState(int _evoState) { evolution_state = _evoState; }
-	inline void setStats(std::map<std::string, int> _stats) { stats = _stats; }
+	inline void setStats(std::map<STAT, int> _stats) { stats = _stats; }
 	inline void setMovePool(std::vector<int> _movePool) { movePool = _movePool; }
 	inline void setMove(Move move, int i) { moves[i] = move; }
 	inline void getTexture() { return; }
@@ -38,8 +42,8 @@ public:
 	inline int getId() { return id; }
 	inline std::string getPath() { return path; }
 	inline std::string getName() { return name; }
-	inline std::map<std::string, int> getStats() { return stats; }
-	inline int getStat(std::string _stat) { return stats[_stat]; }
+	inline std::map<STAT, int> getStats() { return stats; }
+	inline int getStat(STAT _stat) {  return stats[_stat]; }
 	inline std::vector<int> getMovePool() { return movePool; }
 	inline int getType1() { return type1; }
 	inline int getType2() { return type2; }
@@ -48,7 +52,7 @@ public:
 	inline std::vector<Move> getMoves() { return moves; }
 
 	Pokemon();
-	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<std::string, int> _stats, std::vector<int> _movePool);
+	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
 	
 	inline bool getIsAlive() { return isAlive; }
 	inline void switchAlive() { isAlive = !isAlive; }

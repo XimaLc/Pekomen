@@ -23,7 +23,7 @@ Pokemon::Pokemon()
 	moves.push_back(Move());
 }
 
-Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<std::string, int> _stats, std::vector<int> _movePool)
+Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool)
 {
 	isAlive = true;
 

@@ -28,7 +28,7 @@ Pokemon DB::getPokemonById(int _id)
 {
 	std::string name, path, movePool;
 	int id, evolution_state, type1, type2, isSelectable;
-	std::map<std::string, int> stats;
+	std::map<STAT, int> stats;
 
 	std::string string;
 	std::istringstream iss;
@@ -43,10 +43,11 @@ Pokemon DB::getPokemonById(int _id)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats["hp"] >> stats["atk"] >> stats["def"] >> stats["spA"] >> stats["spD"] >> stats["spd"] >> stats["bst"] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
 				if (id == _id)
 				{
 					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+					stats[CURRENTHP] = stats[HP];
 					file.close();
 					return pokemon;
 				}
@@ -62,7 +63,7 @@ std::vector<Pokemon> DB::getPokemons(int _startId, int _amount)
 
 	std::string name, path, movePool;
 	int id, evolution_state, type1, type2;
-	std::map<std::string, int> stats;
+	std::map<STAT, int> stats;
 
 	std::string string;
 	std::istringstream iss;
@@ -77,10 +78,11 @@ std::vector<Pokemon> DB::getPokemons(int _startId, int _amount)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats["hp"] >> stats["atk"] >> stats["def"] >> stats["spA"] >> stats["spD"] >> stats["spd"] >> stats["bst"] >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> movePool;
 				if (id >= _startId && res.size() < _amount)
 				{
 					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+					stats[CURRENTHP] = stats[HP];
 					res.push_back(pokemon);
 				}
 				if (res.size() == _amount)
@@ -101,7 +103,7 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 
 	std::string name, path, movePool;
 	int id, evolution_state, type1, type2;
-	std::map<std::string, int> stats;
+	std::map<STAT, int> stats;
 	bool isSelectable;
 
 	std::string string;
@@ -117,12 +119,13 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats["hp"] >> stats["atk"] >> stats["def"] >> stats["spA"] >> stats["spD"] >> stats["spd"] >> stats["bst"] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
 				if (isSelectable)
 				{
 					if (id >= _startId && res.size() < _amount)
 					{
 						Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+						stats[CURRENTHP] = stats[HP];
 						res.push_back(pokemon);
 					}
 				}
@@ -504,7 +507,7 @@ void DB::loadTextures()
 {
 	std::string name, path, movePool;
 	int id, evolution_state, type1, type2;
-	std::map<std::string, int> stats;
+	std::map<STAT, int> stats;
 	bool isSelectable;
 
 	std::string string;
@@ -520,7 +523,7 @@ void DB::loadTextures()
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats["hp"] >> stats["atk"] >> stats["def"] >> stats["spA"] >> stats["spD"] >> stats["spd"] >> stats["bst"] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
 				pokemonTextures[path].loadFromFile("../Files/Textures/Pokemons/Base/" + path + ".png");
 			}
 		}

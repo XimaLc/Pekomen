@@ -67,6 +67,9 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	if (m_pokemonBouton.isClicked())
 		m_pokemonBouton.useClickAction();
 
+	m_opponentInfoBar.Update();
+	m_playerInfoBar.Update();
+
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
