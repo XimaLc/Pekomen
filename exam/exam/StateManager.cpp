@@ -10,7 +10,7 @@ StateManager::StateManager()
 	gameState = new GameState();
 	menuState = new MenuState();
 
-	ChangeState(MENU);
+	ChangeState(GAME);
 	isRunning = true;
 	Loop();
 }

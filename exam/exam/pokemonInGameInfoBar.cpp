@@ -10,17 +10,29 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 	m_pokemon = new Pokemon();
 
 	m_texture.loadFromFile("../Files/Textures/pokeBar.png");
-
 	m_sprite.setScale(6,6);
-	m_sprite.setPosition(50, 50);
+	
 
+	if (side == OPPONENT)
+	{
+		m_sprite.setPosition(50, 50);
+		m_pokemonNameText.setPosition(60, 60);
+	}
+	else if (side == PLAYER)
+	{
+		m_sprite.setPosition(900, 800); 
+		m_pokemonNameText.setPosition(910, 810);
+	}
+
+	m_pokemonNameText.setCharacterSize(50);
 	m_pokemonNameText.setFillColor(sf::Color::Black);
-	m_pokemonNameText.setPosition(60, 60);
+
 }
 
 void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
 {
 	m_pokemon = &_pokemon;
+	m_pokemonNameS = m_pokemon->getName();
 }
 
 void pokemonInGameInfoBar::Update()

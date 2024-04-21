@@ -4,7 +4,12 @@
 
 CombatState::CombatState()
 {
+	m_playerInfoBar = pokemonInGameInfoBar(PLAYER);
+	m_opponentInfoBar = pokemonInGameInfoBar(OPPONENT);
+
 	m_player = GameState::getPlayer();
+	actualPlayerPkm = m_player.getTeam()->getPokemons()[0];
+	setPlayerPkmTexture(actualPlayerPkm.getPath());
 
 	m_opponentPkmSprite.setPosition(1300, 250);
 	m_opponentPkmSprite.setScale(0.5, 0.5);
@@ -80,12 +85,12 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_opponentInfoBar.Draw(_window);
 	}
 	
-	//if (actualPlayerPkm.getIsAlive())
-	//{
-	//	m_playerPkmSprite.setTexture(*m_playerPkmTexture);
-	//	_window.draw(m_playerPkmSprite);
-	//	m_playerInfoBar.Draw(_window);
-	//}
+	if (actualPlayerPkm.getIsAlive())
+	{
+		m_playerPkmSprite.setTexture(*m_playerPkmTexture);
+		_window.draw(m_playerPkmSprite);
+		m_playerInfoBar.Draw(_window);
+	}
 
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Draw(_window);

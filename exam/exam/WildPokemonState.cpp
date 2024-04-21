@@ -3,9 +3,7 @@
 
 WildPokemonState::WildPokemonState()
 {
-	actualPlayerPkm = m_player.getTeam()->getPokemons()[0];
 	actualOpponentPkm = DB::getPokemonById(iRand(0, 163));
-	setPlayerPkmTexture(actualPlayerPkm.getPath());
 	setOpponentPkmTexture(actualOpponentPkm.getPath());
 }
 
