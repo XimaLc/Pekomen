@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+
 #include "Move.h"
 #include <map>
 class Pokemon
@@ -15,6 +18,10 @@ class Pokemon
 	bool shiny;
 	std::vector<Move> moves;
 
+	sf::Texture* m_texture;
+	sf::Sprite m_sprite;
+
+	bool isAlive;
 public:
 	inline void setId(int _id) { id = _id; }
 	inline void setPath(std::string _path) { path = _path; }
@@ -43,6 +50,9 @@ public:
 	Pokemon();
 	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<std::string, int> _stats, std::vector<int> _movePool);
 	
+	inline bool getIsAlive() { return isAlive; }
+	inline void switchAlive() { isAlive = !isAlive; }
+
 	virtual void Update();
-	virtual void Draw(sf::RenderWindow& _window);
+	virtual void Draw(sf::RenderWindow& _window, int _DrawType);
 };

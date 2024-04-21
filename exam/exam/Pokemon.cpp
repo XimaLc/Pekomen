@@ -1,5 +1,6 @@
 #include "Pokemon.h"
 #include "tools.h"
+#include "DB.h"
 
 void Pokemon::setTypes(int _type1, int _type2)
 {
@@ -14,6 +15,8 @@ void Pokemon::setMoveId(int index, int id)
 
 Pokemon::Pokemon()
 {
+	isAlive = true;
+
 	moves.push_back(Move());
 	moves.push_back(Move());
 	moves.push_back(Move());
@@ -22,6 +25,8 @@ Pokemon::Pokemon()
 
 Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<std::string, int> _stats, std::vector<int> _movePool)
 {
+	isAlive = true;
+
 	moves.push_back(Move());
 	moves.push_back(Move());
 	moves.push_back(Move());
@@ -47,7 +52,6 @@ void Pokemon::Update()
 	//Pour les combats seulement ?
 }
 
-void Pokemon::Draw(sf::RenderWindow& _window)
+void Pokemon::Draw(sf::RenderWindow& _window, int _DrawType)
 {
-	//Pour les combats suelement ?
 }

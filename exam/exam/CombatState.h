@@ -6,6 +6,9 @@
 #include "State.h"
 #include "Bouton.h"
 #include "PokemonMenu.h"
+#include "pokemonInGameInfoBar.h"
+
+#include "DB.h"
 
 class CombatState : public State
 {
@@ -20,8 +23,17 @@ protected:
 	Bouton m_sacBouton;
 	Bouton m_fuiteBouton;
 	
-	//Pokemon actualOpponent;
-	//Pokemon actualPokemon;
+	sf::Sprite m_opponentPkmSprite;
+	sf::Texture* m_opponentPkmTexture;
+	Pokemon actualOpponentPkm;
+	pokemonInGameInfoBar m_opponentInfoBar;
+
+	sf::Sprite m_playerPkmSprite;
+	sf::Texture* m_playerPkmTexture;
+	Pokemon actualPlayerPkm;
+	pokemonInGameInfoBar m_playerInfoBar;
+
+	Player m_player;
 
 	//sf::Texture pokemonTexture;
 	//sf::Texture pokemonTexture2;
@@ -29,6 +41,9 @@ protected:
 	float timer;
 public:
 	CombatState();
+
+	void setOpponentPkmTexture(std::string _path);
+	void setPlayerPkmTexture(std::string _path);
 
 	virtual void CommonUpdate(sf::Vector2f _mousePos);
 	virtual void CommonDraw(sf::RenderWindow& _window);
