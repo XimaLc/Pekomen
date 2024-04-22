@@ -35,6 +35,8 @@ CombatState::CombatState()
 
 	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME); }};
 	m_fuiteBouton.setOnClick(fuiteBoutonAction);
+
+	inCombat = true;
 }
 
 CombatState::~CombatState()
@@ -59,6 +61,12 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 {
 	timer += GetDeltaTime();
 	
+	if (inCombat)
+	{
+		m_opponentInfoBar.Update(actualOpponentPkm.getStat(CURRENTHP));
+		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP));
+	}
+	
 	m_attaqueBouton.Update(_mousePos);
 	m_pokemonBouton.Update(_mousePos);
 	m_sacBouton.Update(_mousePos);
@@ -68,14 +76,13 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		m_pokemonMenu.Update(_mousePos);
 
 	if (m_fuiteBouton.isClicked())
+	{
 		m_fuiteBouton.useClickAction();
+		inCombat == false;
+	}
 
 	if (m_pokemonBouton.isClicked())
 		m_pokemonBouton.useClickAction();
-
-	m_opponentInfoBar.Update();
-	m_playerInfoBar.Update();
-
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)

@@ -50,7 +50,7 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 
 Pokemon::~Pokemon()
 {
-	delete m_texture;
+	//delete m_texture;
 }
 
 void Pokemon::Update()

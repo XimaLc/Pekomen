@@ -35,6 +35,7 @@ protected:
 
 	Player m_player;
 
+	bool inCombat;
 	//sf::Texture pokemonTexture;
 	//sf::Texture pokemonTexture2;
 

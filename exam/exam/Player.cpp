@@ -52,5 +52,5 @@ Player::Player()
 
 Player::~Player()
 {
-    delete m_playerTeam;
+    //delete m_playerTeam;
 }

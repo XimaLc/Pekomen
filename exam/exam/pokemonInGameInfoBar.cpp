@@ -15,18 +15,19 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 	m_texture.loadFromFile("../Files/Textures/pokeBar.png");
 	m_sprite.setScale(6,6);
 	
+	m_pokemonHpText.setFillColor(sf::Color::Black);
 
 	if (side == OPPONENT)
 	{
 		m_sprite.setPosition(50, 50);
 		m_pokemonNameText.setPosition(75, 75);
-		m_pokemonHpText.setPosition(75, 125);
+		m_pokemonHpText.setPosition(400, 150);
 	}
 	else if (side == PLAYER)
 	{
 		m_sprite.setPosition(900, 800); 
 		m_pokemonNameText.setPosition(925, 825);
-		m_pokemonHpText.setPosition(925, 875);
+		m_pokemonHpText.setPosition(1250, 900);
 	}
 
 	m_pokemonNameText.setCharacterSize(40);
@@ -36,7 +37,7 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 
 pokemonInGameInfoBar::~pokemonInGameInfoBar()
 {
-	delete m_pokemon;
+	//delete m_pokemon;
 }
 
 void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
@@ -44,13 +45,13 @@ void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
 	m_pokemon = &_pokemon;
 	m_pokemonNameText.setString(m_pokemon->getName());
 	m_pokemonMaxHp = m_pokemon->getStat(HP);
+	m_pokemonHp = m_pokemon->getStat(CURRENTHP);
 }
 
-void pokemonInGameInfoBar::Update()
+void pokemonInGameInfoBar::Update(int _hp)
 {
-	//CRASH POUR ???
-	//m_pokemonHp = m_pokemon->getStat(CURRENTHP);
-	//m_pokemonHp = 1;
+	//CRASH POUR 
+	m_pokemonHp = _hp;
 	std::string tmp = "PV: " + std::to_string(m_pokemonHp) + "/" + std::to_string(m_pokemonMaxHp);
 	m_pokemonHpText.setString(tmp);
 }
