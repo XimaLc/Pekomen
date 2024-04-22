@@ -34,6 +34,11 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 
 }
 
+pokemonInGameInfoBar::~pokemonInGameInfoBar()
+{
+	delete m_pokemon;
+}
+
 void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
 {
 	m_pokemon = &_pokemon;
@@ -43,7 +48,9 @@ void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
 
 void pokemonInGameInfoBar::Update()
 {
-	m_pokemonHp = m_pokemon->getStat(CURRENTHP);
+	//CRASH POUR ???
+	//m_pokemonHp = m_pokemon->getStat(CURRENTHP);
+	//m_pokemonHp = 1;
 	std::string tmp = "PV: " + std::to_string(m_pokemonHp) + "/" + std::to_string(m_pokemonMaxHp);
 	m_pokemonHpText.setString(tmp);
 }
@@ -53,7 +60,6 @@ void pokemonInGameInfoBar::Draw(sf::RenderWindow& _window)
 	m_sprite.setTexture(m_texture);
 	_window.draw(m_sprite);
 
-	
 	m_pokemonNameText.setFont(m_font);
 	_window.draw(m_pokemonNameText);
 

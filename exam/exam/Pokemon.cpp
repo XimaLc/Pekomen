@@ -39,12 +39,18 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 	type2 = _type2;
 	evolution_state = _evoState;
 	stats = _stats;
+	stats[CURRENTHP] = stats[HP];
 	movePool = _movePool;
 	int tmp = iRand(1, 4096);
 	if (tmp == 1)
 		shiny = true;
 	else
 		shiny = false;
+}
+
+Pokemon::~Pokemon()
+{
+	delete m_texture;
 }
 
 void Pokemon::Update()

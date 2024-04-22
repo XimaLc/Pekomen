@@ -37,6 +37,12 @@ CombatState::CombatState()
 	m_fuiteBouton.setOnClick(fuiteBoutonAction);
 }
 
+CombatState::~CombatState()
+{
+	delete m_opponentPkmTexture;
+	delete m_playerPkmTexture;
+}
+
 void CombatState::setOpponentPkmTexture(std::string _path)
 {
 	m_opponentPkmTexture = DB::getTexture(_path);

@@ -166,6 +166,11 @@ void Bouton::Draw(sf::RenderWindow& _window)
 	}
 }
 
+Bouton::~Bouton()
+{
+	delete m_texture;
+}
+
 void Bouton::setOnClick(std::function<void()> _function)
 {
 	m_onClickAction = _function;

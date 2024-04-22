@@ -62,4 +62,6 @@ void StateManager::Loop()
 StateManager::~StateManager()
 {
 	delete m_currentState;
+	delete gameState;
+	delete menuState;
 }

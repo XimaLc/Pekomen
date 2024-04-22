@@ -27,6 +27,8 @@ public:
 	pokemonInGameInfoBar();
 	pokemonInGameInfoBar(int side);
 
+	~pokemonInGameInfoBar();
+
 	void setPokemon(Pokemon _pokemon);
 
 	void Update();

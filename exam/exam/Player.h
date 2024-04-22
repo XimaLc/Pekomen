@@ -30,5 +30,7 @@ public:
 
 	Player(std::string _name, sf::Texture& _texture);
 	Player();
+
+	~Player();
 };
 

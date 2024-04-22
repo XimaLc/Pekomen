@@ -41,6 +41,7 @@ protected:
 	float timer;
 public:
 	CombatState();
+	~CombatState();
 
 	void setOpponentPkmTexture(std::string _path);
 	void setPlayerPkmTexture(std::string _path);

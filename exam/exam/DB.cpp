@@ -47,7 +47,7 @@ Pokemon DB::getPokemonById(int _id)
 				if (id == _id)
 				{
 					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
-					stats[CURRENTHP] = stats[HP];
+					//stats[CURRENTHP] = stats[HP];
 					file.close();
 					return pokemon;
 				}
@@ -82,7 +82,7 @@ std::vector<Pokemon> DB::getPokemons(int _startId, int _amount)
 				if (id >= _startId && res.size() < _amount)
 				{
 					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
-					stats[CURRENTHP] = stats[HP];
+					//stats[CURRENTHP] = stats[HP];
 					res.push_back(pokemon);
 				}
 				if (res.size() == _amount)
@@ -125,7 +125,7 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 					if (id >= _startId && res.size() < _amount)
 					{
 						Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
-						stats[CURRENTHP] = stats[HP];
+						//stats[CURRENTHP] = stats[HP];
 						res.push_back(pokemon);
 					}
 				}

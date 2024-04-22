@@ -53,7 +53,8 @@ public:
 
 	Pokemon();
 	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
-	
+	~Pokemon();
+
 	inline bool getIsAlive() { return isAlive; }
 	inline void switchAlive() { isAlive = !isAlive; }
 

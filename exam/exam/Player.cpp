@@ -49,3 +49,8 @@ Player::Player(std::string _name, sf::Texture& _texture)
 Player::Player()
 {
 }
+
+Player::~Player()
+{
+    delete m_playerTeam;
+}
