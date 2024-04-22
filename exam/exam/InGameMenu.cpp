@@ -31,7 +31,7 @@ InGameMenu::InGameMenu()
 	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/  }};
 	m_inGameOptionsBouton.setOnClick(inGameOptionsBoutonAction);
 
-	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) {closeAllMenu();m_inGameSaveBouton.timer = 0;StateManager::ChangeState(MENU);}};
+	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) {closeAllMenu();m_inGameSaveBouton.timer = 0;StateManager::ChangeState(MENU_STATE);}};
 	m_inGameLeaveBouton.setOnClick(inGameLeaveBoutonAction);
 }
 

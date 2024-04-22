@@ -37,7 +37,7 @@ void GameState::Update(sf::Vector2f _mousePos)
 			
 			int x = iRand(0, 100);
 			if (x < 10)
-				StateManager::ChangeState(WILD_POKEMON);
+				StateManager::ChangeState(WILD_POKEMON_STATE);
 		}
 	}
 	timer += GetDeltaTime();

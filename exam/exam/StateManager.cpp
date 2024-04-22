@@ -10,28 +10,28 @@ StateManager::StateManager()
 	gameState = new GameState();
 	menuState = new MenuState();
 
-	ChangeState(GAME);
+	ChangeState(GAME_STATE);
 	isRunning = true;
 	Loop();
 }
 
 void StateManager::ChangeState(int _id)
 {
-	if (_id == GAME)
+	if (_id == GAME_STATE)
 		delete m_currentState;
 	switch (_id)
 	{
-	case MENU:
+	case MENU_STATE:
 		if (menuState == nullptr)
 			menuState = new MenuState();
 		m_currentState = menuState;
 		break;
-	case GAME:
+	case GAME_STATE:
 		if(gameState == nullptr)
 			gameState = new GameState();
 		m_currentState = gameState;
 		break;
-	case WILD_POKEMON:
+	case WILD_POKEMON_STATE:
 		m_currentState = new WildPokemonState();
 		break;
 	}

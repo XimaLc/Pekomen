@@ -7,7 +7,7 @@
 #include "Bouton.h"
 #include "PokemonMenu.h"
 #include "pokemonInGameInfoBar.h"
-
+#include "AttaqueMenu.h"
 #include "DB.h"
 
 class CombatState : public State
@@ -17,6 +17,7 @@ protected:
 	sf::Texture m_backgroundTexture;
 
 	PokemonMenu m_pokemonMenu;
+	AttaqueMenu m_attaqueMenu;
 
 	Bouton m_attaqueBouton;
 	Bouton m_pokemonBouton;
@@ -36,8 +37,8 @@ protected:
 	Player m_player;
 
 	bool inCombat;
-	//sf::Texture pokemonTexture;
-	//sf::Texture pokemonTexture2;
+	bool isAttaqueMenuOpen;
+
 
 	float timer;
 public:

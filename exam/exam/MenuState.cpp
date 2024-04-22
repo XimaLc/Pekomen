@@ -7,7 +7,7 @@ MenuState::MenuState()
 	m_optBouton = Bouton({ 860, 450 }, { 200, 80 }, "Options");
 	m_leaveBouton = Bouton({ 860, 670 }, { 200, 80 }, "Quitter");
 
-	auto playBoutonAction = [this]() { if (m_playBouton.timer > 1.f) { m_playBouton.timer = 0; StateManager::ChangeState(GAME);}};
+	auto playBoutonAction = [this]() { if (m_playBouton.timer > 1.f) { m_playBouton.timer = 0; StateManager::ChangeState(GAME_STATE);}};
 	m_playBouton.setOnClick(playBoutonAction);
 
 	auto optBoutonAction = [this]() { if (m_optBouton.timer > 1.f) { std::cout << "Options" << std::endl; m_optBouton.timer = 0; }};

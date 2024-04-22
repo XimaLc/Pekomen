@@ -27,11 +27,6 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 {
 	isAlive = true;
 
-	moves.push_back(Move());
-	moves.push_back(Move());
-	moves.push_back(Move());
-	moves.push_back(Move());
-
 	id = _id;
 	path = _path;
 	name = _name;
@@ -46,6 +41,12 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 		shiny = true;
 	else
 		shiny = false;
+
+
+	moves.push_back(DB::getMoveById(_movePool[0]));
+	moves.push_back(Move());
+	moves.push_back(Move());
+	moves.push_back(Move());
 }
 
 Pokemon::~Pokemon()

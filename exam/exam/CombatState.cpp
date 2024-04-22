@@ -17,6 +17,8 @@ CombatState::CombatState()
 	m_playerPkmSprite.setPosition(200, 600);
 	m_playerPkmSprite.setScale(0.5, 0.5);
 
+	m_attaqueMenu = AttaqueMenu(actualPlayerPkm, ATTAQUE_INFIGHT);
+
 	timer = 0.f;
 
 	m_backgroundTexture.loadFromFile("../Files/Textures/CombatBackground.png");
@@ -30,10 +32,13 @@ CombatState::CombatState()
 	m_sacBouton = Bouton({ 1700, 830 }, { 200, 100 }, "Sac");
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
 
+	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_attaqueMenu.OpenClose(); }};
+	m_attaqueBouton.setOnClick(attaqueBoutonAction);
+
 	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0; m_pokemonMenu.OpenClose(); }};
 	m_pokemonBouton.setOnClick(pokemonBoutonAction);
 
-	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME); }};
+	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }};
 	m_fuiteBouton.setOnClick(fuiteBoutonAction);
 
 	inCombat = true;
@@ -67,10 +72,22 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP));
 	}
 	
-	m_attaqueBouton.Update(_mousePos);
-	m_pokemonBouton.Update(_mousePos);
-	m_sacBouton.Update(_mousePos);
-	m_fuiteBouton.Update(_mousePos);
+	if (!m_attaqueMenu.m_isOpen)
+	{
+		m_attaqueBouton.Update(_mousePos);
+		m_pokemonBouton.Update(_mousePos);
+		m_sacBouton.Update(_mousePos);
+		m_fuiteBouton.Update(_mousePos);
+	}
+	
+	if (m_attaqueBouton.isClicked())
+		m_attaqueBouton.useClickAction();
+
+	if (m_attaqueMenu.m_isOpen)
+		m_attaqueMenu.Update(_mousePos);
+
+	if (m_pokemonBouton.isClicked())
+		m_pokemonBouton.useClickAction();
 
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Update(_mousePos);
@@ -78,21 +95,22 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	if (m_fuiteBouton.isClicked())
 	{
 		m_fuiteBouton.useClickAction();
-		inCombat == false;
+		inCombat = false;
 	}
 
-	if (m_pokemonBouton.isClicked())
-		m_pokemonBouton.useClickAction();
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
 {
 	_window.draw(m_backgroundSprite);
 
-	m_attaqueBouton.Draw(_window);
-	m_pokemonBouton.Draw(_window);
-	m_sacBouton.Draw(_window);
-	m_fuiteBouton.Draw(_window);
+	if (!m_attaqueMenu.m_isOpen)
+	{
+		m_attaqueBouton.Draw(_window);
+		m_pokemonBouton.Draw(_window);
+		m_sacBouton.Draw(_window);
+		m_fuiteBouton.Draw(_window);
+	}
 
 	if (actualOpponentPkm.getIsAlive())
 	{
@@ -108,6 +126,9 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_playerInfoBar.Draw(_window);
 	}
 
+	if (m_attaqueMenu.m_isOpen)
+		m_attaqueMenu.Draw(_window);
+
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Draw(_window);
 }
@@ -117,6 +138,6 @@ void CombatState::HandleKeyboard(sf::Event _event)
 	if (_event.key.code == sf::Keyboard::Escape && timer > 0.5f)
 	{
 		timer = 0;
-		StateManager::ChangeState(MENU);
+		StateManager::ChangeState(MENU_STATE);
 	}
 }

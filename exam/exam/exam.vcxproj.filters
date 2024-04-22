@@ -147,6 +147,9 @@
     <ClCompile Include="pokemonInGameInfoBar.cpp">
       <Filter>Fichiers sources\Components\Pokemons</Filter>
     </ClCompile>
+    <ClCompile Include="AttaqueMenu.cpp">
+      <Filter>Fichiers sources\Components\Pokemons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -210,6 +213,9 @@
       <Filter>Fichiers d%27en-tête\Components\inGameMenu</Filter>
     </ClInclude>
     <ClInclude Include="pokemonInGameInfoBar.h">
+      <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
+    </ClInclude>
+    <ClInclude Include="AttaqueMenu.h">
       <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
     </ClInclude>
   </ItemGroup>

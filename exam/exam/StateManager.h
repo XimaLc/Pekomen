@@ -7,7 +7,7 @@
 #include "tools.h"
 
 
-enum STATE { MENU, GAME, WILD_POKEMON };
+enum STATE { MENU_STATE, GAME_STATE, WILD_POKEMON_STATE };
 
 class StateManager
 {
