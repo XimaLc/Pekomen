@@ -53,11 +53,11 @@ public:
 
 	Pokemon();
 	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
+	void setRandomMoves();
 	~Pokemon();
+
+	void takeDamages(int _damages);
 
 	inline bool getIsAlive() { return isAlive; }
 	inline void switchAlive() { isAlive = !isAlive; }
-
-	virtual void Update();
-	virtual void Draw(sf::RenderWindow& _window, int _DrawType);
 };

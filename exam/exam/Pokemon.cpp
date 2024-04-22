@@ -49,16 +49,26 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 	moves.push_back(Move());
 }
 
+void Pokemon::setRandomMoves()
+{
+	moves[0] = DB::getMoveById(movePool[iRand(1, 30)]);
+	moves[1] = DB::getMoveById(movePool[iRand(1, 30)]);
+	moves[2] = DB::getMoveById(movePool[iRand(1, 30)]);
+	moves[3] = DB::getMoveById(movePool[iRand(1, 30)]);
+}
+
 Pokemon::~Pokemon()
 {
 	//delete m_texture;
 }
 
-void Pokemon::Update()
+void Pokemon::takeDamages(int _damages)
 {
-	//Pour les combats seulement ?
-}
+	stats[CURRENTHP] -= _damages;
 
-void Pokemon::Draw(sf::RenderWindow& _window, int _DrawType)
-{
+	if (stats[CURRENTHP] <= 0)
+	{
+		stats[CURRENTHP] = 0;
+		isAlive = false;
+	}
 }

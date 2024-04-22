@@ -7,17 +7,25 @@
 #include "Bouton.h"
 #include "PokemonMenu.h"
 #include "pokemonInGameInfoBar.h"
-#include "AttaqueMenu.h"
 #include "DB.h"
 
 class CombatState : public State
 {
 protected:
+	Bouton m_move1Bouton;
+	Bouton m_move2Bouton;
+	Bouton m_move3Bouton;
+	Bouton m_move4Bouton;
+	Bouton m_retourAttaqueBouton;
+
+	Move nextMove;
+
+	bool m_isAttaqueMenuOpen;
+
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
 
 	PokemonMenu m_pokemonMenu;
-	AttaqueMenu m_attaqueMenu;
 
 	Bouton m_attaqueBouton;
 	Bouton m_pokemonBouton;
@@ -47,6 +55,9 @@ public:
 
 	void setOpponentPkmTexture(std::string _path);
 	void setPlayerPkmTexture(std::string _path);
+
+	void Attaque(int _damages, Pokemon& _target);
+	void TurnAction();
 
 	virtual void CommonUpdate(sf::Vector2f _mousePos);
 	virtual void CommonDraw(sf::RenderWindow& _window);

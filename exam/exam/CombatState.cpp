@@ -17,22 +17,27 @@ CombatState::CombatState()
 	m_playerPkmSprite.setPosition(200, 600);
 	m_playerPkmSprite.setScale(0.5, 0.5);
 
-	m_attaqueMenu = AttaqueMenu(actualPlayerPkm, ATTAQUE_INFIGHT);
-
 	timer = 0.f;
 
 	m_backgroundTexture.loadFromFile("../Files/Textures/CombatBackground.png");
 	m_backgroundSprite.setTexture(m_backgroundTexture);
+	m_backgroundSprite.setPosition(0, -200);
 
 	m_backgroundSprite.setTextureRect({ 0, 0, 220, 112 });
-	m_backgroundSprite.setScale({ 8.9f, 9.6f });
+	m_backgroundSprite.setScale({ 8.9f, 10.8f });
 
 	m_attaqueBouton = Bouton({ 1500, 830 }, { 200, 100 }, "Attaquer");
 	m_pokemonBouton = Bouton({ 1500, 930 }, { 200, 100 }, "Pokemon");
 	m_sacBouton = Bouton({ 1700, 830 }, { 200, 100 }, "Sac");
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
 
-	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_attaqueMenu.OpenClose(); }};
+	m_move1Bouton = Bouton({ 1500, 830 }, { 200, 100 }, actualPlayerPkm.getMoves()[0].getName());
+	m_move2Bouton = Bouton({ 1500, 930 }, { 200, 100 }, actualPlayerPkm.getMoves()[1].getName());
+	m_move3Bouton = Bouton({ 1700, 830 }, { 200, 100 }, actualPlayerPkm.getMoves()[2].getName());
+	m_move4Bouton = Bouton({ 1700, 930 }, { 200, 100 }, actualPlayerPkm.getMoves()[3].getName());
+	m_retourAttaqueBouton = Bouton({ 1400, 930 }, { 100, 100 }, "Back");
+
+	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_isAttaqueMenuOpen = !m_isAttaqueMenuOpen; }};
 	m_attaqueBouton.setOnClick(attaqueBoutonAction);
 
 	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0; m_pokemonMenu.OpenClose(); }};
@@ -40,6 +45,18 @@ CombatState::CombatState()
 
 	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }};
 	m_fuiteBouton.setOnClick(fuiteBoutonAction);
+
+	auto retourBoutonAction = [this]() {if (m_retourAttaqueBouton.timer > 0.5) { m_retourAttaqueBouton.timer = 0; m_isAttaqueMenuOpen = false; }};
+	m_retourAttaqueBouton.setOnClick(retourBoutonAction);
+
+	auto attaqueActionBouton1 = [this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[0]; TurnAction(); }};
+	m_move1Bouton.setOnClick(attaqueActionBouton1);
+	auto attaqueActionBouton2 = [this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[1]; TurnAction();}};
+	m_move2Bouton.setOnClick(attaqueActionBouton2);
+	auto attaqueActionBouton3 = [this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[2]; TurnAction();}};
+	m_move3Bouton.setOnClick(attaqueActionBouton3);
+	auto attaqueActionBouton4 = [this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[3]; TurnAction();}};
+	m_move4Bouton.setOnClick(attaqueActionBouton4);
 
 	inCombat = true;
 }
@@ -62,6 +79,44 @@ void CombatState::setPlayerPkmTexture(std::string _path)
 	m_playerInfoBar.setPokemon(actualPlayerPkm);
 }
 
+void CombatState::Attaque(int _damages, Pokemon& _target)
+{
+	_target.takeDamages(_damages);
+}
+
+void CombatState::TurnAction()
+{
+	int x = iRand(1, 4);
+
+	if (actualPlayerPkm.getStat(SPD) > actualOpponentPkm.getStat(SPD))
+	{
+		if (actualPlayerPkm.getIsAlive())
+		{
+			Attaque(nextMove.getPower(), actualOpponentPkm);
+			std::cout << actualPlayerPkm.getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
+		}
+		if (actualOpponentPkm.getIsAlive())
+		{
+			Attaque(actualOpponentPkm.getMoves()[x].getPower(), actualPlayerPkm);
+			std::cout << actualOpponentPkm.getName() << " a mis " << std::to_string(actualOpponentPkm.getMoves()[x].getPower()) << " degats;" << std::endl;
+		}
+	}
+	else if (actualPlayerPkm.getStat(SPD) < actualOpponentPkm.getStat(SPD))
+	{
+		if (actualOpponentPkm.getIsAlive())
+		{
+			Attaque(actualOpponentPkm.getMoves()[x].getPower(), actualPlayerPkm);
+			std::cout << actualOpponentPkm.getName() << " a mis " << std::to_string(actualOpponentPkm.getMoves()[x].getPower()) << " degats;" << std::endl;
+		}
+		
+		if (actualPlayerPkm.getIsAlive())
+		{
+			Attaque(nextMove.getPower(), actualOpponentPkm);
+			std::cout << actualPlayerPkm.getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;	
+		}
+	}
+}
+
 void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 {
 	timer += GetDeltaTime();
@@ -72,7 +127,7 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP));
 	}
 	
-	if (!m_attaqueMenu.m_isOpen)
+	if (!m_isAttaqueMenuOpen)
 	{
 		m_attaqueBouton.Update(_mousePos);
 		m_pokemonBouton.Update(_mousePos);
@@ -83,8 +138,14 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	if (m_attaqueBouton.isClicked())
 		m_attaqueBouton.useClickAction();
 
-	if (m_attaqueMenu.m_isOpen)
-		m_attaqueMenu.Update(_mousePos);
+	if (m_isAttaqueMenuOpen)
+	{
+		m_move1Bouton.Update(_mousePos);
+		m_move2Bouton.Update(_mousePos);
+		m_move3Bouton.Update(_mousePos);
+		m_move4Bouton.Update(_mousePos);
+		m_retourAttaqueBouton.Update(_mousePos);
+	}
 
 	if (m_pokemonBouton.isClicked())
 		m_pokemonBouton.useClickAction();
@@ -92,19 +153,33 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Update(_mousePos);
 
+	if (m_move1Bouton.isClicked())
+		m_move1Bouton.useClickAction();	
+	
+	if (m_move2Bouton.isClicked())
+		m_move2Bouton.useClickAction();
+
+	if (m_move3Bouton.isClicked())
+		m_move3Bouton.useClickAction();	
+	
+	if (m_move4Bouton.isClicked())
+		m_move4Bouton.useClickAction();
+
+	if (m_retourAttaqueBouton.isClicked())
+		m_retourAttaqueBouton.useClickAction();
+
 	if (m_fuiteBouton.isClicked())
 	{
 		m_fuiteBouton.useClickAction();
 		inCombat = false;
 	}
-
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
 {
 	_window.draw(m_backgroundSprite);
 
-	if (!m_attaqueMenu.m_isOpen)
+	if (!m_isAttaqueMenuOpen)
 	{
 		m_attaqueBouton.Draw(_window);
 		m_pokemonBouton.Draw(_window);
@@ -126,8 +201,14 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_playerInfoBar.Draw(_window);
 	}
 
-	if (m_attaqueMenu.m_isOpen)
-		m_attaqueMenu.Draw(_window);
+	if (m_isAttaqueMenuOpen)
+	{
+		m_move1Bouton.Draw(_window);
+		m_move2Bouton.Draw(_window);
+		m_move3Bouton.Draw(_window);
+		m_move4Bouton.Draw(_window);
+		m_retourAttaqueBouton.Draw(_window);
+	} 
 
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Draw(_window);

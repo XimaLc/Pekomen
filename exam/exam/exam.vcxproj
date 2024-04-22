@@ -135,7 +135,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AttaqueMenu.cpp" />
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="CombatState.cpp" />
     <ClCompile Include="DB.cpp" />
@@ -160,7 +159,6 @@
     <ClCompile Include="WildPokemonState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AttaqueMenu.h" />
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="CombatState.h" />
     <ClInclude Include="DB.h" />
