@@ -124,7 +124,6 @@ void Bouton::Update(const sf::Vector2f mousePos)
 			//		
 		}
 		m_currentState = BOUTON_CLICKED;
-		//useClickAction();
 	}
 	else if (m_shape.getGlobalBounds().contains(mousePos))
 	{
