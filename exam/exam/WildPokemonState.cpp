@@ -3,6 +3,10 @@
 
 WildPokemonState::WildPokemonState()
 {
+}
+
+WildPokemonState::WildPokemonState(Player& _player) : CombatState(_player)
+{
 	actualOpponentPkm = DB::getPokemonById(iRand(0, 163));
 	actualOpponentPkm.setRandomMoves();
 	setOpponentPkmTexture(actualOpponentPkm.getPath());

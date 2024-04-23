@@ -9,6 +9,8 @@ class WildPokemonState : public CombatState
 
 public:
 	WildPokemonState();
+	WildPokemonState(Player& _player);
+
 
 	void Update(sf::Vector2f _mousePos);
 	void Draw(sf::RenderWindow& _window);
