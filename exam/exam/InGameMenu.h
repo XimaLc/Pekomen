@@ -16,6 +16,8 @@ class InGameMenu
 
 	SaveMenu m_saveMenu;
 	PokemonMenu m_pokemonMenu;
+
+	bool isPokemonMenuOpen;
 public:
 	bool isMenuOpen;
 
