@@ -103,6 +103,11 @@ void Bouton::useClickAction()
 	m_onClickAction();
 }
 
+void Bouton::setString(std::string _str)
+{
+	m_text.setString(_str);
+}
+
 void Bouton::Update(const sf::Vector2f mousePos)
 {
 	timer += GetDeltaTime();
