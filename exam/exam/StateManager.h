@@ -13,17 +13,22 @@ class StateManager
 {
 	static State* m_currentState;
 	static GameState* gameState;
-	static MenuState* menuState;
 
 	sf::RenderWindow* m_window;
 	sf::Event event;
 	sf::Vector2f mousePos;
+
+	static Player m_player;
+	sf::Texture playerTexture;
+
+
 
 	bool isRunning;
 public:
 	StateManager();
 	~StateManager();
 
+	static inline Player getPlayer() { return m_player; }
 	static void ChangeState(int _id);
 
 	void Loop();
