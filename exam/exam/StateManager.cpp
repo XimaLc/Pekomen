@@ -1,16 +1,21 @@
 #include "StateManager.h"
+#include "DB.h"
 
 State* StateManager::m_currentState;
 GameState* StateManager::gameState;
-MenuState* StateManager::menuState;
+Player StateManager::m_player;
 
 StateManager::StateManager()
 {
-	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
-	gameState = new GameState();
-	menuState = new MenuState();
+	DB::loadTextures();
+	playerTexture.loadFromFile("../Files/Textures/player.png");
 
-	ChangeState(GAME_STATE);
+	m_player = Player("Player", playerTexture);
+
+	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
+	gameState = new GameState(m_player);
+
+	ChangeState(MENU_STATE);
 	isRunning = true;
 	Loop();
 }
@@ -22,17 +27,15 @@ void StateManager::ChangeState(int _id)
 	switch (_id)
 	{
 	case MENU_STATE:
-		if (menuState == nullptr)
-			menuState = new MenuState();
-		m_currentState = menuState;
+		m_currentState = new MenuState(m_player);;
 		break;
 	case GAME_STATE:
 		if(gameState == nullptr)
-			gameState = new GameState();
+			gameState = new GameState(m_player);
 		m_currentState = gameState;
 		break;
 	case WILD_POKEMON_STATE:
-		m_currentState = new WildPokemonState();
+		m_currentState = new WildPokemonState(m_player);
 		break;
 	}
 }
@@ -63,5 +66,4 @@ StateManager::~StateManager()
 {
 	delete m_currentState;
 	delete gameState;
-	delete menuState;
 }
