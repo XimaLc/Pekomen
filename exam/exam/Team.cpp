@@ -3,19 +3,19 @@
 
 Team::Team()
 {
-	//m_team.push_back(DB::getPokemonById(1));
-	//m_team.push_back(DB::getPokemonById(2));
-	//m_team.push_back(DB::getPokemonById(3));
-	//m_team.push_back(DB::getPokemonById(4));
-	//m_team.push_back(DB::getPokemonById(5));
-	//m_team.push_back(DB::getPokemonById(6));
+	m_team.push_back(DB::getPokemonById(1));
+	m_team.push_back(DB::getPokemonById(2));
+	m_team.push_back(DB::getPokemonById(3));
+	m_team.push_back(DB::getPokemonById(4));
+	m_team.push_back(DB::getPokemonById(5));
+	m_team.push_back(DB::getPokemonById(6));
 
-	m_team.push_back(Pokemon());
-	m_team.push_back(Pokemon());
-	m_team.push_back(Pokemon());
-	m_team.push_back(Pokemon());
-	m_team.push_back(Pokemon());
-	m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
+	//m_team.push_back(Pokemon());
 }
 
 void Team::addMove(Move _move, int moveIndex, int teamIndex)

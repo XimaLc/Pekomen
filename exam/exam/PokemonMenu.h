@@ -20,7 +20,7 @@ public:
 	PokemonMenu(Player& _player);
 
 	bool m_isPokemonMenuOpen;
-	inline void OpenClose() { m_isPokemonMenuOpen = !m_isPokemonMenuOpen; }
+	void OpenClose();
 
 
 	void Update(sf::Vector2f _mousePos);

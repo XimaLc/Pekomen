@@ -4,14 +4,24 @@
 
 CombatState::CombatState()
 {
+	m_player = new Player();
+}
+
+CombatState::CombatState(Player& _player)
+{
+	//m_textBarTexture.loadFromFile("../Files/Textures/ActionBar.png");
+	//m_textBarSprite.setTexture(m_textBarTexture);
+	//m_textBarSprite.setPosition(800, 830);
+
+	m_player = &_player;
+
 	m_playerInfoBar = pokemonInGameInfoBar(PLAYER);
 	m_opponentInfoBar = pokemonInGameInfoBar(OPPONENT);
 
-	m_player = GameState::getPlayer();
-	actualPlayerPkm = m_player.getTeam()->getPokemons()[0];
+	actualPlayerPkm = m_player->getTeam()->getPokemons()[0];
 	setPlayerPkmTexture(actualPlayerPkm.getPath());
 
-	m_opponentPkmSprite.setPosition(1300, 250);
+	m_opponentPkmSprite.setPosition(1300, 100);
 	m_opponentPkmSprite.setScale(0.5, 0.5);
 
 	m_playerPkmSprite.setPosition(200, 600);
@@ -21,10 +31,10 @@ CombatState::CombatState()
 
 	m_backgroundTexture.loadFromFile("../Files/Textures/CombatBackground.png");
 	m_backgroundSprite.setTexture(m_backgroundTexture);
-	m_backgroundSprite.setPosition(0, -200);
+	m_backgroundSprite.setPosition(0, -350);
 
 	m_backgroundSprite.setTextureRect({ 0, 0, 220, 112 });
-	m_backgroundSprite.setScale({ 8.9f, 10.8f });
+	m_backgroundSprite.setScale({ 8.9f, 13.f });
 
 	m_attaqueBouton = Bouton({ 1500, 830 }, { 200, 100 }, "Attaquer");
 	m_pokemonBouton = Bouton({ 1500, 930 }, { 200, 100 }, "Pokemon");
@@ -51,10 +61,13 @@ CombatState::CombatState()
 
 	auto attaqueActionBouton1 = [this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[0]; TurnAction(); }};
 	m_move1Bouton.setOnClick(attaqueActionBouton1);
+	
 	auto attaqueActionBouton2 = [this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[1]; TurnAction();}};
 	m_move2Bouton.setOnClick(attaqueActionBouton2);
+	
 	auto attaqueActionBouton3 = [this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[2]; TurnAction();}};
 	m_move3Bouton.setOnClick(attaqueActionBouton3);
+	
 	auto attaqueActionBouton4 = [this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[3]; TurnAction();}};
 	m_move4Bouton.setOnClick(attaqueActionBouton4);
 
@@ -178,7 +191,7 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 void CombatState::CommonDraw(sf::RenderWindow& _window)
 {
 	_window.draw(m_backgroundSprite);
-
+	//_window.draw(m_textBarSprite);
 	if (!m_isAttaqueMenuOpen)
 	{
 		m_attaqueBouton.Draw(_window);

@@ -8,7 +8,7 @@ PokemonMenu::PokemonMenu()
 
 PokemonMenu::PokemonMenu(Player& _player)
 {
-	m_player = &_player;
+ 	m_player = &_player;
 
 	m_backgroundShape.setSize({ 1520,880 });
 	m_backgroundShape.setPosition({ 50,50 });
@@ -21,6 +21,11 @@ PokemonMenu::PokemonMenu(Player& _player)
 	m_pokemon5Bouton = Bouton({ 600, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[4].getPath(), POKEMON_PATH);
 	m_pokemon6Bouton = Bouton({ 1100, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[5].getPath(), POKEMON_PATH);
 	m_isPokemonMenuOpen = false;
+}
+
+void PokemonMenu::OpenClose()
+{
+	m_isPokemonMenuOpen = !m_isPokemonMenuOpen;
 }
 
 void PokemonMenu::Update(sf::Vector2f _mousePos)

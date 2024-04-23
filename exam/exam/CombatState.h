@@ -42,15 +42,18 @@ protected:
 	Pokemon actualPlayerPkm;
 	pokemonInGameInfoBar m_playerInfoBar;
 
-	Player m_player;
+	Player* m_player;
 
 	bool inCombat;
 	bool isAttaqueMenuOpen;
 
+	//sf::Texture m_textBarTexture;
+	//sf::Sprite m_textBarSprite;
 
 	float timer;
 public:
 	CombatState();
+	CombatState(Player& _player);
 	~CombatState();
 
 	void setOpponentPkmTexture(std::string _path);
