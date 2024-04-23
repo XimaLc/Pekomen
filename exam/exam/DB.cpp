@@ -254,7 +254,7 @@ void DB::saveTeam(Team team)
 	int id = 0;
 	const char* n = "\n";
 
-	std::ofstream file("team.dat", std::ios::out | std::ios::binary);
+	std::ofstream file("../Files/team.dat", std::ios::out | std::ios::binary);
 	if (file.is_open())
 	{
 		if (team.getPokemons()[0].getName() != "")
@@ -533,8 +533,5 @@ void DB::loadTextures()
 
 sf::Texture* DB::getTexture(std::string path)
 {
-	if (pokemonTextures.size() <= 0)
-		loadTextures();
-
 	return &pokemonTextures[path];
 }
