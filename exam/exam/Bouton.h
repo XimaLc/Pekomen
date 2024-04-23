@@ -35,6 +35,8 @@ public:
 	
 	void useClickAction();
 
+	void setString(std::string _str);
+
 	void setOnClick(std::function<void()> _function);
 	void Update(sf::Vector2f mousePos);
 	void Draw(sf::RenderWindow& _window);
