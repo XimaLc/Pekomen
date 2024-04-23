@@ -25,9 +25,9 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 	}
 	else if (side == PLAYER)
 	{
-		m_sprite.setPosition(900, 800); 
-		m_pokemonNameText.setPosition(925, 825);
-		m_pokemonHpText.setPosition(1250, 900);
+		m_sprite.setPosition(1300, 650); 
+		m_pokemonNameText.setPosition(1325, 675);
+		m_pokemonHpText.setPosition(1650, 750 );
 	}
 
 	m_pokemonNameText.setCharacterSize(40);
@@ -37,7 +37,7 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 
 pokemonInGameInfoBar::~pokemonInGameInfoBar()
 {
-	//delete m_pokemon;
+	delete m_pokemon;
 }
 
 void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)

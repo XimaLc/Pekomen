@@ -3,6 +3,12 @@
 
 InGameMenu::InGameMenu()
 {
+}
+
+InGameMenu::InGameMenu(Player& _player)
+{
+	m_pokemonMenu = PokemonMenu(_player);
+
 	isMenuOpen = false;
 
 	m_inGameProfilBouton = Bouton({ 1620, 190 }, { 300, 100 }, "Dresseur");

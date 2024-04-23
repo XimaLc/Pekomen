@@ -14,12 +14,14 @@ class PokemonMenu
 	Bouton m_pokemon6Bouton;
 	Bouton m_retour;
 	
-	Player m_player;
+	Player* m_player;
 public:
 	PokemonMenu();
+	PokemonMenu(Player& _player);
 
 	bool m_isPokemonMenuOpen;
 	inline void OpenClose() { m_isPokemonMenuOpen = !m_isPokemonMenuOpen; }
+
 
 	void Update(sf::Vector2f _mousePos);
 	void Draw(sf::RenderWindow& _window);

@@ -24,7 +24,7 @@ public:
 	void anim(int x, int y);
 
 	inline Team* getTeam() { return m_playerTeam; }
-
+	inline void loadTeam() { m_playerTeam->load(); }
 	//void savePos(std::string _name);
 	//void loadPos(std::string _name);
 
