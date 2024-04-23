@@ -33,7 +33,7 @@ protected:
 	Pokemon actualPlayerPkm;
 	pokemonInGameInfoBar m_playerInfoBar;
 
-	Player m_player;
+	Player* m_player;
 
 	bool inCombat;
 	//sf::Texture pokemonTexture;

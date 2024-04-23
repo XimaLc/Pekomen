@@ -7,8 +7,7 @@ MenuState* StateManager::menuState;
 StateManager::StateManager()
 {
 	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
-	gameState = new GameState();
-	menuState = new MenuState();
+	gameState = new GameState(m_player);
 
 	ChangeState(GAME);
 	isRunning = true;
@@ -31,8 +30,13 @@ void StateManager::ChangeState(int _id)
 			gameState = new GameState();
 		m_currentState = gameState;
 		break;
+<<<<<<< Updated upstream
 	case WILD_POKEMON:
 		m_currentState = new WildPokemonState();
+=======
+	case WILD_POKEMON_STATE:
+		m_currentState = new WildPokemonState(m_player);
+>>>>>>> Stashed changes
 		break;
 	}
 }
@@ -64,4 +68,5 @@ StateManager::~StateManager()
 	delete m_currentState;
 	delete gameState;
 	delete menuState;
+	delete wildPkmState;
 }

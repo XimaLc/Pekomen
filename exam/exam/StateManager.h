@@ -14,6 +14,9 @@ class StateManager
 	static State* m_currentState;
 	static GameState* gameState;
 	static MenuState* menuState;
+	static WildPokemonState* wildPkmState;
+
+	static Player m_player;
 
 	sf::RenderWindow* m_window;
 	sf::Event event;

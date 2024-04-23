@@ -3,18 +3,23 @@
 
 PokemonMenu::PokemonMenu()
 {
-	m_player = GameState::getPlayer();
+	m_player = new Player;
+}
+
+PokemonMenu::PokemonMenu(Player& _player)
+{
+	m_player = &_player;
 
 	m_backgroundShape.setSize({ 1520,880 });
 	m_backgroundShape.setPosition({ 50,50 });
 	m_backgroundShape.setFillColor(sf::Color(211, 211, 211));
 
-	m_pokemon1Bouton = Bouton({ 100, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[0].getPath(), POKEMON_PATH);
-	m_pokemon2Bouton = Bouton({ 600, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[1].getPath(), POKEMON_PATH);
-	m_pokemon3Bouton = Bouton({ 1100, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[2].getPath(), POKEMON_PATH);
-	m_pokemon4Bouton = Bouton({ 100, 500 }, { 350, 350 }, m_player.getTeam()->getPokemons()[3].getPath(), POKEMON_PATH);
-	m_pokemon5Bouton = Bouton({ 600, 500 }, { 350, 350 }, m_player.getTeam()->getPokemons()[4].getPath(), POKEMON_PATH);
-	m_pokemon6Bouton = Bouton({ 1100, 500 }, { 350, 350 }, m_player.getTeam()->getPokemons()[5].getPath(), POKEMON_PATH);
+	m_pokemon1Bouton = Bouton({ 100, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[0].getPath(), POKEMON_PATH);
+	m_pokemon2Bouton = Bouton({ 600, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[1].getPath(), POKEMON_PATH);
+	m_pokemon3Bouton = Bouton({ 1100, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[2].getPath(), POKEMON_PATH);
+	m_pokemon4Bouton = Bouton({ 100, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[3].getPath(), POKEMON_PATH);
+	m_pokemon5Bouton = Bouton({ 600, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[4].getPath(), POKEMON_PATH);
+	m_pokemon6Bouton = Bouton({ 1100, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[5].getPath(), POKEMON_PATH);
 	m_isPokemonMenuOpen = false;
 }
 
