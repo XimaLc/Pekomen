@@ -9,8 +9,6 @@
 
 class GameState : public State
 {
-	static Player m_player;
-
 	bool gameHasFocus;
 	bool hasMove;
 	static bool isPlayerInit;
@@ -19,11 +17,12 @@ class GameState : public State
 	
 	Map map;
 
-	static sf::Texture playerTexture;
-	
 	float timer;
+
+	Player* m_player;
 public:
 	GameState();
+	GameState(Player& _player);
 
 	static Player getPlayer();
 	virtual void Update(sf::Vector2f _mousePos);
