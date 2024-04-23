@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "Bouton.h"
-
+#include "Team.h"
 class SaveMenu
 {
 	sf::RectangleShape shape;
@@ -11,8 +11,10 @@ class SaveMenu
 	Bouton m_confirmSaveBouton;
 	Bouton m_cancelSaveBouton;
 
+	Team* m_team;
 public:
 	SaveMenu();
+
 	bool isSaveMenuOpen;
 
 	void OpenClose();
