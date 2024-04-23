@@ -22,22 +22,22 @@ InGameMenu::InGameMenu(Player& _player)
 	auto inGameProfilBoutonAction = [this]() { if (m_inGameProfilBouton.timer > 0.5f) { /*ouvrir le profil*/ }};
 	m_inGameProfilBouton.setOnClick(inGameProfilBoutonAction);
 
-	auto inGamePokemonBoutonAction = [this]() { if (m_inGamePokemonBouton.timer > 0.5f) { if (!m_pokemonMenu.m_isPokemonMenuOpen) closeAllMenu();  m_pokemonMenu.OpenClose(); m_inGamePokemonBouton.timer = 0; }};
+	auto inGamePokemonBoutonAction = [this]() { if (m_inGamePokemonBouton.timer > 0.5f) { /*if (!m_pokemonMenu.m_isPokemonMenuOpen) closeAllMenu();*/  m_pokemonMenu.OpenClose(); m_inGamePokemonBouton.timer = 0; }};
 	m_inGamePokemonBouton.setOnClick(inGamePokemonBoutonAction);
 
-	auto inGameBagBoutonAction = [this]() { if (m_inGameBagBouton.timer > 0.5f) { /*ouvrir le sac*/  }};
+	auto inGameBagBoutonAction = [this]() { if (m_inGameBagBouton.timer > 0.5f) { /*ouvrir le sac*/ }};
 	m_inGameBagBouton.setOnClick(inGamePokemonBoutonAction);
 
-	auto inGamePokedexBoutonAction = [this]() { if (m_inGamePokedexBouton.timer > 0.5f) { /*ouvrir le pokedex*/  }};
+	auto inGamePokedexBoutonAction = [this]() { if (m_inGamePokedexBouton.timer > 0.5f) { /*ouvrir le pokedex*/ }};
 	m_inGamePokedexBouton.setOnClick(inGamePokedexBoutonAction);
 
-	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { if (!m_saveMenu.isSaveMenuOpen) closeAllMenu();m_saveMenu.OpenClose();m_inGameSaveBouton.timer = 0;}};
+	auto inGameSaveBoutonAction = [this]() { if (m_inGameSaveBouton.timer > 0.5f) { if (!m_saveMenu.isSaveMenuOpen) closeAllMenu(); m_saveMenu.OpenClose(); m_inGameSaveBouton.timer = 0; }};
 	m_inGameSaveBouton.setOnClick(inGameSaveBoutonAction);
 
-	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/  }};
+	auto inGameOptionsBoutonAction = [this]() { if (m_inGameOptionsBouton.timer > 0.5f) { /*ouvrir les options*/ }};
 	m_inGameOptionsBouton.setOnClick(inGameOptionsBoutonAction);
 
-	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) {closeAllMenu();m_inGameSaveBouton.timer = 0;StateManager::ChangeState(MENU_STATE);}};
+	auto inGameLeaveBoutonAction = [this]() { if (m_inGameLeaveBouton.timer > 0.5f) { closeAllMenu(); m_inGameSaveBouton.timer = 0; StateManager::ChangeState(MENU_STATE); }};
 	m_inGameLeaveBouton.setOnClick(inGameLeaveBoutonAction);
 }
 
