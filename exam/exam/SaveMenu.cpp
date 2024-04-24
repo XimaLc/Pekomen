@@ -4,18 +4,32 @@
 
 SaveMenu::SaveMenu()
 {
+
 	isSaveMenuOpen = false;
 
 	m_team = StateManager::getPlayer().getTeam();
 
-	m_confirmSaveBouton = Bouton({ 300, 650 }, { 200, 80 }, "Confirmer");
-	m_cancelSaveBouton = Bouton({ 900, 650 }, { 200, 80 }, "Retour");
+	m_confirmSaveBouton = Bouton({ 300, 400 }, { 200, 80 }, "Confirmer");
+	m_cancelSaveBouton = Bouton({ 900, 400 }, { 200, 80 }, "Retour");
 	
-	auto confirmSaveAction = [this]() {if (m_confirmSaveBouton.timer > 1.f) { m_confirmSaveBouton.timer = 0; m_team->save(); isSaveMenuOpen = false; }};
-	m_confirmSaveBouton.setOnClick(confirmSaveAction);
+	m_confirmSaveBouton.setOnClick([this]() 
+		{
+			if (m_confirmSaveBouton.timer > 1.f) 
+			{ 
+				m_confirmSaveBouton.timer = 0; 
+				m_team->save(); 
+				isSaveMenuOpen = false; 
+			}
+		});
 
-	auto cancelSaveAction = [this]() {if (m_cancelSaveBouton.timer > 1.f) { m_cancelSaveBouton.timer = 0; isSaveMenuOpen = false; }};
-	m_cancelSaveBouton.setOnClick(cancelSaveAction);
+	m_cancelSaveBouton.setOnClick([this]() 
+		{
+			if (m_cancelSaveBouton.timer > 1.f) 
+			{ 
+				m_cancelSaveBouton.timer = 0; 
+				isSaveMenuOpen = false; 
+			}
+		});
 }
 
 void SaveMenu::OpenClose()
@@ -39,7 +53,6 @@ void SaveMenu::Draw(sf::RenderWindow& _window)
 {
 	if (isSaveMenuOpen)
 	{
-		_window.draw(shape);
 		m_confirmSaveBouton.Draw(_window);
 		m_cancelSaveBouton.Draw(_window);
 	}
