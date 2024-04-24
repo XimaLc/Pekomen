@@ -4,8 +4,6 @@
 
 class PokemonMenu
 {
-	sf::RectangleShape m_backgroundShape;
-
 	Bouton m_pokemon1Bouton;
 	Bouton m_pokemon2Bouton;
 	Bouton m_pokemon3Bouton;
@@ -17,7 +15,6 @@ class PokemonMenu
 	Player m_player;
 public:
 	PokemonMenu();
-	PokemonMenu(Player& _player);
 
 	bool m_isPokemonMenuOpen;
 	void OpenClose();
