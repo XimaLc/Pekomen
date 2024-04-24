@@ -83,5 +83,5 @@ void Pokemon::levelUp()
 	{
 		stats[LVL] += 1;
 		evolve();
-	}
+	} 
 }
