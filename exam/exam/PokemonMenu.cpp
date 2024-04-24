@@ -5,10 +5,6 @@ PokemonMenu::PokemonMenu()
 {
  	m_player = StateManager::getPlayer();
 
-	m_backgroundShape.setSize({ 1520,880 });
-	m_backgroundShape.setPosition({ 50,50 });
-	m_backgroundShape.setFillColor(sf::Color(211, 211, 211));
-
 	m_pokemon1Bouton = Bouton({ 100, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[0].getPath(), POKEMON_PATH);
 	m_pokemon2Bouton = Bouton({ 600, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[1].getPath(), POKEMON_PATH);
 	m_pokemon3Bouton = Bouton({ 1100, 100 }, { 350, 350 }, m_player.getTeam()->getPokemons()[2].getPath(), POKEMON_PATH);
@@ -35,7 +31,6 @@ void PokemonMenu::Update(sf::Vector2f _mousePos)
 
 void PokemonMenu::Draw(sf::RenderWindow& _window)
 {
-	_window.draw(m_backgroundShape);
 	m_pokemon1Bouton.Draw(_window);
 	m_pokemon2Bouton.Draw(_window);
 	m_pokemon3Bouton.Draw(_window);
