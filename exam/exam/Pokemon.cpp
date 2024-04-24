@@ -13,6 +13,20 @@ void Pokemon::setMoveId(int index, int id)
 	moves[index].setId(id);
 }
 
+void Pokemon::giveXp(int _amount)
+{
+	stats[XP] += _amount;
+	levelUp();
+}
+
+bool Pokemon::canEvolve()
+{
+	if (stats[LVL] >= evolution_level && evolution_level > 0)
+		return true;
+
+	return false;
+}
+
 Pokemon::Pokemon()
 {
 	isAlive = true;
@@ -38,7 +52,7 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 	stats = _stats;
 	stats[CURRENTHP] = stats[HP];
 	stats[XP] = 0;
-	stats[LVL] = 0;
+	stats[LVL] = 1;
 	movePool = _movePool;
 	int tmp = iRand(1, 4096);
 	if (tmp == 1)
@@ -47,7 +61,7 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 		shiny = false;
 
 
-	moves.push_back(DB::getMoveById(_movePool[0]));
+	moves.push_back(DB::getMoveById(33));
 	moves.push_back(Move());
 	moves.push_back(Move());
 	moves.push_back(Move());
@@ -79,9 +93,8 @@ void Pokemon::takeDamages(int _damages)
 
 void Pokemon::levelUp()
 {
-	if (stats[XP] >= 100)
+	if (stats[XP] >= 100 && stats[LVL] < 100)
 	{
 		stats[LVL] += 1;
-		evolve();
 	} 
 }

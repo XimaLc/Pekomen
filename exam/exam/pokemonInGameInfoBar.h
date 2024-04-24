@@ -16,6 +16,7 @@ class pokemonInGameInfoBar
 	Pokemon* m_pokemon;
 
 	sf::Text m_pokemonNameText;
+	sf::Text m_pokemonLevelText;
 
 	static sf::Font m_font;
 
@@ -31,6 +32,6 @@ public:
 
 	void setPokemon(Pokemon _pokemon);
 
-	void Update(int _hp);
+	void Update(int _hp, int _lvl);
 	void Draw(sf::RenderWindow& _window);
 };

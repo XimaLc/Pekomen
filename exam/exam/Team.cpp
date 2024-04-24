@@ -3,19 +3,19 @@
 
 Team::Team()
 {
-	m_team.push_back(DB::getPokemonById(1));
-	m_team.push_back(DB::getPokemonById(2));
-	m_team.push_back(DB::getPokemonById(3));
-	m_team.push_back(DB::getPokemonById(4));
-	m_team.push_back(DB::getPokemonById(5));
-	m_team.push_back(DB::getPokemonById(6));
+	//m_team.push_back(DB::getPokemonById(1));
+	//m_team.push_back(DB::getPokemonById(2));
+	//m_team.push_back(DB::getPokemonById(3));
+	//m_team.push_back(DB::getPokemonById(4));
+	//m_team.push_back(DB::getPokemonById(5));
+	//m_team.push_back(DB::getPokemonById(6));
 
-	//m_team.push_back(Pokemon());
-	//m_team.push_back(Pokemon());
-	//m_team.push_back(Pokemon());
-	//m_team.push_back(Pokemon());
- 	//m_team.push_back(Pokemon());
-	//m_team.push_back(Pokemon());
+	m_team.push_back(Pokemon());
+	m_team.push_back(Pokemon());
+	m_team.push_back(Pokemon());
+	m_team.push_back(Pokemon());
+ 	m_team.push_back(Pokemon());
+	m_team.push_back(Pokemon());
 }
 
 void Team::addMove(Move _move, int moveIndex, int teamIndex)
@@ -125,5 +125,16 @@ void Team::addStarter(int _type)
 	m_team[3] = Pokemon();
 	m_team[4] = Pokemon();
 	m_team[5] = Pokemon();
+}
+
+void Team::evolvePokemons()
+{
+	for(int i = 0; i < m_team.size(); i++)
+	{
+		if (m_team[i].canEvolve())
+		{
+			m_team[i] = DB::getPokemonById(m_team[i].getEvolutionState());
+		}
+	}
 }
 	

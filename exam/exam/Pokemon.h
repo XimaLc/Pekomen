@@ -28,7 +28,6 @@ class Pokemon
 	sf::Sprite m_sprite;
 
 	bool isAlive;
-	bool canEvolve;
 public:
 	inline void setId(int _id) { id = _id; }
 	inline void setPath(std::string _path) { path = _path; }
@@ -53,7 +52,12 @@ public:
 	inline int getEvolutionState() { return evolution_state; }
 	inline bool getSiny() { return shiny; }
 	inline std::vector<Move> getMoves() { return moves; }
+	inline int getEvolutionTarget() { return evolution_target; }
 	
+	void giveXp(int _amount);
+
+	bool canEvolve();
+
 	Pokemon();
 	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoLevel, int _evoTarget, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
 	void setRandomMoves();
@@ -62,8 +66,6 @@ public:
 	void takeDamages(int _damages);
 
 	void levelUp();
-
-	inline void evolve() { if (evolution_target != 0 && stats[LVL] >= evolution_level) canEvolve = true; }
 
 	inline bool getIsAlive() { return isAlive; }
 	inline void switchAlive() { isAlive = !isAlive; }

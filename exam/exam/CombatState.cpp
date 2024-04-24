@@ -136,8 +136,8 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	
 	if (inCombat)
 	{
-		m_opponentInfoBar.Update(actualOpponentPkm.getStat(CURRENTHP));
-		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP));
+		m_opponentInfoBar.Update(actualOpponentPkm.getStat(CURRENTHP), actualOpponentPkm.getStat(LVL));
+		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP), actualPlayerPkm.getStat(LVL));
 	}
 	
 	if (!m_isAttaqueMenuOpen)
@@ -186,6 +186,15 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		m_fuiteBouton.useClickAction();
 		inCombat = false;
 	}
+
+	if (!actualOpponentPkm.getIsAlive())
+	{
+		actualPlayerPkm.giveXp(50);
+		m_player->getTeam()->evolvePokemons();
+		StateManager::ChangeState(GAME_STATE);
+	}
+	if (!actualPlayerPkm.getIsAlive())
+		StateManager::ChangeState(GAME_STATE);
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
