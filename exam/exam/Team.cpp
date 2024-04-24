@@ -14,7 +14,7 @@ Team::Team()
 	//m_team.push_back(Pokemon());
 	//m_team.push_back(Pokemon());
 	//m_team.push_back(Pokemon());
-	//m_team.push_back(Pokemon());
+ 	//m_team.push_back(Pokemon());
 	//m_team.push_back(Pokemon());
 }
 
@@ -116,3 +116,14 @@ void Team::load()
 			m_team[5].setMove(DB::getMoveById(mId24), 3);
 	}
 }
+
+void Team::addStarter(int _type)
+{
+	m_team[0] = DB::getPokemonById(_type);
+	m_team[1] = Pokemon();
+	m_team[2] = Pokemon();
+	m_team[3] = Pokemon();
+	m_team[4] = Pokemon();
+	m_team[5] = Pokemon();
+}
+	

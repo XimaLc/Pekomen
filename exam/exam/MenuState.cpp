@@ -18,28 +18,48 @@ MenuState::MenuState(Player& _player)
 	m_optBouton = Bouton({ 860, 450 }, { 200, 80 }, "Options");
 	m_leaveBouton = Bouton({ 860, 670 }, { 200, 80 }, "Quitter");
 
-	auto loadBoutonAction = [this]() {if (m_playBouton.timer > 1.f) { m_playBouton.timer = 0; m_player->loadTeam();  StateManager::ChangeState(GAME_STATE); }};
-	auto newGameBoutonAction = [this]() {if (m_optBouton.timer > 1.f) { m_optBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }};
-	/*
-		DOIT CHOISIR UN STARTER ICI
-	*/
+	auto loadBoutonAction = [this]() 
+		{
+			if (m_playBouton.timer > 1.f) 
+			{ 
+				m_playBouton.timer = 0;
+				m_player->loadTeam();  
+				StateManager::ChangeState(GAME_STATE); 
+			}
+		};
+	auto newGameBoutonAction = [this]() 
+		{
+			if (m_optBouton.timer > 1.f) 
+			{ 
+				m_optBouton.timer = 0; 
+				/*
+					DOIT CHOISIR UN STARTER ICI
+				*/
+				StateManager::ChangeState(NEW_GAME_STATE); 
+			}
+		};
 	
-	auto playBoutonAction = [this, loadBoutonAction, newGameBoutonAction]() 
-	{ 
-		if (m_playBouton.timer > 1.f) 
+	
+	m_playBouton.setOnClick([this, loadBoutonAction, newGameBoutonAction]()
+		{
+			if (m_playBouton.timer > 1.f)
+			{
+				m_playBouton.timer = 0;
+				m_playBouton.setString("Reprendre");
+				m_playBouton.setOnClick(loadBoutonAction);
+				m_optBouton.setString("Nouveau");
+				m_optBouton.setOnClick(newGameBoutonAction);
+			}
+		});
+
+	m_optBouton.setOnClick([this]() 
 		{ 
-			m_playBouton.timer = 0;
-			m_playBouton.setString("Reprendre");
-			m_playBouton.setOnClick(loadBoutonAction);
-			m_optBouton.setString("Nouveau");
-			m_optBouton.setOnClick(newGameBoutonAction);
-		}
-	};
-
-	m_playBouton.setOnClick(playBoutonAction);
-
-	auto optBoutonAction = [this]() { if (m_optBouton.timer > 1.f) { std::cout << "Options" << std::endl; m_optBouton.timer = 0; }};
-	m_optBouton.setOnClick(optBoutonAction);
+			if (m_optBouton.timer > 1.f) 
+			{ 
+				std::cout << "Options" << std::endl; 
+				m_optBouton.timer = 0;
+			}
+		});
 }
 
 void MenuState::Update(const sf::Vector2f _mousePos)

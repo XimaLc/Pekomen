@@ -98,6 +98,14 @@ bool Bouton::isClicked()
 	return false;
 }
 
+void Bouton::setTexture(std::string _path, BOUTON_STRING_TYPE _type)
+{
+	if (_type == POKEMON_PATH)
+	{
+		m_texture = DB::getTexture(_path);
+	}
+}
+
 void Bouton::useClickAction()
 {
 	m_onClickAction();

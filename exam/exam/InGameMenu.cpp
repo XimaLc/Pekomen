@@ -26,7 +26,7 @@ InGameMenu::InGameMenu()
 		{
 			if (m_inGamePokemonBouton.timer > 0.5f)
 			{
-				if (!isPokemonMenuOpen) 
+				if (!m_pokemonMenu.m_isPokemonMenuOpen)
 					closeAllMenu();
 				m_pokemonMenu.OpenClose();
 				m_inGamePokemonBouton.timer = 0;
@@ -83,7 +83,7 @@ void InGameMenu::closeAllMenu()
 {
 	if(m_saveMenu.isSaveMenuOpen)
 		m_saveMenu.OpenClose();
-	if(isPokemonMenuOpen)
+	if(m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.OpenClose();
 }
 
@@ -123,7 +123,10 @@ void InGameMenu::Update(const sf::Vector2f _mousePos)
 		m_inGameSaveBouton.useClickAction();
 	
 	if (m_inGamePokemonBouton.isClicked())
+	{
+		m_pokemonMenu.loadPlayer();
 		m_inGamePokemonBouton.useClickAction();
+	}
 	
 	if (m_inGameLeaveBouton.isClicked())
 		m_inGameLeaveBouton.useClickAction();

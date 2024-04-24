@@ -3,11 +3,12 @@
 #include "MenuState.h"
 #include "GameState.h"
 #include "WildPokemonState.h"
+#include "NewGameState.h"
 
 #include "tools.h"
 
 
-enum STATE { MENU_STATE, GAME_STATE, WILD_POKEMON_STATE };
+enum STATE { MENU_STATE, GAME_STATE, WILD_POKEMON_STATE, NEW_GAME_STATE};
 
 class StateManager
 {
@@ -29,6 +30,7 @@ public:
 	~StateManager();
 
 	static inline Player getPlayer() { return m_player; }
+	static inline Player* getPlayer2() { return &m_player; }
 	static void ChangeState(int _id);
 
 	void Loop();

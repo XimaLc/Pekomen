@@ -23,7 +23,7 @@ Pokemon::Pokemon()
 	moves.push_back(Move());
 }
 
-Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool)
+Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoLevel, int _evoTarget, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool)
 {
 	isAlive = true;
 
@@ -32,9 +32,13 @@ Pokemon::Pokemon(int _id, std::string _path, std::string _name, int _type1, int 
 	name = _name;
 	type1 = _type1;
 	type2 = _type2;
+	evolution_level = _evoLevel;
+	evolution_target = _evoTarget;
 	evolution_state = _evoState;
 	stats = _stats;
 	stats[CURRENTHP] = stats[HP];
+	stats[XP] = 0;
+	stats[LVL] = 0;
 	movePool = _movePool;
 	int tmp = iRand(1, 4096);
 	if (tmp == 1)
@@ -70,5 +74,14 @@ void Pokemon::takeDamages(int _damages)
 	{
 		stats[CURRENTHP] = 0;
 		isAlive = false;
+	}
+}
+
+void Pokemon::levelUp()
+{
+	if (stats[XP] >= 100)
+	{
+		stats[LVL] += 1;
+		evolve();
 	}
 }

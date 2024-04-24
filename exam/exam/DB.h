@@ -32,4 +32,6 @@ public:
 	static void loadTextures();
 
 	static sf::Texture* getTexture(std::string path);
+	static sf::Texture* getTextureByID(int ID);
+	static std::string getPathByID(int ID);
 };

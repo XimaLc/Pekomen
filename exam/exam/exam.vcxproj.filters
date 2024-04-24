@@ -147,6 +147,9 @@
     <ClCompile Include="pokemonInGameInfoBar.cpp">
       <Filter>Fichiers sources\Components\Pokemons</Filter>
     </ClCompile>
+    <ClCompile Include="NewGameState.cpp">
+      <Filter>Fichiers sources\states\enfant</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -212,5 +215,16 @@
     <ClInclude Include="pokemonInGameInfoBar.h">
       <Filter>Fichiers d%27en-tête\Components\Pokemons</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameState.h">
+      <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="exam.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

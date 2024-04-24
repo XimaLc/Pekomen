@@ -33,6 +33,8 @@ public:
 
 	bool isClicked();
 	
+	void setTexture(std::string _path, BOUTON_STRING_TYPE _type);
+
 	void useClickAction();
 
 	void setString(std::string _str);

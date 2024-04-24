@@ -146,6 +146,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Move.cpp" />
+    <ClCompile Include="NewGameState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="pokemonInGameInfoBar.cpp" />
@@ -170,16 +171,21 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Move.h" />
+    <ClInclude Include="NewGameState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="pokemonInGameInfoBar.h" />
     <ClInclude Include="PokemonMenu.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SaveMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Team.h" />
     <ClInclude Include="tools.h" />
     <ClInclude Include="WildPokemonState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="exam.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

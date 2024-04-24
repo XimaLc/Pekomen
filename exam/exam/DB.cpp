@@ -27,7 +27,7 @@ std::vector<int> DB::stringToVectorInt(std::string str)
 Pokemon DB::getPokemonById(int _id)
 {
 	std::string name, path, movePool;
-	int id, evolution_state, type1, type2, isSelectable;
+	int id, evolution_state, type1, type2, isSelectable, evolution_level, evolution_target;
 	std::map<STAT, int> stats;
 
 	std::string string;
@@ -43,10 +43,10 @@ Pokemon DB::getPokemonById(int _id)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
 				if (id == _id)
 				{
-					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_level, evolution_target, evolution_state, stats, stringToVectorInt(movePool));
 					//stats[CURRENTHP] = stats[HP];
 					file.close();
 					return pokemon;
@@ -62,7 +62,7 @@ std::vector<Pokemon> DB::getPokemons(int _startId, int _amount)
 	std::vector<Pokemon> res;
 
 	std::string name, path, movePool;
-	int id, evolution_state, type1, type2;
+	int id, evolution_state, type1, type2, evolution_level, evolution_target;
 	std::map<STAT, int> stats;
 
 	std::string string;
@@ -78,10 +78,10 @@ std::vector<Pokemon> DB::getPokemons(int _startId, int _amount)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> movePool;
 				if (id >= _startId && res.size() < _amount)
 				{
-					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+					Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_level, evolution_target, evolution_state, stats, stringToVectorInt(movePool));
 					//stats[CURRENTHP] = stats[HP];
 					res.push_back(pokemon);
 				}
@@ -102,7 +102,7 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 	std::vector<Pokemon> res;
 
 	std::string name, path, movePool;
-	int id, evolution_state, type1, type2;
+	int id, evolution_state, type1, type2, evolution_level, evolution_target;
 	std::map<STAT, int> stats;
 	bool isSelectable;
 
@@ -119,12 +119,12 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >>movePool;				
 				if (isSelectable)
 				{
 					if (id >= _startId && res.size() < _amount)
 					{
-						Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_state, stats, stringToVectorInt(movePool));
+						Pokemon pokemon(id, path, removeUnderscore(name), type1, type2, evolution_level, evolution_target, evolution_state, stats, stringToVectorInt(movePool));
 						//stats[CURRENTHP] = stats[HP];
 						res.push_back(pokemon);
 					}
@@ -506,7 +506,7 @@ void DB::loadTeam(int playerId)
 void DB::loadTextures()
 {
 	std::string name, path, movePool;
-	int id, evolution_state, type1, type2;
+	int id, evolution_state, type1, type2, evolution_level, evolution_target;
 	std::map<STAT, int> stats;
 	bool isSelectable;
 
@@ -523,7 +523,7 @@ void DB::loadTextures()
 			if (string.find("//") == std::string::npos)
 			{
 				iss.str(string);
-				iss >> id >> path >> name >> type1 >> type2 >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
 				pokemonTextures[path].loadFromFile("../Files/Textures/Pokemons/Base/" + path + ".png");
 			}
 		}
@@ -534,4 +534,62 @@ void DB::loadTextures()
 sf::Texture* DB::getTexture(std::string path)
 {
 	return &pokemonTextures[path];
+}
+
+sf::Texture* DB::getTextureByID(int ID)
+{
+	std::string name, path, movePool;
+	int id, evolution_state, type1, type2, evolution_level, evolution_target;
+	std::map<STAT, int> stats;
+	bool isSelectable;
+
+	std::string string;
+	std::istringstream iss;
+
+	std::ifstream file("../Files/DB/Pokemons.tsv", std::ios::in);
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			getline(file, string);
+			iss.clear();
+			if (string.find("//") == std::string::npos)
+			{
+				iss.str(string);
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
+				if (id == ID)
+					return &pokemonTextures[path];
+			}
+		}
+		file.close();
+	}
+}
+
+std::string DB::getPathByID(int ID)
+{
+	std::string name, path, movePool;
+	int id, evolution_state, type1, type2, evolution_level, evolution_target;
+	std::map<STAT, int> stats;
+	bool isSelectable;
+
+	std::string string;
+	std::istringstream iss;
+
+	std::ifstream file("../Files/DB/Pokemons.tsv", std::ios::in);
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			getline(file, string);
+			iss.clear();
+			if (string.find("//") == std::string::npos)
+			{
+				iss.str(string);
+				iss >> id >> path >> name >> type1 >> type2 >> evolution_level >> evolution_target >> evolution_state >> stats[HP] >> stats[ATK] >> stats[DEF] >> stats[SPEA] >> stats[SPED] >> stats[SPD] >> stats[BST] >> isSelectable >> movePool;
+				if (id == ID)
+					return path;
+			}
+		}
+		file.close();
+	}
 }

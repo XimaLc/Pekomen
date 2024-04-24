@@ -3,6 +3,7 @@
 #include "Team.h"
 
 enum DIRECTIONS { down, left, right, up };
+enum STARTER_TYPE { PLANTE = 1, FEU = 4, EAU = 7 };
 
 class Player : public Entity
 {
@@ -22,6 +23,8 @@ public:
 
 	void move(int x, int y);
 	void anim(int x, int y);
+
+	void addStarter(int _type);
 
 	inline Team* getTeam() { return m_playerTeam; }
 	inline void loadTeam() { m_playerTeam->load(); }

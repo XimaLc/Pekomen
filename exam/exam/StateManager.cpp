@@ -37,6 +37,9 @@ void StateManager::ChangeState(int _id)
 	case WILD_POKEMON_STATE:
 		m_currentState = new WildPokemonState(m_player);
 		break;
+	case NEW_GAME_STATE:
+		m_currentState = new NewGameState(m_player);
+		break;
 	}
 }
 

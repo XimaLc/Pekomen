@@ -7,7 +7,7 @@
 #include <map>
 
 #include <iostream>
-enum STAT {HP, CURRENTHP, ATK, DEF, SPEA, SPED, SPD, BST, XP};
+enum STAT {HP, CURRENTHP, ATK, DEF, SPEA, SPED, SPD, BST, XP, LVL};
 
 class Pokemon
 {
@@ -21,6 +21,8 @@ class Pokemon
 	std::vector<int> movePool;
 	bool shiny;
 	std::vector<Move> moves;
+	int evolution_level;
+	int evolution_target;
 
 	sf::Texture* m_texture;
 	sf::Sprite m_sprite;
@@ -52,11 +54,15 @@ public:
 	inline std::vector<Move> getMoves() { return moves; }
 
 	Pokemon();
-	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
+	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoLevel, int _evoTarget, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
 	void setRandomMoves();
 	~Pokemon();
 
 	void takeDamages(int _damages);
+
+	void levelUp();
+
+	inline void evolve() { if (evolution_target != 0 && stats[LVL] >= evolution_level) std::cout << "evolution" << std::endl; }
 
 	inline bool getIsAlive() { return isAlive; }
 	inline void switchAlive() { isAlive = !isAlive; }
