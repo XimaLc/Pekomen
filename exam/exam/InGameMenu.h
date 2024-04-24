@@ -8,7 +8,7 @@ class InGameMenu
 {
 	Bouton m_inGameOptionsBouton;
 	Bouton m_inGameBagBouton;
-	Bouton m_inGamePokemonBouton;
+    Bouton m_inGamePokemonBouton;
 	Bouton m_inGameProfilBouton;
 	Bouton m_inGameSaveBouton;
 	Bouton m_inGamePokedexBouton;

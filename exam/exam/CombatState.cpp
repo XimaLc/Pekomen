@@ -50,7 +50,7 @@ CombatState::CombatState(Player& _player)
 	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_isAttaqueMenuOpen = !m_isAttaqueMenuOpen; }};
 	m_attaqueBouton.setOnClick(attaqueBoutonAction);
 
-	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0; m_pokemonMenu.OpenClose(); }};
+	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0;  m_pokemonMenu.OpenClose(); }};
 	m_pokemonBouton.setOnClick(pokemonBoutonAction);
 
 	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }};

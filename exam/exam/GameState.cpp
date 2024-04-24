@@ -18,7 +18,6 @@ GameState::GameState()
 GameState::GameState(Player& _player)
 {
 	m_player = &_player;
-	m_inGameMenu = InGameMenu(_player);
 
 	gameHasFocus = true;
 

@@ -14,7 +14,7 @@ class PokemonMenu
 	Bouton m_pokemon6Bouton;
 	Bouton m_retour;
 	
-	Player* m_player;
+	Player m_player;
 public:
 	PokemonMenu();
 	PokemonMenu(Player& _player);
