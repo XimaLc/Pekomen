@@ -6,8 +6,6 @@
 #include "Team.h"
 class SaveMenu
 {
-	sf::RectangleShape shape;
-
 	Bouton m_confirmSaveBouton;
 	Bouton m_cancelSaveBouton;
 
