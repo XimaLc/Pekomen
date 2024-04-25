@@ -21,6 +21,8 @@ class GameState : public State
 
 	Pnj m_healer;
 	Player* m_player;
+
+	sf::Vector2i lookingAt;
 public:
 	GameState();
 	GameState(Player& _player);

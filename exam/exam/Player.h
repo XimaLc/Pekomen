@@ -10,7 +10,6 @@ class Player : public Entity
 	Team* m_playerTeam;
 
 public:
-	inline sf::Vector2i getPosition() { return position; }
 	inline void setPosition(sf::Vector2i _position) { position = _position; }
 
 	virtual void Draw(sf::RenderWindow& window);
@@ -20,6 +19,9 @@ public:
 
 	inline Team* getTeam() { return m_playerTeam; }
 	inline void loadTeam() { m_playerTeam->load(); }
+
+	void healTeam();
+
 	//void savePos(std::string _name);
 	//void loadPos(std::string _name);
 

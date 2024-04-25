@@ -16,6 +16,11 @@ void Player::addStarter(int _type)
     m_playerTeam->addStarter(_type);
 }
 
+void Player::healTeam()
+{
+    m_playerTeam->healAll();
+}
+
 Player::Player(std::string _name, sf::Texture& _texture)
 {
     m_playerTeam = new Team();

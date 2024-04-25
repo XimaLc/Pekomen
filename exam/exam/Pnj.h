@@ -13,7 +13,9 @@ class Pnj : public Entity
 	std::function<void()> m_function;
 public:
 	Pnj();
-	Pnj(PNJ_TYPE _type);
+	Pnj(PNJ_TYPE _type, sf::Vector2i _pos);
+
+	
 
 	virtual void Update();
 	virtual void Draw(sf::RenderWindow& _window);

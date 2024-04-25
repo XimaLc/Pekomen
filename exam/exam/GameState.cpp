@@ -3,7 +3,7 @@
 
 GameState::GameState()
 {
-	m_healer = Pnj(HEALER);
+	m_healer = Pnj(HEALER, { 3,0 });
 
 	m_player = new Player();
 
@@ -19,7 +19,7 @@ GameState::GameState()
 GameState::GameState(Player& _player)
 {
 	m_player = &_player;
-	m_healer = Pnj(HEALER);
+	m_healer = Pnj(HEALER, {3,0});
 
 	gameHasFocus = true;
 	hasMove = false;
@@ -36,7 +36,6 @@ void GameState::Update(sf::Vector2f _mousePos)
 		hasMove = false;
 		if (map.isInGrass(m_player->getPosition()))
 		{
-			
 			int x = iRand(0, 100);
 			if (x < 10)
 				StateManager::ChangeState(WILD_POKEMON_STATE);
@@ -64,7 +63,10 @@ void GameState::HandleKeyboard(sf::Event _event)
 	}
 	if (_event.key.code == sf::Keyboard::F && timer > 0.5f)
 	{
-
+		if (m_healer.getPosition() == lookingAt)
+		{
+			m_player->getTeam()->healAll();
+		}
 	}
 	if (gameHasFocus)
 	{
@@ -75,6 +77,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 				{
 					m_player->move(1, 0);
 					m_player->anim(1, 0);
+					lookingAt = { m_player->getPosition().x + 1, m_player->getPosition().y };
 					hasMove = true;
 				}
 			timer = 0.f;
@@ -86,6 +89,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 				{
 					m_player->move(-1, 0);
 					m_player->anim(-1, 0);
+					lookingAt = { m_player->getPosition().x - 1, m_player->getPosition().y };
 					hasMove = true;
 				}
 			timer = 0.f;
@@ -97,6 +101,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 				{
 					m_player->move(0, 1);
 					m_player->anim(0, 1);
+					lookingAt = { m_player->getPosition().x, m_player->getPosition().y + 1};
 					hasMove = true;
 				}
 			timer = 0.f;
@@ -108,6 +113,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 				{
 					m_player->move(0, -1);
 					m_player->anim(0, -1);
+					lookingAt = { m_player->getPosition().x, m_player->getPosition().y - 1 };
 					hasMove = true;
 				}
 			timer = 0.f;

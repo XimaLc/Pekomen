@@ -139,8 +139,19 @@ void Team::evolvePokemons()
 	{
 		if (m_team[i].canEvolve())
 		{
-			m_team[i] = DB::getPokemonById(m_team[i].getEvolutionState());
+			int x = m_team[i].getStat(LVL);
+			m_team[i] = DB::getPokemonById(m_team[i].getEvolutionTarget());
+			m_team[i].setStat(LVL, x);
 		}
+	}
+}
+
+void Team::healAll()
+{
+	for (auto& pkm : m_team)
+	{
+		pkm.heal();
+		pkm.setIsAlive(true);
 	}
 }
 	

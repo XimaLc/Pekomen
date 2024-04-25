@@ -21,6 +21,7 @@ protected:
 	Move nextMove;
 
 	bool m_isAttaqueMenuOpen;
+	bool m_isSacMenuOpen;
 
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
@@ -32,6 +33,9 @@ protected:
 	Bouton m_sacBouton;
 	Bouton m_fuiteBouton;
 	
+	Bouton m_ballBouton;
+	Bouton m_soinBouton;
+
 	sf::Sprite m_opponentPkmSprite;
 	sf::Texture* m_opponentPkmTexture;
 	Pokemon actualOpponentPkm;
@@ -45,7 +49,6 @@ protected:
 	Player* m_player;
 
 	bool inCombat;
-	bool isAttaqueMenuOpen;
 
 	//sf::Texture m_textBarTexture;
 	//sf::Sprite m_textBarSprite;

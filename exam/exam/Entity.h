@@ -20,6 +20,8 @@ public:
 	void move(int x, int y);
 	void anim(int x, int y);
 	
+	inline virtual sf::Vector2i getPosition() { return position; }
+
 	virtual void Update() = 0;
 	virtual void Draw(sf::RenderWindow& _window) = 0;
 };

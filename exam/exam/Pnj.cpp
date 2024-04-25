@@ -4,12 +4,14 @@ Pnj::Pnj()
 {
 }
 
-Pnj::Pnj(PNJ_TYPE _type)
+Pnj::Pnj(PNJ_TYPE _type, sf::Vector2i _pos)
 {
 	if (_type == HEALER)
 	{
 		m_texture.loadFromFile("../Files/Textures/HealerTexture.png");
-		position = { 0, 1 };
+		position = _pos;
+		sprite.setPosition(position.x * 32, position.y * 32);
+		sprite.setTextureRect({ 32, 32, 32, 32 });
 	}
 	else if (_type == TRAINER)
 		m_texture.loadFromFile("../Files/Textures/TrainerTexture.png");

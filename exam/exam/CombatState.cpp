@@ -2,8 +2,6 @@
 #include "StateManager.h"
 #include "GameState.h"
 
-#define PLAYER_POKEMON(act) m_player->getTeam()->getPokemons()[act]
-
 CombatState::CombatState()
 {
 	inCombat = false;
@@ -21,7 +19,7 @@ CombatState::CombatState(Player& _player)
 	m_opponentInfoBar = pokemonInGameInfoBar(OPPONENT);
 
 	actualPlayerPkm = 0;
-	setPlayerPkmTexture(m_player->getTeam()->getPokemons()[actualPlayerPkm].getPath());
+		setPlayerPkmTexture(m_player->getTeam()->getPokemons()[actualPlayerPkm].getPath());
 
 	m_opponentPkmSprite.setPosition(1300, 100);
 	m_opponentPkmSprite.setScale(0.5, 0.5);
@@ -39,39 +37,37 @@ CombatState::CombatState(Player& _player)
 	m_backgroundSprite.setScale({ 8.9f, 13.f });
 
 	m_attaqueBouton = Bouton({ 1500, 830 }, { 200, 100 }, "Attaquer");
-	m_pokemonBouton = Bouton({ 1500, 930 }, { 200, 100 }, "Pokemon");
+	m_attaqueBouton.setOnClick([this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_isAttaqueMenuOpen = !m_isAttaqueMenuOpen; }});
+
 	m_sacBouton = Bouton({ 1700, 830 }, { 200, 100 }, "Sac");
+	m_sacBouton.setOnClick([this]() {if (m_sacBouton.timer > 0.5f) { m_sacBouton.timer = 0; m_isSacMenuOpen = !m_isSacMenuOpen; }});
+
+	m_pokemonBouton = Bouton({ 1500, 930 }, { 200, 100 }, "Pokemon");
+	m_pokemonBouton.setOnClick([this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0;  m_pokemonMenu.OpenClose(); }});
+
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
+	m_fuiteBouton.setOnClick([this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }});
+
+	m_retourAttaqueBouton = Bouton({ 1400, 930 }, { 100, 100 }, "Back");
+	m_retourAttaqueBouton.setOnClick([this]() {if (m_retourAttaqueBouton.timer > 0.5) { m_retourAttaqueBouton.timer = 0; m_isAttaqueMenuOpen = false; }});
 
 	m_move1Bouton = Bouton({ 1500, 830 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[0].getName());
+	m_move1Bouton.setOnClick([this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[0]; TurnAction(); }});
+	
 	m_move2Bouton = Bouton({ 1500, 930 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[1].getName());
+	m_move2Bouton.setOnClick([this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[1]; TurnAction(); }});
+	
 	m_move3Bouton = Bouton({ 1700, 830 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[2].getName());
+	m_move3Bouton.setOnClick([this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[2]; TurnAction(); }});
+	
 	m_move4Bouton = Bouton({ 1700, 930 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[3].getName());
-	m_retourAttaqueBouton = Bouton({ 1400, 930 }, { 100, 100 }, "Back");
+	m_move4Bouton.setOnClick([this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[3]; TurnAction(); }});
 
-	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_isAttaqueMenuOpen = !m_isAttaqueMenuOpen; }};
-	m_attaqueBouton.setOnClick(attaqueBoutonAction);
+	m_ballBouton = Bouton({ 1500, 830 }, { 400, 100 }, "BALLS");
 
-	auto pokemonBoutonAction = [this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0;  m_pokemonMenu.OpenClose(); }};
-	m_pokemonBouton.setOnClick(pokemonBoutonAction);
+	m_soinBouton = Bouton({1700, 830}, {400, 100}, "SOINS");
+	m_soinBouton.setOnClick([this]() {if (m_soinBouton.timer > 0.5f) { m_soinBouton.timer = 0; m_player->getTeam()->heal(actualPlayerPkm); }});
 
-	auto fuiteBoutonAction = [this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }};
-	m_fuiteBouton.setOnClick(fuiteBoutonAction);
-
-	auto retourBoutonAction = [this]() {if (m_retourAttaqueBouton.timer > 0.5) { m_retourAttaqueBouton.timer = 0; m_isAttaqueMenuOpen = false; }};
-	m_retourAttaqueBouton.setOnClick(retourBoutonAction);
-
-	auto attaqueActionBouton1 = [this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[0]; TurnAction(); }};
-	m_move1Bouton.setOnClick(attaqueActionBouton1);
-	
-	auto attaqueActionBouton2 = [this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[1]; TurnAction();}};
-	m_move2Bouton.setOnClick(attaqueActionBouton2);
-	
-	auto attaqueActionBouton3 = [this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[2]; TurnAction();}};
-	m_move3Bouton.setOnClick(attaqueActionBouton3);
-	
-	auto attaqueActionBouton4 = [this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[3]; TurnAction();}};
-	m_move4Bouton.setOnClick(attaqueActionBouton4);
 
 	inCombat = true;
 }
@@ -108,7 +104,7 @@ void CombatState::TurnAction()
 		if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 		{
 			Attaque(nextMove.getPower(), actualOpponentPkm);
-			std::cout << PLAYER_POKEMON(actualPlayerPkm).getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
+			std::cout << m_player->getTeam()->getPokemons()[actualPlayerPkm].getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
 		}
 		if (actualOpponentPkm.getIsAlive())
 		{
@@ -155,6 +151,7 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 
 	if (m_isAttaqueMenuOpen)
 	{
+		m_isAttaqueMenuOpen = true;
 		m_move1Bouton.Update(_mousePos);
 		m_move2Bouton.Update(_mousePos);
 		m_move3Bouton.Update(_mousePos);
@@ -168,19 +165,19 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	if (m_pokemonMenu.m_isPokemonMenuOpen)
 		m_pokemonMenu.Update(_mousePos);
 
-	if (m_move1Bouton.isClicked())
+	if (m_move1Bouton.isClicked() && m_isAttaqueMenuOpen)
 		m_move1Bouton.useClickAction();	
-	
-	if (m_move2Bouton.isClicked())
+		
+	if (m_move2Bouton.isClicked() && m_isAttaqueMenuOpen)
 		m_move2Bouton.useClickAction();
 
-	if (m_move3Bouton.isClicked())
+	if (m_move3Bouton.isClicked() && m_isAttaqueMenuOpen)
 		m_move3Bouton.useClickAction();	
 	
-	if (m_move4Bouton.isClicked())
+	if (m_move4Bouton.isClicked() && m_isAttaqueMenuOpen)
 		m_move4Bouton.useClickAction();
 
-	if (m_retourAttaqueBouton.isClicked())
+	if (m_retourAttaqueBouton.isClicked() && m_isAttaqueMenuOpen)
 		m_retourAttaqueBouton.useClickAction();
 
 	if (m_fuiteBouton.isClicked())

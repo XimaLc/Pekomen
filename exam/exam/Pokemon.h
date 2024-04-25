@@ -56,6 +56,9 @@ public:
 
 	bool canEvolve();
 
+	inline void setIsAlive(bool _x) { isAlive = _x; }
+	inline void heal() { stats[CURRENTHP] = stats[HP]; }
+
 	Pokemon();
 	Pokemon(int _id, std::string _path, std::string _name, int _type1, int _type2, int _evoLevel, int _evoTarget, int _evoState, std::map<STAT, int> _stats, std::vector<int> _movePool);
 	void setRandomMoves();
