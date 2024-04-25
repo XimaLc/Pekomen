@@ -4,6 +4,7 @@
 #include "Bouton.h"
 #include "Map.h"
 #include "Player.h"
+#include "Pnj.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -18,6 +19,7 @@ class GameState : public State
 
 	float timer;
 
+	Pnj m_healer;
 	Player* m_player;
 public:
 	GameState();

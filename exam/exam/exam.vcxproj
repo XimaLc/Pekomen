@@ -148,6 +148,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="NewGameState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pnj.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="pokemonInGameInfoBar.cpp" />
     <ClCompile Include="PokemonMenu.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="NewGameState.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Pnj.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="pokemonInGameInfoBar.h" />
     <ClInclude Include="PokemonMenu.h" />

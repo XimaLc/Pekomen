@@ -3,6 +3,8 @@
 
 GameState::GameState()
 {
+	m_healer = Pnj(HEALER);
+
 	m_player = new Player();
 
 	gameHasFocus = true;
@@ -17,6 +19,7 @@ GameState::GameState()
 GameState::GameState(Player& _player)
 {
 	m_player = &_player;
+	m_healer = Pnj(HEALER);
 
 	gameHasFocus = true;
 	hasMove = false;
@@ -47,6 +50,7 @@ void GameState::Draw(sf::RenderWindow& _window)
 {
 	map.Draw(_window, {1, 2, 3, 4, 5});
 	m_player->Draw(_window);
+	m_healer.Draw(_window);
 	m_inGameMenu.Draw(_window);
 }
 
@@ -57,6 +61,10 @@ void GameState::HandleKeyboard(sf::Event _event)
 		gameHasFocus = !gameHasFocus;
 		m_inGameMenu.OpenCloseMenu(m_inGameMenu.isMenuOpen);
 		timer = 0;
+	}
+	if (_event.key.code == sf::Keyboard::F && timer > 0.5f)
+	{
+
 	}
 	if (gameHasFocus)
 	{

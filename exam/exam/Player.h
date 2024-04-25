@@ -2,17 +2,12 @@
 #include "Entity.h"
 #include "Team.h"
 
-enum DIRECTIONS { down, left, right, up };
+
 enum STARTER_TYPE { PLANTE = 1, FEU = 4, EAU = 7 };
 
 class Player : public Entity
 {
-	sf::Vector2i position;
-
 	Team* m_playerTeam;
-
-	int animState;
-	int dir;
 
 public:
 	inline sf::Vector2i getPosition() { return position; }
@@ -20,9 +15,6 @@ public:
 
 	virtual void Draw(sf::RenderWindow& window);
 	virtual void Update();
-
-	void move(int x, int y);
-	void anim(int x, int y);
 
 	void addStarter(int _type);
 

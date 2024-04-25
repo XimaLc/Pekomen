@@ -79,6 +79,12 @@
     <Filter Include="Fichiers d%27en-tête\states\enfant\combat">
       <UniqueIdentifier>{5c903300-7186-4cc9-b486-b1d61607f942}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Components\Entity\PNJ">
+      <UniqueIdentifier>{d18d58c3-78b8-4a76-9d27-b60fb136085d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Components\Entity\PNJ">
+      <UniqueIdentifier>{bfd8e50c-07f6-41dd-a217-12b2f3bd0619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -150,6 +156,9 @@
     <ClCompile Include="NewGameState.cpp">
       <Filter>Fichiers sources\states\enfant</Filter>
     </ClCompile>
+    <ClCompile Include="Pnj.cpp">
+      <Filter>Fichiers sources\Components\Entity\PNJ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -220,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="NewGameState.h">
       <Filter>Fichiers d%27en-tête\states\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="Pnj.h">
+      <Filter>Fichiers d%27en-tête\Components\Entity\PNJ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
