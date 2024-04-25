@@ -30,18 +30,19 @@ void Team::save()
 
 void Team::load()
 {
-	int pId1, pId2, pId3, pId4, pId5, pId6, mId1, mId2, mId3, mId4, mId5, mId6, mId7, mId8, mId9, mId10, mId11, mId12, mId13, mId14, mId15, mId16, mId17, mId18, mId19, mId20, mId21, mId22, mId23, mId24;
-	pId1 = pId2 = pId3 = pId4 = pId5 = pId6 = mId1 = mId2 = mId3 = mId4 = mId5 = mId6 = mId7 = mId8 = mId9 = mId10 = mId11 = mId12 = mId13 = mId14 = mId15 = mId16 = mId17 = mId18 = mId19 = mId20 = mId21 = mId22 = mId23 = mId24 = -1;
-	std::ifstream file("../Files/team.dat =");
+	int pId1, pId2, pId3, pId4, pId5, pId6, plvl1, plvl2, plvl3, plvl4, plvl5, plvl6, mId1, mId2, mId3, mId4, mId5, mId6, mId7, mId8, mId9, mId10, mId11, mId12, mId13, mId14, mId15, mId16, mId17, mId18, mId19, mId20, mId21, mId22, mId23, mId24;
+	pId1 = pId2 = pId3 = pId4 = pId5 = pId6 = plvl1 = plvl2 = plvl3 = plvl4 = plvl5 = plvl6 = mId1 = mId2 = mId3 = mId4 = mId5 = mId6 = mId7 = mId8 = mId9 = mId10 = mId11 = mId12 = mId13 = mId14 = mId15 = mId16 = mId17 = mId18 = mId19 = mId20 = mId21 = mId22 = mId23 = mId24 = -1;
+	std::ifstream file("../Files/team.dat");
 	if (file.is_open())
 	{
-		file >> pId1 >> mId1 >> mId2 >> mId3 >> mId4 >> pId2 >> mId5 >> mId6 >> mId7 >> mId8 >> pId3 >> mId9 >> mId10 >> mId11 >> mId12 >> pId4 >> mId13 >> mId14 >> mId15 >> mId16 >> pId5 >> mId17 >> mId18 >> mId19 >> mId20 >> pId6 >> mId21 >> mId22 >> mId23 >> mId24;
+		file >> pId1 >> plvl1 >> mId1 >> mId2 >> mId3 >> mId4 >> pId2 >> plvl2 >> mId5 >> mId6 >> mId7 >> mId8 >> pId3 >> plvl3 >> mId9 >> mId10 >> mId11 >> mId12 >> pId4 >> plvl4 >> mId13 >> mId14 >> mId15 >> mId16 >> pId5 >> plvl5 >> mId17 >> mId18 >> mId19 >> mId20 >> pId6 >> plvl6 >> mId21 >> mId22 >> mId23 >> mId24;
 		file.close();
 	}
 
 	if (pId1 != -1)
 	{
 		m_team[0] = DB::getPokemonById(pId1);
+		m_team[0].setStat(LVL, plvl1);
 		if (mId1 != -1)
 			m_team[0].setMove(DB::getMoveById(mId1), 0);
 		if (mId2 != -1)
@@ -55,6 +56,7 @@ void Team::load()
 	if (pId2 != -1)
 	{
 		m_team[1] = DB::getPokemonById(pId2);
+		m_team[1].setStat(LVL, plvl2);
 		if (mId5 != -1)
 			m_team[1].setMove(DB::getMoveById(mId5), 0);
 		if (mId6 != -1)
@@ -67,6 +69,7 @@ void Team::load()
 	if (pId3 != -1)
 	{
 		m_team[2] = DB::getPokemonById(pId3);
+		m_team[2].setStat(LVL, plvl3);
 		if (mId9 != -1)
 			m_team[2].setMove(DB::getMoveById(mId9), 0);
 		if (mId10 != -1)
@@ -80,6 +83,7 @@ void Team::load()
 	if (pId4 != -1)
 	{
 		m_team[3] = DB::getPokemonById(pId4);
+		m_team[3].setStat(LVL, plvl4);
 		if (mId13 != -1)
 			m_team[3].setMove(DB::getMoveById(mId13), 0);
 		if (mId14 != -1)
@@ -93,6 +97,7 @@ void Team::load()
 	if (pId5 != -1)
 	{
 		m_team[4] = DB::getPokemonById(pId5);
+		m_team[4].setStat(LVL, plvl5);
 		if (mId17 != -1)
 			m_team[4].setMove(DB::getMoveById(mId17), 0);
 		if (mId18 != -1)
@@ -106,6 +111,7 @@ void Team::load()
 	if (pId6 != -1)
 	{
 		m_team[5] = DB::getPokemonById(pId6);
+		m_team[5].setStat(LVL, plvl6);
 		if (mId21 != -1)
 			m_team[5].setMove(DB::getMoveById(mId21), 0);
 		if (mId22 != -1)

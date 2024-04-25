@@ -22,5 +22,5 @@ public:
 	void evolvePokemons();
 
 	inline void addPokemon(Pokemon _p, int i) { m_team[i] = _p; }
-	inline std::vector<Pokemon> getPokemons() { return m_team; }
+	inline std::vector<Pokemon>& getPokemons() { return m_team; }
 };

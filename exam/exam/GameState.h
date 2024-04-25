@@ -11,7 +11,6 @@ class GameState : public State
 {
 	bool gameHasFocus;
 	bool hasMove;
-	static bool isPlayerInit;
 
 	InGameMenu m_inGameMenu;
 	
@@ -24,7 +23,6 @@ public:
 	GameState();
 	GameState(Player& _player);
 
-	static Player getPlayer();
 	virtual void Update(sf::Vector2f _mousePos);
 	virtual void Draw(sf::RenderWindow& _window);
 	virtual void HandleKeyboard(sf::Event _event);

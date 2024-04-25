@@ -2,24 +2,26 @@
 #include "StateManager.h"
 #include "GameState.h"
 
+#define PLAYER_POKEMON(act) m_player->getTeam()->getPokemons()[act]
+
 CombatState::CombatState()
 {
+	inCombat = false;
+	isAttaqueMenuOpen = false;
+	timer = 0.f;
+
 	m_player = new Player();
 }
 
 CombatState::CombatState(Player& _player)
 {
-	//m_textBarTexture.loadFromFile("../Files/Textures/ActionBar.png");
-	//m_textBarSprite.setTexture(m_textBarTexture);
-	//m_textBarSprite.setPosition(800, 830);
-
 	m_player = &_player;
 
 	m_playerInfoBar = pokemonInGameInfoBar(PLAYER);
 	m_opponentInfoBar = pokemonInGameInfoBar(OPPONENT);
 
-	actualPlayerPkm = m_player->getTeam()->getPokemons()[0];
-	setPlayerPkmTexture(actualPlayerPkm.getPath());
+	actualPlayerPkm = 0;
+	setPlayerPkmTexture(m_player->getTeam()->getPokemons()[actualPlayerPkm].getPath());
 
 	m_opponentPkmSprite.setPosition(1300, 100);
 	m_opponentPkmSprite.setScale(0.5, 0.5);
@@ -41,10 +43,10 @@ CombatState::CombatState(Player& _player)
 	m_sacBouton = Bouton({ 1700, 830 }, { 200, 100 }, "Sac");
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
 
-	m_move1Bouton = Bouton({ 1500, 830 }, { 200, 100 }, actualPlayerPkm.getMoves()[0].getName());
-	m_move2Bouton = Bouton({ 1500, 930 }, { 200, 100 }, actualPlayerPkm.getMoves()[1].getName());
-	m_move3Bouton = Bouton({ 1700, 830 }, { 200, 100 }, actualPlayerPkm.getMoves()[2].getName());
-	m_move4Bouton = Bouton({ 1700, 930 }, { 200, 100 }, actualPlayerPkm.getMoves()[3].getName());
+	m_move1Bouton = Bouton({ 1500, 830 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[0].getName());
+	m_move2Bouton = Bouton({ 1500, 930 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[1].getName());
+	m_move3Bouton = Bouton({ 1700, 830 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[2].getName());
+	m_move4Bouton = Bouton({ 1700, 930 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[3].getName());
 	m_retourAttaqueBouton = Bouton({ 1400, 930 }, { 100, 100 }, "Back");
 
 	auto attaqueBoutonAction = [this]() {if (m_attaqueBouton.timer > 0.5f) { m_attaqueBouton.timer = 0; m_isAttaqueMenuOpen = !m_isAttaqueMenuOpen; }};
@@ -59,16 +61,16 @@ CombatState::CombatState(Player& _player)
 	auto retourBoutonAction = [this]() {if (m_retourAttaqueBouton.timer > 0.5) { m_retourAttaqueBouton.timer = 0; m_isAttaqueMenuOpen = false; }};
 	m_retourAttaqueBouton.setOnClick(retourBoutonAction);
 
-	auto attaqueActionBouton1 = [this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[0]; TurnAction(); }};
+	auto attaqueActionBouton1 = [this]() {if (m_move1Bouton.timer > 0.5) { m_move1Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[0]; TurnAction(); }};
 	m_move1Bouton.setOnClick(attaqueActionBouton1);
 	
-	auto attaqueActionBouton2 = [this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[1]; TurnAction();}};
+	auto attaqueActionBouton2 = [this]() {if (m_move2Bouton.timer > 0.5) { m_move2Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[1]; TurnAction();}};
 	m_move2Bouton.setOnClick(attaqueActionBouton2);
 	
-	auto attaqueActionBouton3 = [this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[2]; TurnAction();}};
+	auto attaqueActionBouton3 = [this]() {if (m_move3Bouton.timer > 0.5) { m_move3Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[2]; TurnAction();}};
 	m_move3Bouton.setOnClick(attaqueActionBouton3);
 	
-	auto attaqueActionBouton4 = [this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = actualPlayerPkm.getMoves()[3]; TurnAction();}};
+	auto attaqueActionBouton4 = [this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = PLAYER_POKEMON(actualPlayerPkm).getMoves()[3]; TurnAction();}};
 	m_move4Bouton.setOnClick(attaqueActionBouton4);
 
 	inCombat = true;
@@ -89,7 +91,7 @@ void CombatState::setOpponentPkmTexture(std::string _path)
 void CombatState::setPlayerPkmTexture(std::string _path)
 {
 	m_playerPkmTexture = DB::getTexture(_path);
-	m_playerInfoBar.setPokemon(actualPlayerPkm);
+	m_playerInfoBar.setPokemon(m_player->getTeam()->getPokemons()[actualPlayerPkm]);
 }
 
 void CombatState::Attaque(int _damages, Pokemon& _target)
@@ -101,31 +103,31 @@ void CombatState::TurnAction()
 {
 	int x = iRand(1, 4);
 
-	if (actualPlayerPkm.getStat(SPD) > actualOpponentPkm.getStat(SPD))
+	if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getStat(SPD) > actualOpponentPkm.getStat(SPD))
 	{
-		if (actualPlayerPkm.getIsAlive())
+		if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 		{
 			Attaque(nextMove.getPower(), actualOpponentPkm);
-			std::cout << actualPlayerPkm.getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
+			std::cout << PLAYER_POKEMON(actualPlayerPkm).getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
 		}
 		if (actualOpponentPkm.getIsAlive())
 		{
-			Attaque(actualOpponentPkm.getMoves()[x].getPower(), actualPlayerPkm);
+			Attaque(actualOpponentPkm.getMoves()[x].getPower(), m_player->getTeam()->getPokemons()[actualPlayerPkm]);
 			std::cout << actualOpponentPkm.getName() << " a mis " << std::to_string(actualOpponentPkm.getMoves()[x].getPower()) << " degats;" << std::endl;
 		}
 	}
-	else if (actualPlayerPkm.getStat(SPD) < actualOpponentPkm.getStat(SPD))
+	else if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getStat(SPD) < actualOpponentPkm.getStat(SPD))
 	{
 		if (actualOpponentPkm.getIsAlive())
 		{
-			Attaque(actualOpponentPkm.getMoves()[x].getPower(), actualPlayerPkm);
+			Attaque(actualOpponentPkm.getMoves()[x].getPower(), m_player->getTeam()->getPokemons()[actualPlayerPkm]);
 			std::cout << actualOpponentPkm.getName() << " a mis " << std::to_string(actualOpponentPkm.getMoves()[x].getPower()) << " degats;" << std::endl;
 		}
 		
-		if (actualPlayerPkm.getIsAlive())
+		if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 		{
 			Attaque(nextMove.getPower(), actualOpponentPkm);
-			std::cout << actualPlayerPkm.getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;	
+			std::cout << m_player->getTeam()->getPokemons()[actualPlayerPkm].getName() << " a mis " << std::to_string(nextMove.getPower()) << " degats;" << std::endl;
 		}
 	}
 }
@@ -136,8 +138,8 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	
 	if (inCombat)
 	{
-		m_opponentInfoBar.Update(actualOpponentPkm.getStat(CURRENTHP), actualOpponentPkm.getStat(LVL));
-		m_playerInfoBar.Update(actualPlayerPkm.getStat(CURRENTHP), actualPlayerPkm.getStat(LVL));
+		m_opponentInfoBar.Update(actualOpponentPkm.getStat(CURRENTHP));
+		m_playerInfoBar.Update(m_player->getTeam()->getPokemons()[actualPlayerPkm].getStat(CURRENTHP));
 	}
 	
 	if (!m_isAttaqueMenuOpen)
@@ -187,14 +189,18 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		inCombat = false;
 	}
 
-	if (!actualOpponentPkm.getIsAlive())
+	if (inCombat && !actualOpponentPkm.getIsAlive())
 	{
-		actualPlayerPkm.giveXp(50);
+		m_player->getTeam()->getPokemons()[actualPlayerPkm].giveXp(50);
 		m_player->getTeam()->evolvePokemons();
 		StateManager::ChangeState(GAME_STATE);
+		inCombat = false;
 	}
-	if (!actualPlayerPkm.getIsAlive())
+	else if(inCombat && !m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
+	{
 		StateManager::ChangeState(GAME_STATE);
+		inCombat = false;
+	}
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
@@ -216,7 +222,7 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_opponentInfoBar.Draw(_window);
 	}
 	
-	if (actualPlayerPkm.getIsAlive())
+	if (m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 	{
 		m_playerPkmSprite.setTexture(*m_playerPkmTexture);
 		_window.draw(m_playerPkmSprite);

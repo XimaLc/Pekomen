@@ -32,6 +32,6 @@ public:
 
 	void setPokemon(Pokemon _pokemon);
 
-	void Update(int _hp, int _lvl);
+	void Update(int _hp);
 	void Draw(sf::RenderWindow& _window);
 };

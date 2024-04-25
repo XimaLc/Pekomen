@@ -5,12 +5,12 @@ PokemonMenu::PokemonMenu()
 {
 	m_player = StateManager::getPlayer2();
 
-	m_pokemon1Bouton = Bouton({ 100, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[0].getPath(), POKEMON_PATH);
-	m_pokemon2Bouton = Bouton({ 600, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[1].getPath(), POKEMON_PATH);
-	m_pokemon3Bouton = Bouton({ 1100, 100 }, { 350, 350 },m_player->getTeam()->getPokemons()[2].getPath(), POKEMON_PATH);
-	m_pokemon4Bouton = Bouton({ 100, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[3].getPath(), POKEMON_PATH);
-	m_pokemon5Bouton = Bouton({ 600, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[4].getPath(), POKEMON_PATH);
-	m_pokemon6Bouton = Bouton({ 1100, 500 }, { 350, 350 },m_player->getTeam()->getPokemons()[5].getPath(), POKEMON_PATH);
+	m_pokemon1Bouton = Bouton({ 100, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[0]);
+	m_pokemon2Bouton = Bouton({ 600, 100 }, { 350, 350 }, m_player->getTeam()->getPokemons()[1]);
+	m_pokemon3Bouton = Bouton({ 1100, 100 }, { 350, 350 },m_player->getTeam()->getPokemons()[2]);
+	m_pokemon4Bouton = Bouton({ 100, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[3]);
+	m_pokemon5Bouton = Bouton({ 600, 500 }, { 350, 350 }, m_player->getTeam()->getPokemons()[4]);
+	m_pokemon6Bouton = Bouton({ 1100, 500 }, { 350, 350 },m_player->getTeam()->getPokemons()[5]);
 
 	m_isPokemonMenuOpen = false;
 }
@@ -22,12 +22,12 @@ void PokemonMenu::OpenClose()
 
 void PokemonMenu::loadPlayer()
 {
-	m_pokemon1Bouton.setTexture(m_player->getTeam()->getPokemons()[0].getPath(), POKEMON_PATH);
-	m_pokemon2Bouton.setTexture(m_player->getTeam()->getPokemons()[1].getPath(), POKEMON_PATH);
-	m_pokemon3Bouton.setTexture(m_player->getTeam()->getPokemons()[2].getPath(), POKEMON_PATH);
-	m_pokemon4Bouton.setTexture(m_player->getTeam()->getPokemons()[3].getPath(), POKEMON_PATH);
-	m_pokemon5Bouton.setTexture(m_player->getTeam()->getPokemons()[4].getPath(), POKEMON_PATH);
-	m_pokemon6Bouton.setTexture(m_player->getTeam()->getPokemons()[5].getPath(), POKEMON_PATH);
+	m_pokemon1Bouton.setPokemon(m_player->getTeam()->getPokemons()[0], POKEMON_BOUTON);
+	m_pokemon2Bouton.setPokemon(m_player->getTeam()->getPokemons()[1], POKEMON_BOUTON);
+	m_pokemon3Bouton.setPokemon(m_player->getTeam()->getPokemons()[2], POKEMON_BOUTON);
+	m_pokemon4Bouton.setPokemon(m_player->getTeam()->getPokemons()[3], POKEMON_BOUTON);
+	m_pokemon5Bouton.setPokemon(m_player->getTeam()->getPokemons()[4], POKEMON_BOUTON);
+	m_pokemon6Bouton.setPokemon(m_player->getTeam()->getPokemons()[5], POKEMON_BOUTON);
 }
 
 void PokemonMenu::Update(sf::Vector2f _mousePos)

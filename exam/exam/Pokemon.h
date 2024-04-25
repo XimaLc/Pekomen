@@ -24,15 +24,13 @@ class Pokemon
 	int evolution_level;
 	int evolution_target;
 
-	sf::Texture* m_texture;
-	sf::Sprite m_sprite;
-
 	bool isAlive;
 public:
 	inline void setId(int _id) { id = _id; }
 	inline void setPath(std::string _path) { path = _path; }
 	inline void setName(std::string _name) { name = _name; }
 	inline void setEvolutionState(int _evoState) { evolution_state = _evoState; }
+	inline void setStat(STAT _stat, int _x) { stats[_stat] = _x; }
 	inline void setStats(std::map<STAT, int> _stats) { stats = _stats; }
 	inline void setMovePool(std::vector<int> _movePool) { movePool = _movePool; }
 	inline void setMove(Move move, int i) { moves[i] = move; }

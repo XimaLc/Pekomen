@@ -260,7 +260,8 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[0].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[0].getId());
-
+			file << " ";
+			file << std::to_string(team.getPokemons()[0].getStat(LVL));
 			file << " ";
 
 			if (team.getPokemons()[0].getMoves()[0].getName() != "")
@@ -298,8 +299,10 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[1].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[1].getId());
-
 			file << " ";
+			file << std::to_string(team.getPokemons()[1].getStat(LVL));
+			file << " ";
+
 
 			if (team.getPokemons()[1].getMoves()[0].getName() != "")
 				file << std::to_string(team.getPokemons()[1].getMoves()[0].getId());
@@ -336,6 +339,8 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[2].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[2].getId());
+			file << " ";
+			file << std::to_string(team.getPokemons()[2].getStat(LVL));
 
 			file << " ";
 
@@ -374,6 +379,8 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[3].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[3].getId());
+			file << " ";
+			file << std::to_string(team.getPokemons()[3].getStat(LVL));
 
 			file << " ";
 
@@ -412,6 +419,8 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[4].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[4].getId());
+			file << " ";
+			file << std::to_string(team.getPokemons()[4].getStat(LVL));
 
 			file << " ";
 
@@ -450,6 +459,8 @@ void DB::saveTeam(Team team)
 		if (team.getPokemons()[5].getName() != "")
 		{
 			file << std::to_string(team.getPokemons()[5].getId());
+			file << " ";
+			file << std::to_string(team.getPokemons()[5].getStat(LVL));
 
 			file << " ";
 

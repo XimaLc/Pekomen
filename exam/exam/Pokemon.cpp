@@ -21,7 +21,7 @@ void Pokemon::giveXp(int _amount)
 
 bool Pokemon::canEvolve()
 {
-	if (stats[LVL] >= evolution_level && evolution_level > 0)
+	if (name != "" && stats[LVL] >= evolution_level)
 		return true;
 
 	return false;
@@ -77,7 +77,6 @@ void Pokemon::setRandomMoves()
 
 Pokemon::~Pokemon()
 {
-	//delete m_texture;
 }
 
 void Pokemon::takeDamages(int _damages)

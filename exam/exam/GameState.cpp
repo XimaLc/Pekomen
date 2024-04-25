@@ -1,13 +1,12 @@
 #include "GameState.h"
 #include "StateManager.h"
 
-bool GameState::isPlayerInit;
-
 GameState::GameState()
 {
 	m_player = new Player();
 
 	gameHasFocus = true;
+	hasMove = false;
 
 	timer = 0.f;
 	map.setLayersTexture();
@@ -20,6 +19,7 @@ GameState::GameState(Player& _player)
 	m_player = &_player;
 
 	gameHasFocus = true;
+	hasMove = false;
 
 	timer = 0.f;
 	map.setLayersTexture();

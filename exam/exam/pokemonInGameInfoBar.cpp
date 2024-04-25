@@ -55,17 +55,16 @@ void pokemonInGameInfoBar::setPokemon(Pokemon _pokemon)
 {
 	m_pokemon = &_pokemon;
 	m_pokemonNameText.setString(m_pokemon->getName());
-	m_pokemonLevelText.setString(std::to_string(m_pokemon->getStat(LVL)));
+	m_pokemonLevelText.setString("Lvl. " + std::to_string(m_pokemon->getStat(LVL)));
 	m_pokemonMaxHp = m_pokemon->getStat(HP);
 	m_pokemonHp = m_pokemon->getStat(CURRENTHP);
 }
 
-void pokemonInGameInfoBar::Update(int _hp, int _lvl)
+void pokemonInGameInfoBar::Update(int _hp)
 {
 	m_pokemonHp = _hp;
 	std::string tmp = "PV: " + std::to_string(m_pokemonHp) + "/" + std::to_string(m_pokemonMaxHp);
 	m_pokemonHpText.setString(tmp);
-	m_pokemonLevelText.setString("Lvl. " + std::to_string(_lvl));
 }
 
 void pokemonInGameInfoBar::Draw(sf::RenderWindow& _window)

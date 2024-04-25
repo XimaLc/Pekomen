@@ -39,7 +39,7 @@ protected:
 
 	sf::Sprite m_playerPkmSprite;
 	sf::Texture* m_playerPkmTexture;
-	Pokemon actualPlayerPkm;
+	int actualPlayerPkm;
 	pokemonInGameInfoBar m_playerInfoBar;
 
 	Player* m_player;
