@@ -31,8 +31,8 @@ void Team::save()
 void Team::load()
 {
 	int pId1, pId2, pId3, pId4, pId5, pId6, mId1, mId2, mId3, mId4, mId5, mId6, mId7, mId8, mId9, mId10, mId11, mId12, mId13, mId14, mId15, mId16, mId17, mId18, mId19, mId20, mId21, mId22, mId23, mId24;
-
-	std::ifstream file("../Files/team.dat");
+	pId1 = pId2 = pId3 = pId4 = pId5 = pId6 = mId1 = mId2 = mId3 = mId4 = mId5 = mId6 = mId7 = mId8 = mId9 = mId10 = mId11 = mId12 = mId13 = mId14 = mId15 = mId16 = mId17 = mId18 = mId19 = mId20 = mId21 = mId22 = mId23 = mId24 = -1;
+	std::ifstream file("../Files/team.dat =");
 	if (file.is_open())
 	{
 		file >> pId1 >> mId1 >> mId2 >> mId3 >> mId4 >> pId2 >> mId5 >> mId6 >> mId7 >> mId8 >> pId3 >> mId9 >> mId10 >> mId11 >> mId12 >> pId4 >> mId13 >> mId14 >> mId15 >> mId16 >> pId5 >> mId17 >> mId18 >> mId19 >> mId20 >> pId6 >> mId21 >> mId22 >> mId23 >> mId24;
