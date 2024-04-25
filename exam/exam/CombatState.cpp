@@ -5,7 +5,6 @@
 CombatState::CombatState()
 {
 	inCombat = false;
-	isAttaqueMenuOpen = false;
 	timer = 0.f;
 
 	m_player = new Player();
@@ -45,6 +44,7 @@ CombatState::CombatState(Player& _player)
 	m_pokemonBouton = Bouton({ 1500, 930 }, { 200, 100 }, "Pokemon");
 	m_pokemonBouton.setOnClick([this]() {if (m_pokemonBouton.timer > 0.5f) { m_pokemonBouton.timer = 0;  m_pokemonMenu.OpenClose(); }});
 
+	//A BOUGER DANS WILD POKEMON
 	m_fuiteBouton = Bouton({ 1700, 930 }, { 200, 100 }, "Fuir");
 	m_fuiteBouton.setOnClick([this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }});
 

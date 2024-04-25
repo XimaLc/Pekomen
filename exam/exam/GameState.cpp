@@ -1,6 +1,10 @@
 #include "GameState.h"
 #include "StateManager.h"
 
+GameState::~GameState()
+{
+}
+
 GameState::GameState()
 {
 	m_healer = Pnj(HEALER, { 3,0 });

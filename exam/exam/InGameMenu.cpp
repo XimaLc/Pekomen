@@ -79,6 +79,10 @@ InGameMenu::InGameMenu()
 	});
 }
 
+InGameMenu::~InGameMenu()
+{
+}
+
 void InGameMenu::closeAllMenu()
 {
 	if(m_saveMenu.isSaveMenuOpen)

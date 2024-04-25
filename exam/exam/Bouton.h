@@ -11,6 +11,7 @@ class Bouton
 {
 	sf::RectangleShape m_shape;
 	sf::Text m_text;
+
 	sf::Text m_levelText;
 
 	sf::Color m_color;
@@ -20,10 +21,9 @@ class Bouton
 	int m_currentState;
 	int m_boutonType;
 
-	sf::Texture* m_texture;
-	sf::Sprite m_sprite;
-
 	static sf::Font m_font;
+	sf::Sprite m_sprite;
+	sf::Texture* m_texture;
 
 public:
 	float timer;

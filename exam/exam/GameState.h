@@ -24,6 +24,7 @@ class GameState : public State
 
 	sf::Vector2i lookingAt;
 public:
+	~GameState();
 	GameState();
 	GameState(Player& _player);
 

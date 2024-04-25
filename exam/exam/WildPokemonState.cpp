@@ -16,7 +16,7 @@ WildPokemonState::WildPokemonState(Player& _player) : CombatState(_player)
 
 bool WildPokemonState::catchPokemon()
 {
-
+	return false;
 }
 
 void WildPokemonState::Update(sf::Vector2f _mousePos)

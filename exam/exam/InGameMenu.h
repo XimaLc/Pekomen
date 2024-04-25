@@ -22,6 +22,7 @@ public:
 	bool isMenuOpen;
 
 	InGameMenu();
+	~InGameMenu();
 
 	void closeAllMenu();
 
