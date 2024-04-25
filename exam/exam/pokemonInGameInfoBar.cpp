@@ -5,10 +5,16 @@ sf::Font pokemonInGameInfoBar::m_font;
 pokemonInGameInfoBar::pokemonInGameInfoBar()
 {
 	m_pokemon = new Pokemon();
+
+	m_pokemonMaxHp = -1;
+	m_pokemonHp = -1;
 }
 
 pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 {
+	m_pokemonMaxHp = -1;
+	m_pokemonHp = -1;
+
 	m_pokemon = new Pokemon();
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
@@ -35,7 +41,7 @@ pokemonInGameInfoBar::pokemonInGameInfoBar(int side)
 	m_pokemonNameText.setCharacterSize(40);
 	m_pokemonNameText.setFillColor(sf::Color::Black);
 
-	m_pokemonLevelText.setCharacterSize(40);
+	m_pokemonLevelText.setCharacterSize(30);
 	m_pokemonLevelText.setFillColor(sf::Color::Black);
 
 }
@@ -59,7 +65,7 @@ void pokemonInGameInfoBar::Update(int _hp, int _lvl)
 	m_pokemonHp = _hp;
 	std::string tmp = "PV: " + std::to_string(m_pokemonHp) + "/" + std::to_string(m_pokemonMaxHp);
 	m_pokemonHpText.setString(tmp);
-	m_pokemonLevelText.setString(std::to_string(_lvl));
+	m_pokemonLevelText.setString("Lvl. " + std::to_string(_lvl));
 }
 
 void pokemonInGameInfoBar::Draw(sf::RenderWindow& _window)
