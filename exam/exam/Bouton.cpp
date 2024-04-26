@@ -63,36 +63,28 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, Pokemon _pokemon)
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::IntRect _intRect, BOUTON_TYPE _boutonType)
 {
-	m_currentState = BOUTON_BASE;
-	m_boutonType = _boutonType;
-
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
-	m_shape.setPosition(_pos);
-	m_shape.setSize(_size);
-	m_shape.setOutlineColor(sf::Color::Black);
-	m_shape.setOutlineThickness(-1.f);
-
-	m_texture->loadFromFile("../Files/Textures/Balls.png");
-	m_sprite.setTextureRect(_intRect);
-
 	m_boutonType = _boutonType;
+	if (_boutonType == POKEBALL_BOUTON)
+	{
+		m_currentState = BOUTON_BASE;
 
+		m_shape.setPosition(_pos);
+		m_shape.setSize(_size);
+		m_shape.setOutlineColor(sf::Color::Black);
+		m_shape.setOutlineThickness(-1.f);
+
+		m_texture = DB::getTexture(BALL);
+
+		m_sprite.setTextureRect(_intRect);
+		m_sprite.setPosition(_pos.x + 5, _pos.y + 5);
+
+		m_text.setPosition(_pos.x + 80, _pos.y + 20);
+		m_text.setFillColor(sf::Color::Black);
+		m_text.setCharacterSize(40);
+	}
 }
-
-//Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::Sprite _sprite, sf::Vector2f _spriteSize)
-//{
-//	m_currentState = BOUTON_BASE;
-//
-//	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
-//
-//	m_shape.setPosition(_pos);
-//	m_shape.setSize(_size);
-//	m_shape.setOutlineColor(sf::Color::Black);
-//	m_shape.setOutlineThickness(-1.f);
-//
-//	timer = 0.f;
-//}
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int string_type)
 {
