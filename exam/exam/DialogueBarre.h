@@ -10,14 +10,14 @@ class DialogueBarre
 	sf::Texture* m_texture;
 	sf::Sprite m_sprite;
 
-	float timer;
 public:
+	float timer;
 	bool isOpen;
 
 	DialogueBarre();
-	DialogueBarre(sf::Vector2f _pos, int scale);
+	DialogueBarre(sf::Vector2f _pos, int scale, bool _isOpen);
 	void setString(std::string _str);
-	void Update();
+	void Update(bool _closeIt);
 	void Draw(sf::RenderWindow& _window);
 };
 

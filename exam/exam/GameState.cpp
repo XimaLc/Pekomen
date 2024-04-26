@@ -38,7 +38,7 @@ GameState::GameState(Player& _player)
 	map.setLayersTexture();
 	map.load("map");
 
-	m_dialoguesBox = DialogueBarre({ 200, 900 }, 2);
+	m_dialoguesBox = DialogueBarre({ 200, 900 }, 2, false);
 }
 
 void GameState::Update(sf::Vector2f _mousePos)
@@ -58,7 +58,7 @@ void GameState::Update(sf::Vector2f _mousePos)
 	timer += GetDeltaTime();
 	m_inGameMenu.Update(_mousePos);
 	if (m_dialoguesBox.isOpen)
-		m_dialoguesBox.Update();
+		m_dialoguesBox.Update(true);
 }
 
 void GameState::Draw(sf::RenderWindow& _window)

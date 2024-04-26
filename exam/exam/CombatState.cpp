@@ -24,6 +24,8 @@ CombatState::CombatState()
 
 CombatState::CombatState(Player& _player)
 {
+	m_dialogueBox = DialogueBarre({ 700, 900 }, 1.3, true);
+
 	m_isMainMenuOpen = true;
 	m_isAttaqueMenuOpen = m_isPokemonMenuOpen = m_isSacMenuOpen = false;
 
@@ -133,6 +135,8 @@ CombatState::CombatState(Player& _player)
 		});
 
 	inCombat = true;
+
+
 }
 
 CombatState::~CombatState()
@@ -248,8 +252,8 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	{
 		m_player->getTeam()->getPokemons()[actualPlayerPkm].giveXp(50);
 		m_player->getTeam()->evolvePokemons();
-		StateManager::ChangeState(GAME_STATE);
 		inCombat = false;
+		StateManager::ChangeState(GAME_STATE);
 	}
 	else if (inCombat && !m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 	{
@@ -257,6 +261,9 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		inCombat = false;
 	}
 	else if (m_fuiteBouton.checkClick()) {}
+
+	if (m_dialogueBox.isOpen)
+		m_dialogueBox.Update(false);
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
@@ -299,6 +306,9 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_soinBouton.Draw(_window);
 		m_retourAttaqueBouton.Draw(_window);
 	}
+
+	if (m_dialogueBox.isOpen)
+		m_dialogueBox.Draw(_window);
 }
 
 void CombatState::HandleKeyboard(sf::Event _event)

@@ -8,6 +8,7 @@
 #include "PokemonMenu.h"
 #include "pokemonInGameInfoBar.h"
 #include "DB.h"
+#include "DialogueBarre.h"
 
 class CombatState : public State
 {
@@ -19,7 +20,8 @@ protected:
 	Bouton m_retourAttaqueBouton;
 
 	Move nextMove;
-;
+
+	DialogueBarre m_dialogueBox;
 
 	bool m_isAttaqueMenuOpen;
 	bool m_isSacMenuOpen;

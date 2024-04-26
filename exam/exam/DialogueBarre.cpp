@@ -5,10 +5,14 @@
 DialogueBarre::DialogueBarre()
 {
 	m_texture = nullptr;
+	isOpen = false;
+	timer = 0;
 }
 
-DialogueBarre::DialogueBarre(sf::Vector2f _pos, int scale)
+DialogueBarre::DialogueBarre(sf::Vector2f _pos, int scale, bool _isOpen)
 {
+	isOpen = _isOpen;
+	timer = 0;
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
 	m_texture = DB::getTexture(ACTION_BAR);
@@ -27,14 +31,15 @@ void DialogueBarre::setString(std::string _str)
 	m_text.setString(_str);
 }
 
-void DialogueBarre::Update()
+void DialogueBarre::Update(bool _closeIt)
 {
 	timer += GetDeltaTime();
 	if (timer >= 3.f)
 	{
 		timer = 0;
 		m_text.setString("");
-		isOpen = false;
+		if(_closeIt)
+			isOpen = false;
 	}
 }
 

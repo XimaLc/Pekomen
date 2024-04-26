@@ -13,7 +13,7 @@ StateManager::StateManager()
 
 	m_player = Player("Player", playerTexture);
 
-	m_window  = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen");
+	m_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Pekomen", Style::Fullscreen);
 	gameState = new GameState(m_player);
 
 	ChangeState(MENU_STATE);

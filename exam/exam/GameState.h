@@ -13,7 +13,6 @@ class GameState : public State
 {
 	bool gameHasFocus;
 	bool hasMove;
-	bool drawDialogues;
 
 	InGameMenu m_inGameMenu;
 	
