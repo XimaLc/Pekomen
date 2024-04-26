@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "Pnj.h"
+#include "DialogueBarre.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -12,6 +13,7 @@ class GameState : public State
 {
 	bool gameHasFocus;
 	bool hasMove;
+	bool drawDialogues;
 
 	InGameMenu m_inGameMenu;
 	
@@ -23,6 +25,10 @@ class GameState : public State
 	Player* m_player;
 
 	sf::Vector2i lookingAt;
+
+	DialogueBarre m_dialoguesBox;
+
+	sf::View mapView;
 public:
 	~GameState();
 	GameState();

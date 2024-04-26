@@ -7,6 +7,9 @@ GameState::~GameState()
 
 GameState::GameState()
 {
+	mapView.setCenter({ 1920 / 2, 1080 / 2 });
+	mapView.setSize(1920, 1080);
+
 	m_healer = Pnj(HEALER, { 3,0 });
 
 	m_player = new Player();
@@ -22,6 +25,9 @@ GameState::GameState()
 
 GameState::GameState(Player& _player)
 {
+	mapView.setCenter({ 1920 / 2, 1080 / 2 });
+	mapView.setSize(1920, 1080);
+
 	m_player = &_player;
 	m_healer = Pnj(HEALER, {3,0});
 
@@ -31,10 +37,14 @@ GameState::GameState(Player& _player)
 	timer = 0.f;
 	map.setLayersTexture();
 	map.load("map");
+
+	m_dialoguesBox = DialogueBarre({ 200, 900 }, 2);
 }
 
 void GameState::Update(sf::Vector2f _mousePos)
 {
+	mapView.setCenter({ static_cast<float>(m_player->getPosition().x * 32), static_cast<float>(m_player->getPosition().y * 32) });
+
 	if (hasMove)
 	{
 		hasMove = false;
@@ -47,14 +57,22 @@ void GameState::Update(sf::Vector2f _mousePos)
 	}
 	timer += GetDeltaTime();
 	m_inGameMenu.Update(_mousePos);
+	if (m_dialoguesBox.isOpen)
+		m_dialoguesBox.Update();
 }
 
 void GameState::Draw(sf::RenderWindow& _window)
 {
+	_window.setView(mapView);
 	map.Draw(_window, {1, 2, 3, 4, 5});
 	m_player->Draw(_window);
 	m_healer.Draw(_window);
+
+	_window.setView(_window.getDefaultView());
 	m_inGameMenu.Draw(_window);
+
+	if(m_dialoguesBox.isOpen)
+		m_dialoguesBox.Draw(_window);
 }
 
 void GameState::HandleKeyboard(sf::Event _event)
@@ -70,6 +88,8 @@ void GameState::HandleKeyboard(sf::Event _event)
 		if (m_healer.getPosition() == lookingAt)
 		{
 			m_player->getTeam()->healAll();
+			m_dialoguesBox.setString("Je vais soigner ton equipe");
+			m_dialoguesBox.isOpen = true;
 		}
 	}
 	if (gameHasFocus)

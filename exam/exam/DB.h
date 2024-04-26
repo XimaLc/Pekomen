@@ -9,12 +9,13 @@
 #include "Ball.h"
 
 enum Types { Steel = 1, Fighting, Dragon, Water, Electric, Fairy, Fire, Ice, Bug, Normal, Grass, Poison, Psychic, Rock, Ground, Ghost, Dark, Flying };
-enum TEXTURE_TYPE {BALL};
+enum TEXTURE_TYPE {BALL, ACTION_BAR};
 
 class DB
 {
 private:
 	static sf::Texture ballsTexture;
+	static sf::Texture dialogueBarreTexture;
 	static std::map<std::string, sf::Texture> pokemonTextures;
 public:
 	static std::string removeUnderscore(std::string _str);

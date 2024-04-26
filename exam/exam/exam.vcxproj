@@ -140,6 +140,7 @@
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="CombatState.cpp" />
     <ClCompile Include="DB.cpp" />
+    <ClCompile Include="DialogueBarre.cpp" />
     <ClCompile Include="DresseurCombatState.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="CombatState.h" />
     <ClInclude Include="DB.h" />
+    <ClInclude Include="DialogueBarre.h" />
     <ClInclude Include="DresseurCombatState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameState.h" />

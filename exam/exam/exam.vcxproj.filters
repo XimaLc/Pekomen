@@ -201,6 +201,9 @@
     <ClCompile Include="DresseurCombatState.cpp">
       <Filter>Fichiers sources\states\enfant\combat\enfant</Filter>
     </ClCompile>
+    <ClCompile Include="DialogueBarre.cpp">
+      <Filter>Fichiers sources\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuState.h">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="WildPokemonState.h">
       <Filter>Fichiers d%27en-tête\states\enfant\combat\enfant</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueBarre.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

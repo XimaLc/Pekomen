@@ -2,6 +2,7 @@
 
 std::map<std::string, sf::Texture> DB::pokemonTextures;
 sf::Texture DB::ballsTexture;
+sf::Texture DB::dialogueBarreTexture;
 
 std::string DB::removeUnderscore(std::string _str)
 {
@@ -575,6 +576,7 @@ void DB::loadTextures()
 	}
 
 	ballsTexture.loadFromFile("../Files/Textures/Balls.png");
+	dialogueBarreTexture.loadFromFile("../Files/Textures/ActionBar.png");
 }
 
 sf::Texture* DB::getTexture(std::string path)
@@ -613,7 +615,10 @@ sf::Texture* DB::getTextureByID(int ID)
 
 sf::Texture* DB::getTexture(TEXTURE_TYPE _type)
 {
-	return &ballsTexture;
+	if (_type == BALL)
+		return &ballsTexture;
+	else if (_type == ACTION_BAR)
+		return &dialogueBarreTexture;
 }
 
 std::string DB::getPathByID(int ID)
