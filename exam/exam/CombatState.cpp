@@ -21,7 +21,7 @@ CombatState::CombatState(Player& _player)
 	m_opponentInfoBar = pokemonInGameInfoBar(OPPONENT);
 
 	actualPlayerPkm = 0;
-		setPlayerPkmTexture(m_player->getTeam()->getPokemons()[actualPlayerPkm].getPath());
+	setPlayerPkmTexture(m_player->getTeam()->getPokemons()[actualPlayerPkm].getPath());
 
 	m_opponentPkmSprite.setPosition(1300, 100);
 	m_opponentPkmSprite.setScale(0.5, 0.5);
