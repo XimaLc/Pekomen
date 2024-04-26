@@ -14,8 +14,7 @@ public:
 	WildPokemonState();
 	WildPokemonState(Player& _player);
 
-	bool catchPokemon();
-
+	bool catchPokemon(int _id);
 
 	void Update(sf::Vector2f _mousePos);
 	void Draw(sf::RenderWindow& _window);

@@ -4,6 +4,18 @@
 
 CombatState::CombatState()
 {
+	m_isAttaqueMenuOpen	= false;
+	m_isSacMenuOpen	= false;
+	m_isPokemonMenuOpen	= false;
+	m_isMainMenuOpen = false;
+	m_isBallMenuOpen = false;
+
+	m_opponentPkmTexture = nullptr;
+	m_playerPkmTexture = nullptr;
+
+	actualPlayerPkm = NULL;
+	actualOpponentPkm = Pokemon();
+
 	inCombat = false;
 	timer = 0.f;
 

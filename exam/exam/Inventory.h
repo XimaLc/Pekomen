@@ -8,6 +8,8 @@ public:
 	Inventory();
 
 	int getBallAmount(int _id);
+	void withdrawBall(int _id);
+
 		
 };
 

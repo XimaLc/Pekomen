@@ -19,8 +19,8 @@ protected:
 	Bouton m_retourAttaqueBouton;
 
 	Move nextMove;
+;
 
-	bool lastUpdate;
 	bool m_isAttaqueMenuOpen;
 	bool m_isSacMenuOpen;
 	bool m_isPokemonMenuOpen;

@@ -3,7 +3,7 @@
 void Player::Draw(sf::RenderWindow& window)
 {
 	sprite.setTextureRect(sf::IntRect(animState * 32, dir * 32, 32, 32));
-	sprite.setPosition(position.x * 32, position.y * 32);
+	sprite.setPosition(position.x * 32.f, position.y * 32.f);
 	window.draw(sprite);
 }
 

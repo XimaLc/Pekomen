@@ -12,6 +12,7 @@ public:
 	void addBall(int _ballId, int _amount);
 
 	inline int getBallAmount(int _id) { return m_balls[_id]; }
+	inline void withdrawBall(int _id) { m_balls[_id]--; }
 
 	inline std::map<int, int> getBalls();
 };

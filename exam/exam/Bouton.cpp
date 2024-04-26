@@ -6,7 +6,9 @@ sf::Font Bouton::m_font;
 
 Bouton::Bouton()
 {
+	m_boutonType = STRING;
 	m_currentState = BOUTON_BASE;
+	m_texture = nullptr;
 	timer = 0.f;
 }
 
@@ -14,6 +16,8 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string)
 {
 	m_currentState = BOUTON_BASE;
 	m_boutonType = STRING;
+
+	m_texture = nullptr;
 
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
@@ -56,13 +60,15 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, Pokemon _pokemon)
 	
 	m_text.setString(std::to_string(_pokemon.getStat(CURRENTHP)) + " / " + std::to_string(_pokemon.getStat(HP)));
 
-
-
 	timer = 0.f;
 }
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::IntRect _intRect, BOUTON_TYPE _boutonType)
 {
+	m_currentState = BOUTON_BASE;
+	m_texture = nullptr;
+	timer = 0.f;
+
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
 	m_boutonType = _boutonType;
@@ -88,6 +94,8 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::IntRect _intRect, BOUT
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int string_type)
 {
+	m_texture = nullptr;
+
 	m_currentState = BOUTON_BASE;
 	m_boutonType = string_type;
 
@@ -116,6 +124,9 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int s
 
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, sf::Color _color)
 {
+	m_texture = nullptr;
+	m_boutonType = STRING;
+
 	m_currentState = BOUTON_BASE;
 
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");

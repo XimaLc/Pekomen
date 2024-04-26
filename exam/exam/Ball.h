@@ -9,5 +9,6 @@ class Ball : public Item
 public:
 	Ball(int _id, std::string _name, int _bonus);
 
+	inline float getBonus() { return m_bonus; }
 };
 
