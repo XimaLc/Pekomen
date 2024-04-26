@@ -26,13 +26,13 @@ Player::Player(std::string _name, sf::Texture& _texture)
     m_playerTeam = new Team();
     m_playerInventory = new Inventory();
 
-    name = _name;
-    sprite.setTexture(_texture);
     sprite.setTextureRect({ 0, 0, 32, 32 });
-    animState = 0;
+    sprite.setTexture(_texture);
     position = { 0, 0 };
-    dir = 0;
     animState = 0;
+    animState = 0;
+    name = _name;
+    dir = 0;
 }
 
 Player::Player()

@@ -4,6 +4,7 @@
 State* StateManager::m_currentState;
 GameState* StateManager::gameState;
 Player StateManager::m_player;
+bool StateManager::isRunning;
 
 StateManager::StateManager()
 {

@@ -21,11 +21,9 @@ class StateManager
 
 	static Player m_player;
 	sf::Texture playerTexture;
-
-
-
-	bool isRunning;
 public:
+	static bool isRunning;
+	
 	StateManager();
 	~StateManager();
 

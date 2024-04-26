@@ -25,6 +25,8 @@ public:
 	//void savePos(std::string _name);
 	//void loadPos(std::string _name);
 
+	inline Inventory& getInventory() { return *m_playerInventory; }
+
 	Player(std::string _name, sf::Texture& _texture);
 	Player();
 
