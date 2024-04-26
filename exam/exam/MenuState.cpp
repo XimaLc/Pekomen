@@ -65,27 +65,29 @@ MenuState::MenuState(Player& _player)
 void MenuState::Update(const sf::Vector2f _mousePos)
 {
 	m_playBouton.Update(_mousePos);
-	if (!m_playBouton.isClicked())
-	{
-		m_optBouton.Update(_mousePos);
-		m_leaveBouton.Update(_mousePos);
-	}
+	m_optBouton.Update(_mousePos);
+	m_leaveBouton.Update(_mousePos);
+
+	if(m_playBouton.checkClick()) {}
+	else if (m_optBouton.checkClick()) {}
+	else if (m_leaveBouton.checkClick()) {}
 
 
-	if (m_playBouton.isClicked())
-	{
-		m_playBouton.useClickAction();
-	}
-	
-	if (m_optBouton.isClicked())
-	{
-		m_optBouton.useClickAction();
-	}
-	
-	if (m_leaveBouton.isClicked())
-	{
-		exit(0);
-	}
+
+	//if (m_playBouton.isClicked())
+	//{
+	//	m_playBouton.useClickAction();
+	//}
+	//
+	//if (m_optBouton.isClicked())
+	//{
+	//	m_optBouton.useClickAction();
+	//}
+	//
+	//if (m_leaveBouton.isClicked())
+	//{
+	//	exit(0);
+	//}
 }
 
 void MenuState::Draw(sf::RenderWindow& _window)

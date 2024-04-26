@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include "Pokemon.h"
-
+#include "tools.h"
 enum BOUTON_STATE { BOUTON_BASE, BOUTON_HOVER, BOUTON_CLICKED};
 enum BOUTON_STRING_TYPE { STRING, POKEMON_PATH, POKEMON_BOUTON};
 
@@ -35,6 +35,7 @@ public:
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, sf::Color _color);
 
 	bool isClicked();
+	bool checkClick();
 
 	void setPokemon(Pokemon _pokemon, BOUTON_STRING_TYPE _type);
 	void useClickAction();
@@ -42,7 +43,10 @@ public:
 	void setString(std::string _str);
 
 	void setOnClick(std::function<void()> _function);
+
 	void Update(sf::Vector2f mousePos);
+	inline void UpdateTimer() { timer += GetDeltaTime(); }
+
 	void Draw(sf::RenderWindow& _window);
 
 	~Bouton();

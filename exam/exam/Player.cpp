@@ -24,6 +24,7 @@ void Player::healTeam()
 Player::Player(std::string _name, sf::Texture& _texture)
 {
     m_playerTeam = new Team();
+    m_playerInventory = new Inventory();
 
     name = _name;
     sprite.setTexture(_texture);

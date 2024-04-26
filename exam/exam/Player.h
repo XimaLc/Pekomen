@@ -1,14 +1,14 @@
 #pragma once
 #include "Entity.h"
 #include "Team.h"
-
+#include "Inventory.h"
 
 enum STARTER_TYPE { PLANTE = 1, FEU = 4, EAU = 7 };
 
 class Player : public Entity
 {
 	Team* m_playerTeam;
-
+	Inventory* m_playerInventory;
 public:
 	inline void setPosition(sf::Vector2i _position) { position = _position; }
 

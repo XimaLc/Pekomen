@@ -1,5 +1,6 @@
 #include "WildPokemonState.h"
 #include "DB.h"
+#include "StateManager.h"
 
 WildPokemonState::WildPokemonState()
 {
@@ -11,7 +12,10 @@ WildPokemonState::WildPokemonState(Player& _player) : CombatState(_player)
 	actualOpponentPkm.setRandomMoves();
 	setOpponentPkmTexture(actualOpponentPkm.getPath());
 
-	m_ballBouton.setOnClick([this]() {if (m_ballBouton.timer > 0.5f) { m_ballBouton.timer = 0; catchPokemon(); }});
+	m_fuiteBouton.setOnClick([this]() {if (m_fuiteBouton.timer > 0.5f) { m_fuiteBouton.timer = 0; StateManager::ChangeState(GAME_STATE); }});
+
+
+	m_ballBouton.setOnClick([this]() {if (m_ballBouton.timer > 0.5f) { m_ballBouton.timer = 0; }});
 }
 
 bool WildPokemonState::catchPokemon()

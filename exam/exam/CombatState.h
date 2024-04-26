@@ -20,8 +20,11 @@ protected:
 
 	Move nextMove;
 
+	bool lastUpdate;
 	bool m_isAttaqueMenuOpen;
 	bool m_isSacMenuOpen;
+	bool m_isPokemonMenuOpen;
+	bool m_isMainMenuOpen;
 
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
@@ -49,9 +52,6 @@ protected:
 	Player* m_player;
 
 	bool inCombat;
-
-	//sf::Texture m_textBarTexture;
-	//sf::Sprite m_textBarSprite;
 
 	float timer;
 public:

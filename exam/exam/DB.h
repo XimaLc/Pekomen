@@ -6,6 +6,7 @@
 #include <SFML/graphics.hpp>
 
 #include "Team.h"
+#include "Ball.h"
 
 enum Types { Steel = 1, Fighting, Dragon, Water, Electric, Fairy, Fire, Ice, Bug, Normal, Grass, Poison, Psychic, Rock, Ground, Ghost, Dark, Flying };
 
@@ -23,6 +24,8 @@ public:
 
 	static std::vector<Pokemon> getSelectablePokemons(int _startId, int _amount);
 	
+	static Ball getBallByID(int _id);
+
 	static Move getMoveById(int _id);
 	static std::vector<Move> getMoves(std::vector<int> _movePool, int _startId, int _amount);
 	static void saveTeam(Team team);

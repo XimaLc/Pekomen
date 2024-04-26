@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BallInventory.cpp" />
     <ClCompile Include="Bouton.cpp" />
     <ClCompile Include="CombatState.cpp" />
     <ClCompile Include="DB.cpp" />
@@ -142,6 +144,8 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InGameMenu.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -161,6 +165,8 @@
     <ClCompile Include="WildPokemonState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="BallInventory.h" />
     <ClInclude Include="Bouton.h" />
     <ClInclude Include="CombatState.h" />
     <ClInclude Include="DB.h" />
@@ -168,6 +174,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InGameMenu.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuState.h" />

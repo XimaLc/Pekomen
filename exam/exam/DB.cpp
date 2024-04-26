@@ -141,6 +141,38 @@ std::vector<Pokemon> DB::getSelectablePokemons(int _startId, int _amount)
 	}
 }
 
+Ball DB::getBallByID(int _id)
+{
+	std::string name;
+	int id;
+	float bonus;
+
+	std::string string;
+	std::istringstream iss;
+
+	std::ifstream file("../Files/DB/Balls.tsv", std::ios::in);
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			getline(file, string);
+			iss.clear();
+			if (string.find("//") == std::string::npos)
+			{
+				iss.str(string);
+				iss >> id >> name >> bonus;
+				if (id == _id)
+				{
+					Ball ball(id, removeUnderscore(name), bonus);
+					file.close();
+					return ball;
+				}
+			}
+		}
+		file.close();
+	}
+}
+
 Move DB::getMoveById(int _id)
 {
 	std::string name;

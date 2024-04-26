@@ -1,5 +1,4 @@
 #include "Bouton.h"
-#include "tools.h"
 #include "StateManager.h"
 #include "DB.h"
 
@@ -130,6 +129,17 @@ bool Bouton::isClicked()
 	return false;
 }
 
+bool Bouton::checkClick()
+{
+	if (m_currentState == BOUTON_CLICKED)
+	{
+		m_onClickAction();
+		return true;
+	}
+
+	return false;
+}
+
 void Bouton::setPokemon(Pokemon _pokemon, BOUTON_STRING_TYPE _type)
 {
 	m_texture = DB::getTexture(_pokemon.getPath());
@@ -159,7 +169,6 @@ void Bouton::Update(const sf::Vector2f mousePos)
 		if (m_boutonType == STRING)
 		{
 			m_text.setFillColor(sf::Color::White);
-
 		}
 		else if (m_boutonType == POKEMON_BOUTON)
 		{
