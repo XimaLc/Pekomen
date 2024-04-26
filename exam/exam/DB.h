@@ -9,10 +9,12 @@
 #include "Ball.h"
 
 enum Types { Steel = 1, Fighting, Dragon, Water, Electric, Fairy, Fire, Ice, Bug, Normal, Grass, Poison, Psychic, Rock, Ground, Ghost, Dark, Flying };
+enum TEXTURE_TYPE {BALL};
 
 class DB
 {
 private:
+	static sf::Texture ballsTexture;
 	static std::map<std::string, sf::Texture> pokemonTextures;
 public:
 	static std::string removeUnderscore(std::string _str);
@@ -35,6 +37,7 @@ public:
 	static void loadTextures();
 
 	static sf::Texture* getTexture(std::string path);
+	static sf::Texture* getTexture(TEXTURE_TYPE _type);
 	static sf::Texture* getTextureByID(int ID);
 	static std::string getPathByID(int ID);
 };

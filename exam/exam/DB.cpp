@@ -1,6 +1,7 @@
 #include "DB.h"
 
 std::map<std::string, sf::Texture> DB::pokemonTextures;
+sf::Texture DB::ballsTexture;
 
 std::string DB::removeUnderscore(std::string _str)
 {
@@ -572,6 +573,8 @@ void DB::loadTextures()
 		}
 		file.close();
 	}
+
+	ballsTexture.loadFromFile("../Files/Textures/Balls.png");
 }
 
 sf::Texture* DB::getTexture(std::string path)
@@ -606,6 +609,11 @@ sf::Texture* DB::getTextureByID(int ID)
 		}
 		file.close();
 	}
+}
+
+sf::Texture* DB::getTexture(TEXTURE_TYPE _type)
+{
+	return &ballsTexture;
 }
 
 std::string DB::getPathByID(int ID)
