@@ -25,13 +25,15 @@ class GameState : public State
 
 	sf::Vector2i lookingAt;
 
-	DialogueBarre m_dialoguesBox;
+	static DialogueBarre m_dialoguesBox;
 
 	sf::View mapView;
 public:
 	~GameState();
 	GameState();
 	GameState(Player& _player);
+
+	static void setDialogue(std::string _str);
 
 	virtual void Update(sf::Vector2f _mousePos);
 	virtual void Draw(sf::RenderWindow& _window);

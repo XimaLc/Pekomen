@@ -21,6 +21,8 @@ public:
 	void addStarter(int _type);
 	void evolvePokemons();
 
+	bool isAllDead();
+
 	inline void heal(int _i) { m_team[_i].heal(); }
 	void healAll();
 

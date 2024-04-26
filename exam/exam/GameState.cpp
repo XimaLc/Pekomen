@@ -1,6 +1,8 @@
 #include "GameState.h"
 #include "StateManager.h"
 
+DialogueBarre GameState::m_dialoguesBox;
+
 GameState::~GameState()
 {
 }
@@ -41,11 +43,17 @@ GameState::GameState(Player& _player)
 	m_dialoguesBox = DialogueBarre({ 200, 900 }, 2, false);
 }
 
+void GameState::setDialogue(std::string _str)
+{
+	m_dialoguesBox.setString(_str);
+	m_dialoguesBox.isOpen = true;
+}
+
 void GameState::Update(sf::Vector2f _mousePos)
 {
 	mapView.setCenter({ static_cast<float>(m_player->getPosition().x * 32), static_cast<float>(m_player->getPosition().y * 32) });
 
-	if (hasMove)
+	if (hasMove && m_player->canFight)
 	{
 		hasMove = false;
 		if (map.isInGrass(m_player->getPosition()))
@@ -90,6 +98,7 @@ void GameState::HandleKeyboard(sf::Event _event)
 			m_player->getTeam()->healAll();
 			m_dialoguesBox.setString("Je vais soigner ton equipe");
 			m_dialoguesBox.isOpen = true;
+			m_player->canFight = true;
 		}
 	}
 	if (gameHasFocus)

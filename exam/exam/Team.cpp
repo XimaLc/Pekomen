@@ -1,5 +1,6 @@
 #include "Team.h"
 #include "DB.h"
+#include "GameState.h"
 
 Team::Team()
 {
@@ -140,10 +141,22 @@ void Team::evolvePokemons()
 		if (m_team[i].canEvolve())
 		{
 			int x = m_team[i].getStat(LVL);
+			std::string tmp = m_team[i].getName();
 			m_team[i] = DB::getPokemonById(m_team[i].getEvolutionTarget());
 			m_team[i].setStat(LVL, x);
+			GameState::setDialogue("Votre " + tmp + " evolue en " + m_team[i].getName());
 		}
 	}
+}
+
+bool Team::isAllDead()
+{
+	for (auto& pkm : m_team)
+	{
+		if (pkm.getIsAlive())
+			return false;
+	}
+	return true;
 }
 
 void Team::healAll()

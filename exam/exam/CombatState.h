@@ -21,8 +21,6 @@ protected:
 
 	Move nextMove;
 
-	DialogueBarre m_dialogueBox;
-
 	bool m_isAttaqueMenuOpen;
 	bool m_isSacMenuOpen;
 	bool m_isPokemonMenuOpen;

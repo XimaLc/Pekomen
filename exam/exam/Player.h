@@ -10,6 +10,8 @@ class Player : public Entity
 	Team* m_playerTeam;
 	Inventory* m_playerInventory;
 public:
+	bool canFight;
+
 	inline void setPosition(sf::Vector2i _position) { position = _position; }
 
 	virtual void Draw(sf::RenderWindow& window);
@@ -28,6 +30,7 @@ public:
 	inline Inventory& getInventory() { return *m_playerInventory; }
 
 	Player(std::string _name, sf::Texture& _texture);
+	bool isAllDead();
 	Player();
 
 	~Player();

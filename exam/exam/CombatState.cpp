@@ -24,8 +24,6 @@ CombatState::CombatState()
 
 CombatState::CombatState(Player& _player)
 {
-	m_dialogueBox = DialogueBarre({ 700, 900 }, 1.3, true);
-
 	m_isMainMenuOpen = true;
 	m_isAttaqueMenuOpen = m_isPokemonMenuOpen = m_isSacMenuOpen = false;
 
@@ -250,6 +248,7 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 
 	if (inCombat && !actualOpponentPkm.getIsAlive())
 	{
+		GameState::setDialogue("Vous avez tuer le " + actualOpponentPkm.getName());
 		m_player->getTeam()->getPokemons()[actualPlayerPkm].giveXp(50);
 		m_player->getTeam()->evolvePokemons();
 		inCombat = false;
@@ -257,13 +256,15 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	}
 	else if (inCombat && !m_player->getTeam()->getPokemons()[actualPlayerPkm].getIsAlive())
 	{
+		//marche po 
+		// 
+		//if (m_player->getTeam()->isAllDead())
+		//	m_player->canFight = false;
+		GameState::setDialogue(actualOpponentPkm.getName() + " vous a tué");		
 		StateManager::ChangeState(GAME_STATE);
 		inCombat = false;
 	}
 	else if (m_fuiteBouton.checkClick()) {}
-
-	if (m_dialogueBox.isOpen)
-		m_dialogueBox.Update(false);
 }
 
 void CombatState::CommonDraw(sf::RenderWindow& _window)
@@ -306,9 +307,6 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_soinBouton.Draw(_window);
 		m_retourAttaqueBouton.Draw(_window);
 	}
-
-	if (m_dialogueBox.isOpen)
-		m_dialogueBox.Draw(_window);
 }
 
 void CombatState::HandleKeyboard(sf::Event _event)

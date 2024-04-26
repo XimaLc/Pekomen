@@ -23,6 +23,8 @@ void Player::healTeam()
 
 Player::Player(std::string _name, sf::Texture& _texture)
 {
+    canFight = true;
+
     m_playerTeam = new Team();
     m_playerInventory = new Inventory();
 
@@ -33,6 +35,11 @@ Player::Player(std::string _name, sf::Texture& _texture)
     animState = 0;
     name = _name;
     dir = 0;
+}
+
+bool Player::isAllDead()
+{
+    return m_playerTeam->isAllDead();
 }
 
 Player::Player()
