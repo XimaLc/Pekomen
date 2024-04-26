@@ -60,6 +60,14 @@ MenuState::MenuState(Player& _player)
 				m_optBouton.timer = 0;
 			}
 		});
+
+	m_leaveBouton.setOnClick([this]()
+		{
+			if (m_leaveBouton.timer > 0.5f)
+			{
+				StateManager::isRunning = false;
+			}
+		});
 }
 
 void MenuState::Update(const sf::Vector2f _mousePos)
@@ -71,23 +79,6 @@ void MenuState::Update(const sf::Vector2f _mousePos)
 	if(m_playBouton.checkClick()) {}
 	else if (m_optBouton.checkClick()) {}
 	else if (m_leaveBouton.checkClick()) {}
-
-
-
-	//if (m_playBouton.isClicked())
-	//{
-	//	m_playBouton.useClickAction();
-	//}
-	//
-	//if (m_optBouton.isClicked())
-	//{
-	//	m_optBouton.useClickAction();
-	//}
-	//
-	//if (m_leaveBouton.isClicked())
-	//{
-	//	exit(0);
-	//}
 }
 
 void MenuState::Draw(sf::RenderWindow& _window)
