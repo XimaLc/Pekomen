@@ -5,7 +5,10 @@
 
 class WildPokemonState : public CombatState
 {
-	
+	Bouton m_pokeBallBouton;
+	Bouton m_superBallBouton;
+	Bouton m_hyperBallBouton;
+	Bouton m_maitreBallBouton;
 
 public:
 	WildPokemonState();

@@ -61,6 +61,25 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, Pokemon _pokemon)
 	timer = 0.f;
 }
 
+Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::IntRect _intRect, BOUTON_TYPE _boutonType)
+{
+	m_currentState = BOUTON_BASE;
+	m_boutonType = _boutonType;
+
+	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
+
+	m_shape.setPosition(_pos);
+	m_shape.setSize(_size);
+	m_shape.setOutlineColor(sf::Color::Black);
+	m_shape.setOutlineThickness(-1.f);
+
+	m_texture->loadFromFile("../Files/Textures/Balls.png");
+	m_sprite.setTextureRect(_intRect);
+
+	m_boutonType = _boutonType;
+
+}
+
 //Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::Sprite _sprite, sf::Vector2f _spriteSize)
 //{
 //	m_currentState = BOUTON_BASE;
@@ -78,10 +97,7 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, Pokemon _pokemon)
 Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int string_type)
 {
 	m_currentState = BOUTON_BASE;
-	m_boutonType = POKEMON_PATH;
-
-	m_sprite.setScale(0.35f, 0.35f);
-	m_sprite.setPosition(_pos.x + 15, _pos.y + 15);
+	m_boutonType = string_type;
 
 	m_font.loadFromFile("../Files/Fonts/Pokemon.ttf");
 
@@ -92,6 +108,8 @@ Bouton::Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int s
 
 	if (string_type == POKEMON_PATH)
 	{
+		m_sprite.setScale(0.35f, 0.35f);
+		m_sprite.setPosition(_pos.x + 15, _pos.y + 15);
 		m_texture = DB::getTexture(_string);
 	}
 	else
@@ -140,7 +158,7 @@ bool Bouton::checkClick()
 	return false;
 }
 
-void Bouton::setPokemon(Pokemon _pokemon, BOUTON_STRING_TYPE _type)
+void Bouton::setPokemon(Pokemon _pokemon, BOUTON_TYPE _type)
 {
 	m_texture = DB::getTexture(_pokemon.getPath());
 	if (_type == POKEMON_BOUTON)
@@ -209,12 +227,13 @@ void Bouton::Update(const sf::Vector2f mousePos)
 void Bouton::Draw(sf::RenderWindow& _window)
 {
 	_window.draw(m_shape);
-	if (m_boutonType == STRING)
+	if (m_boutonType == STRING || m_boutonType == POKEBALL_BOUTON || m_boutonType == POKEMON_BOUTON)
 	{
 		m_text.setFont(m_font);
 		_window.draw(m_text);
 	}
-	else if (m_boutonType == POKEMON_BOUTON || m_boutonType == POKEMON_PATH )
+	
+	if (m_boutonType == POKEMON_BOUTON || m_boutonType == POKEMON_PATH || m_boutonType == POKEBALL_BOUTON)
 	{
 		m_sprite.setTexture(*m_texture);
 		_window.draw(m_sprite);
@@ -222,9 +241,6 @@ void Bouton::Draw(sf::RenderWindow& _window)
 
 	if (m_boutonType == POKEMON_BOUTON)
 	{
-		m_text.setFont(m_font);
-		_window.draw(m_text);
-
 		m_levelText.setFont(m_font);
 		_window.draw(m_levelText);
 	}

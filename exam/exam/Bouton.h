@@ -4,7 +4,7 @@
 #include "Pokemon.h"
 #include "tools.h"
 enum BOUTON_STATE { BOUTON_BASE, BOUTON_HOVER, BOUTON_CLICKED};
-enum BOUTON_STRING_TYPE { STRING, POKEMON_PATH, POKEMON_BOUTON};
+enum BOUTON_TYPE { STRING, POKEMON_PATH, POKEMON_BOUTON, POKEBALL_BOUTON};
 
 
 class Bouton
@@ -31,13 +31,14 @@ public:
 	Bouton();
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string);
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, Pokemon _pokemon);
+	Bouton(sf::Vector2f _pos, sf::Vector2f _size, sf::IntRect, BOUTON_TYPE _boutonType);
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, int string_type);
 	Bouton(sf::Vector2f _pos, sf::Vector2f _size, std::string _string, sf::Color _color);
 
 	bool isClicked();
 	bool checkClick();
 
-	void setPokemon(Pokemon _pokemon, BOUTON_STRING_TYPE _type);
+	void setPokemon(Pokemon _pokemon, BOUTON_TYPE _type);
 	void useClickAction();
 
 	void setString(std::string _str);

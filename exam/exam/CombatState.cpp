@@ -56,8 +56,9 @@ CombatState::CombatState(Player& _player)
 			if (m_sacBouton.timer > 0.5f) 
 			{ 
 				m_sacBouton.timer = 0;
-				//m_isMainMenuOpen = false;
-				//m_isSacMenuOpen = true; 
+				m_isMainMenuOpen = false;
+				m_isPokemonMenuOpen = false;
+				m_isSacMenuOpen = true; 
 			}
 		});
 
@@ -80,6 +81,8 @@ CombatState::CombatState(Player& _player)
 			{ 
 				m_retourAttaqueBouton.timer = 0; 
 				m_isAttaqueMenuOpen = false;
+				m_isSacMenuOpen = false;
+				m_isBallMenuOpen = false;
 				m_isMainMenuOpen = true;
 			}
 		});
@@ -105,12 +108,12 @@ CombatState::CombatState(Player& _player)
 	m_move4Bouton = Bouton({ 1700, 930 }, { 200, 100 }, m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[3].getName());
 	m_move4Bouton.setOnClick([this]() {if (m_move4Bouton.timer > 0.5) { m_move4Bouton.timer = 0; nextMove = m_player->getTeam()->getPokemons()[actualPlayerPkm].getMoves()[3]; TurnAction(); }});
 
-	m_ballBouton = Bouton({ 1500, 830 }, { 400, 100 }, "BALLS");
+	m_ballBouton = Bouton({ 1500, 830 }, { 200, 200 }, "BALLS");
 
-	m_soinBouton = Bouton({1700, 830}, {400, 100}, "SOINS");
+	m_soinBouton = Bouton({1700, 830}, {200, 200}, "SOINS");
 	m_soinBouton.setOnClick([this]() 
 		{
-			if (m_soinBouton.timer > 0.5f) 
+			if (m_soinBouton.timer > 0.5f && m_sacBouton.timer > 0.5f) 
 			{ 
 				m_soinBouton.timer = 0; 
 				//OUVRIR MENU ITEM SOIN
@@ -205,6 +208,13 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 		m_move4Bouton.Update(_mousePos);
 		m_retourAttaqueBouton.Update(_mousePos);
 	}
+	else if (m_isSacMenuOpen)
+	{
+		m_sacBouton.UpdateTimer();
+		m_ballBouton.Update(_mousePos);
+		m_soinBouton.Update(_mousePos);
+		m_retourAttaqueBouton.Update(_mousePos);
+	}
 
 	if (!m_isAttaqueMenuOpen) {}
 	else if (m_move1Bouton.checkClick()) {}
@@ -212,11 +222,14 @@ void CombatState::CommonUpdate(sf::Vector2f _mousePos)
 	//else if (m_move3Bouton.checkClick()) {}
 	//else if (m_move4Bouton.checkClick()) {}
 	
+	if(!m_isSacMenuOpen) {}
+	else if (m_ballBouton.checkClick()) {}
+	else if (m_soinBouton.checkClick()) {}
 	
 	if(m_attaqueBouton.checkClick()) {}
 	else if (m_pokemonBouton.checkClick()) {}
 	else if (m_sacBouton.checkClick()) {}
-	
+
 	if (m_retourAttaqueBouton.checkClick()) {}
 
 	if (inCombat && !actualOpponentPkm.getIsAlive())
@@ -267,7 +280,13 @@ void CombatState::CommonDraw(sf::RenderWindow& _window)
 		m_move3Bouton.Draw(_window);
 		m_move4Bouton.Draw(_window);
 		m_retourAttaqueBouton.Draw(_window);
-	} 
+	}
+	else if (m_isSacMenuOpen)
+	{
+		m_ballBouton.Draw(_window);
+		m_soinBouton.Draw(_window);
+		m_retourAttaqueBouton.Draw(_window);
+	}
 }
 
 void CombatState::HandleKeyboard(sf::Event _event)

@@ -25,6 +25,7 @@ protected:
 	bool m_isSacMenuOpen;
 	bool m_isPokemonMenuOpen;
 	bool m_isMainMenuOpen;
+	bool m_isBallMenuOpen;
 
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_backgroundTexture;
