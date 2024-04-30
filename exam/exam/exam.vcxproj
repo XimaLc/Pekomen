@@ -157,6 +157,7 @@
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="pokemonInGameInfoBar.cpp" />
     <ClCompile Include="PokemonMenu.cpp" />
+    <ClCompile Include="Radio.cpp" />
     <ClCompile Include="SaveMenu.cpp" />
     <ClCompile Include="source.cpp" />
     <ClCompile Include="State.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="pokemonInGameInfoBar.h" />
     <ClInclude Include="PokemonMenu.h" />
+    <ClInclude Include="Radio.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SaveMenu.h" />
     <ClInclude Include="State.h" />

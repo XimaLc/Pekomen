@@ -64,9 +64,6 @@
     <Filter Include="Fichiers d%27en-tête\tools">
       <UniqueIdentifier>{16284725-259b-4b39-bf4e-7ae124f1040f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\tools">
-      <UniqueIdentifier>{aa821408-96c3-4590-b51f-c4b216871fcb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Components\Pokemons">
       <UniqueIdentifier>{de56e086-f85b-4c78-8de4-edf1bbe03012}</UniqueIdentifier>
     </Filter>
@@ -115,6 +112,9 @@
     <Filter Include="Fichiers sources\states\enfant\combat\enfant">
       <UniqueIdentifier>{059a6a41-d971-459f-a0fa-36f08cc6955e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Components\tools">
+      <UniqueIdentifier>{aa821408-96c3-4590-b51f-c4b216871fcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -154,10 +154,10 @@
       <Filter>Fichiers sources\Components\Entity</Filter>
     </ClCompile>
     <ClCompile Include="tools.cpp">
-      <Filter>Fichiers sources\tools</Filter>
+      <Filter>Fichiers sources\Components\tools</Filter>
     </ClCompile>
     <ClCompile Include="DB.cpp">
-      <Filter>Fichiers sources\tools</Filter>
+      <Filter>Fichiers sources\Components\tools</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
       <Filter>Fichiers sources\Components\Pokemons</Filter>
@@ -203,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="DialogueBarre.cpp">
       <Filter>Fichiers sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Radio.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +294,9 @@
       <Filter>Fichiers d%27en-tête\states\enfant\combat\enfant</Filter>
     </ClInclude>
     <ClInclude Include="DialogueBarre.h">
+      <Filter>Fichiers d%27en-tête\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Radio.h">
       <Filter>Fichiers d%27en-tête\Components</Filter>
     </ClInclude>
   </ItemGroup>
